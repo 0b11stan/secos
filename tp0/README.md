@@ -41,6 +41,29 @@ Par défaut, les fichiers de TP permettent d'accéder à un objet global pré-in
 
 **Pourquoi le noyau indique `0x302010` et pas `0x300000` comme adresse de début ? Indice: essayer de comprendre linker.lds, regardez également le code de "entry.s"**
 
+L'adresse est définie à `0x300000` en ligne 16 et la ligne 20 stoque la variable
+`__kernel_start__` qui sera ensuite affichée par le fichier `tp.c`. Cependant,
+les lignes 17 et 18 augmentent encore de `0x2010` l'adresse de départ :
+
+* La ligne 17 récupère la sections `.mbh` définie dans `start.c`.
+```
+$ readelf -s start.o | grep mbh
+    16: 00000000    12 OBJECT  GLOBAL DEFAULT    6 mbh
+$ grep -r __mbh__ kernel/
+kernel/core/start.c:volatile const uint32_t __mbh__ mbh[] = {
+kernel/include/mbi.h:#define __mbh__                 __attribute__ ((section(".mbh"),aligned(4)))
+```
+
+On constate bien que dans le fichier de sortie, les l'objet mbh est bien en
+première position dans le noyau.
+```
+$ readelf -s kernel.elf | grep 300000
+     1: 00300000     0 SECTION LOCAL  DEFAULT    1 
+    53: 00300000    12 OBJECT  GLOBAL DEFAULT    1 mbh
+```
+
+mais les deux lignes suivante C'est du aux lignes 17 et 18 du fichier `linker.lds`. , la ligne 17 ajoute le contenu 
+
 ---
 
 ### Question 2
