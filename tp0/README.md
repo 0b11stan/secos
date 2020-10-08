@@ -41,12 +41,15 @@ Par défaut, les fichiers de TP permettent d'accéder à un objet global pré-in
 
 **Pourquoi le noyau indique `0x302010` et pas `0x300000` comme adresse de début ? Indice: essayer de comprendre linker.lds, regardez également le code de "entry.s"**
 
-L'adresse est définie à `0x300000` en ligne 16 et la ligne 20 stoque la variable
+Dans le fichier `linker.ld`,
+l'adresse est définie à `0x300000` en ligne 16 et la ligne 20 stoque la variable
 `__kernel_start__` qui sera ensuite affichée par le fichier `tp.c`. Cependant,
 les lignes 17 et 18 augmentent encore de `0x2010` l'adresse de départ :
 
-* La ligne 17 récupère la sections `.mbh` définie dans `start.c`.
-```
+#### MBH (MultiBoot Headers)
+
+La ligne 17 récupère la sections `.mbh` définie dans `start.c`.
+```bash
 $ readelf -s start.o | grep mbh
     16: 00000000    12 OBJECT  GLOBAL DEFAULT    6 mbh
 $ grep -r __mbh__ kernel/
@@ -54,15 +57,41 @@ kernel/core/start.c:volatile const uint32_t __mbh__ mbh[] = {
 kernel/include/mbi.h:#define __mbh__                 __attribute__ ((section(".mbh"),aligned(4)))
 ```
 
-On constate bien que dans le fichier de sortie, les l'objet mbh est bien en
-première position dans le noyau.
-```
+On constate que dans le fichier de sortie, l'objet mbh est bien en première
+position dans le noyau.
+```bash
 $ readelf -s kernel.elf | grep 300000
      1: 00300000     0 SECTION LOCAL  DEFAULT    1 
     53: 00300000    12 OBJECT  GLOBAL DEFAULT    1 mbh
 ```
 
-mais les deux lignes suivante C'est du aux lignes 17 et 18 du fichier `linker.lds`. , la ligne 17 ajoute le contenu 
+La section `.mbh` contient un objet `mbh` de "type" `__mbh__` défini par une
+macro à la ligne 25 du fichier `include/mbi.h` :
+```c
+	#define __mbh__                 __attribute__ ((section(".mbh"),aligned(4)))
+```
+
+L'objet est initialisé dans le fichier `core/start.c`:
+```c
+volatile const uint32_t __mbh__ mbh[] = {
+   MBH_MAGIC,													// définis l'espace comme bootable
+   MBH_FLAGS,													// flags pour GRUB : comment load kernel
+   (uint32_t)-(MBH_MAGIC+MBH_FLAGS),	// checksum du multiboot_header
+};
+```
+( il est sensé faire `3 * 4 = 12` octets, pourquoi il n'en prend que 10 ?? )
+
+#### La stack
+
+Vient ensuite la section `.stack` dans le fichier `linker.lds`. Cette section
+est définis par les lignes 2 à 4 du fichier `core/entry.s`:
+```asm
+.section .stack, "aw", @nobits
+.align 16
+.space 0x2000
+```
+On vois qu'une section `stack` y est déclarée et que 2000 octets lui sont
+alloués.
 
 ---
 

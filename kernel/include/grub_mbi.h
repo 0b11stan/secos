@@ -22,6 +22,8 @@
  *  SOFTWARE.
  */
 
+// DOC https://www.gnu.org/software/grub/manual/multiboot/multiboot.html
+
 #ifndef MULTIBOOT_HEADER
 #define MULTIBOOT_HEADER 1
 

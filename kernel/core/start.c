@@ -6,10 +6,11 @@
 #include <intr.h>
 #include <info.h>
 
+// source https://intermezzos.github.io/book/first-edition/multiboot-headers.html
 volatile const uint32_t __mbh__ mbh[] = {
-   MBH_MAGIC,
-   MBH_FLAGS,
-   (uint32_t)-(MBH_MAGIC+MBH_FLAGS),
+   MBH_MAGIC,													// définis l'espace comme bootable
+   MBH_FLAGS,													// flags pour GRUB : comment load kernel
+   (uint32_t)-(MBH_MAGIC+MBH_FLAGS),	// checksum du multiboot_header
 };
 
 static info_t __info __attribute__ ((aligned(16)));
