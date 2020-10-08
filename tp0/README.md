@@ -99,6 +99,39 @@ alloués.
 
 **A l'aide de la structure "multiboot_info", vous devez afficher la cartographie mémoire de la VM. Pour cela, utilisez les champs `mmap_addr` et `mmap_length`. Aidez-vous d'internet pour trouver des informations sur le standard multiboot. Le champ `mmap_addr` contient l'adresse du premier objet de type `multiboot_memory_map` qui vous permettra d'afficher des informations sur la mémoire.**
 
+```
+################
+start   : 0x0
+end     : 0x9fc00
+size    : 654336
+state   : available
+################
+start   : 0x9fc00
+end     : 0xa0000
+size    : 1024
+state   : reserved
+################
+start   : 0xf0000
+end     : 0x100000
+size    : 65536
+state   : reserved
+################
+start   : 0x100000
+end     : 0x7fe0000
+size    : 133038080
+state   : available
+################
+start   : 0x7fe0000
+end     : 0x8000000
+size    : 131072
+state   : reserved
+################
+start   : 0xfffc0000
+end     : 0x0
+size    : 262144
+state   : reserved
+```
+
 ---
 
 ### Question 3
