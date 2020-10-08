@@ -54,7 +54,7 @@ $ readelf -s start.o | grep mbh
     16: 00000000    12 OBJECT  GLOBAL DEFAULT    6 mbh
 $ grep -r __mbh__ kernel/
 kernel/core/start.c:volatile const uint32_t __mbh__ mbh[] = {
-kernel/include/mbi.h:#define __mbh__                 __attribute__ ((section(".mbh"),aligned(4)))
+kernel/include/mbi.h:#define __mbh__ __attribute__ ((section(".mbh"),aligned(4)))
 ```
 
 On constate que dans le fichier de sortie, l'objet mbh est bien en première
@@ -68,7 +68,7 @@ $ readelf -s kernel.elf | grep 300000
 La section `.mbh` contient un objet `mbh` de "type" `__mbh__` défini par une
 macro à la ligne 25 du fichier `include/mbi.h` :
 ```c
-	#define __mbh__                 __attribute__ ((section(".mbh"),aligned(4)))
+	#define __mbh__ __attribute__ ((section(".mbh"),aligned(4)))
 ```
 
 L'objet est initialisé dans le fichier `core/start.c`:
