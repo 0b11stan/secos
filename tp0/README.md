@@ -79,7 +79,8 @@ volatile const uint32_t __mbh__ mbh[] = {
    (uint32_t)-(MBH_MAGIC+MBH_FLAGS),	// checksum du multiboot_header
 };
 ```
-( il est sensé faire `3 * 4 = 12` octets, pourquoi il n'en prend que 10 ?? )
+Il prend `3 * 4 = 12` octets, mais l'argument `aligned(4)` ajoute du padding à
+la fin du tableau pour obtenir les 16 octets (0x10) qui manque.
 
 #### La stack
 
@@ -138,8 +139,13 @@ state   : reserved
 
 **Vous allez découvrir différentes zones de mémoire physique, certaines étant réservées, d'autres libres. Déclarez un pointeur d'entier par exemple et initialisez le avec une des adresses que vous avez trouvée. Essayez de lire/écrire la mémoire à cette adresse. Que se passe-t-il ? Avez-vous un "segmentation fault" ? Pourquoi ?**
 
+Pas de segfault parcequ'on est pas en mode protégé, on à tout les droits sur la
+mémoire.
+
 ---
 
 ### Question 4
 
 **Essayez de lire/écrire en dehors de la RAM disponible (128MB). Que se passe-t-il ?**
+
+Il est possible d'écrire mais seul des 0 seront retournés à la lecture.

@@ -40,4 +40,13 @@ void tp() {
 
 		 current_entry += 1;
 	 }
+
+	 debug("################\n");
+	 uint32_t *test;
+
+	 test = (uint32_t *)0x7ffffff;						// adresse légitime < 128MB
+	 *(test) = 3; debug("test: %d\n", *test); // l'écriture et lecture fonctionne
+	 
+	 test = (uint32_t *)0x8000000;						// adresse > 128MB
+	 *(test) = 3; debug("test: %d\n", *test); // l'écriture fonctionne et pas lecture
 }
