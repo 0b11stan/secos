@@ -42,5 +42,13 @@ void tp() {
     display_segment(seg_desc);
     seg_desc++;
   }
+
+  debug("SS : %p\n", get_ss());
+  debug("DS : %p\n", get_ds());
+  debug("ES : %p\n", get_es());
+  debug("FS : %p\n", get_fs());
+  debug("GS : %p\n", get_gs());
+
+
   debug("\n");
 }
