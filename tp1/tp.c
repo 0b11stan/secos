@@ -4,9 +4,84 @@
 #include <segmem.h>
 #include <string.h>
 
+#define GDT_MASK_LIMIT_1 0x0000FFFF
+#define GDT_MASK_LIMIT_2 0x000F0000
+#define GDT_MASK_FLAGS   0x00F0FF00
+#define GDT_MASK_BASE_2  0x000000FF
+#define GDT_MASK_BASE_3  0xFF000000
+
+#define GDT_FLAG_CODE SEG_DESCTYPE(1) | SEG_PRES(1) | SEG_SAVL(0) | \
+                      SEG_LONG(0)     | SEG_SIZE(1) | SEG_GRAN(1) | \
+                      SEG_PRIV(0)     | SEG_DESC_CODE_XR
+ 
+#define GDT_FLAG_DATA SEG_DESCTYPE(1) | SEG_PRES(1) | SEG_SAVL(0) | \
+                      SEG_LONG(0)     | SEG_SIZE(1) | SEG_GRAN(1) | \
+                      SEG_PRIV(0)     | SEG_DESC_DATA_RW 
+
 extern info_t* info;
 
-gdt_reg_t new_gdt; // obligé car pas encore de malloc doit survivre à la stack
+int nb_segments = 0;
+gdt_reg_t gdtr; // obligé car pas encore de malloc
+                // et le tableau doit survivre à la stack
+
+void display_gdt(gdt_reg_t* gdtr);
+void display_segment(seg_desc_t* seg_desc);
+void add_seg_desc(gdt_reg_t* gdtr, seg_desc_t seg_desc);
+seg_desc_t build_seg_desc(uint32_t base, uint32_t limit, uint16_t flags);
+
+void tp() {
+  /* Question 1 
+   * ----------
+   * gdt_reg_t gdtr;
+   * get_gdtr(gdtr);
+   * display_gdt(&gdtr);
+  **/
+
+  add_seg_desc(&gdtr, build_seg_desc(0x0, 0x0, 0x0));
+  add_seg_desc(&gdtr, build_seg_desc(0x0, 0xffffffff, GDT_FLAG_CODE));
+  add_seg_desc(&gdtr, build_seg_desc(0x0, 0xffffffff, GDT_FLAG_DATA));
+
+  display_gdt(&gdtr);
+
+  seg_sel_t cs = { .rpl = SEG_SEL_KRN, .ti = SEG_SEL_GDT, .index = 0x1 };
+  seg_sel_t ss = { .rpl = SEG_SEL_KRN, .ti = SEG_SEL_GDT, .index = 0x2 };
+  seg_sel_t ds = { .rpl = SEG_SEL_KRN, .ti = SEG_SEL_GDT, .index = 0x2 };
+
+  set_cs(cs);
+  set_ss(ss);
+  set_ds(ds);
+
+  /*
+  debug("SS : %p\n", get_ss());
+  debug("DS : %p\n", get_ds());
+  debug("ES : %p\n", get_es());
+  debug("FS : %p\n", get_fs());
+  debug("GS : %p\n", get_gs());
+  */
+
+  debug("\n");
+}
+
+void add_seg_desc(gdt_reg_t* gdtr, seg_desc_t seg_desc) {
+  gdtr->desc[nb_segments] = seg_desc;
+  gdtr->limit = nb_segments * sizeof(seg_desc_t);
+  nb_segments++;
+}
+
+void display_gdt(gdt_reg_t* gdtr) {
+  long unsigned int last_address = gdtr->addr + gdtr->limit + 1;
+
+  debug("\n### GDTR ###\n");
+  debug("start : %p\n", gdtr->addr);
+  debug("end   : %p\n", last_address);
+
+  seg_desc_t* seg_desc = gdtr->desc;
+
+  while ((unsigned int)seg_desc <= last_address) {
+    display_segment(seg_desc);
+    seg_desc++;
+  }
+}
 
 void display_segment(seg_desc_t* seg_desc) {
   debug("\n### SEGMENT DESCRIPTOR @%p ###\n", seg_desc);
@@ -18,61 +93,33 @@ void display_segment(seg_desc_t* seg_desc) {
   base = base | (seg_desc->base_2 << 16);
   base = base | (seg_desc->base_1);
 
-  debug("base_1: %p\n", seg_desc->base_1);
   debug("base         : %p\n", base);
   debug("limit        : %p\n", limit);
-  debug("seg type     : %u\n", seg_desc->type);
-  debug("desc type    : %s\n", seg_desc->s ? "data and code" : "system");
+  debug("seg type     : %x\n", seg_desc->type);
+  debug("desc type    : %s\n", seg_desc->s ? "data or code" : "system");
   debug("privilege    : %u\n", seg_desc->dpl);
   debug("activation   : %s\n", seg_desc->p ? "enabled" : "disabled");
   debug("availability : %s\n", seg_desc->avl ? "available" : "busy");
   debug("mode         : %s\n", seg_desc->l ? "64b" : "32b");
 }
 
-void init_seg_desc(seg_desc_t* seg_desc,
-                  uint32_t base,
-                  uint32_t limit,
-                  uint8_t seg_type,
-                  uint8_t desc_type,
-                  uint8_t privilege,
-                  uint8_t enabled,
-                  uint8_t mode) {
-  // lire https://wiki.osdev.org/GDT_Tutorial
-  // utiliser https://wiki.osdev.org/GDT_Tutorial#Some_stuff_to_make_your_life_easy
-}
+seg_desc_t build_seg_desc(uint32_t base, uint32_t limit, uint16_t flag) {
+  uint64_t descriptor;
 
+  // Create the high 32 bit segment
+  descriptor  =  limit       & GDT_MASK_LIMIT_2;
+  descriptor |= (flag <<  8) & GDT_MASK_FLAGS;
+  descriptor |= (base >> 16) & GDT_MASK_BASE_2;
+  descriptor |=  base        & GDT_MASK_BASE_3;
 
-void tp() {
-  gdt_reg_t gdtr;
-  get_gdtr(gdtr);
-  long unsigned int last_address = gdtr.addr + gdtr.limit + 1;
+  // Shift by 32 to allow for low part of segment
+  descriptor <<= 32;
 
-  debug("\n### GDTR ###\n");
-  debug("start : %p\n", gdtr.addr);
-  debug("end   : %p\n", last_address);
+  // Create the low 32 bit segment
+  descriptor |= base  << 16;
+  descriptor |= limit & GDT_MASK_LIMIT_1; // set limit bits 15:0
 
-  seg_desc_t* seg_desc = gdtr.desc;
-
-  while ((unsigned int)seg_desc <= last_address) {
-    display_segment(seg_desc);
-    seg_desc++;
-  }
-
-  debug("SS : %p\n", get_ss());
-  debug("DS : %p\n", get_ds());
-  debug("ES : %p\n", get_es());
-  debug("FS : %p\n", get_fs());
-  debug("GS : %p\n", get_gs());
-
-
-  seg_desc_t code_seg;
-
-  init_seg_desc(); // TODO : for code
-  init_seg_desc(); // TODO : for data
-
-  // TODO : compute gdt from given segments
-  
-  set_gdtr(&new_gdt);
-
-  debug("\n");
+  seg_desc_t result;
+  result.raw = descriptor;
+  return result;
 }

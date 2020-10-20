@@ -44,23 +44,31 @@ typedef union segment_selector
 /*
 ** Segment Descriptor
 */
-#define SEG_DESC_DATA_R             0x0
-#define SEG_DESC_DATA_RA            0x1
-#define SEG_DESC_DATA_RW            0x2
-#define SEG_DESC_DATA_RWA           0x3
-#define SEG_DESC_DATA_ER            0x4
-#define SEG_DESC_DATA_ERA           0x5
-#define SEG_DESC_DATA_ERW           0x6
-#define SEG_DESC_DATA_ERWA          0x7
+#define SEG_DESCTYPE(x)  ((x) << 0x04) // (0 for system, 1 for code/data)
+#define SEG_PRES(x)      ((x) << 0x07) // Present
+#define SEG_SAVL(x)      ((x) << 0x0C) // Available for system use
+#define SEG_LONG(x)      ((x) << 0x0D) // Long mode
+#define SEG_SIZE(x)      ((x) << 0x0E) // Size (0 for 16-bit, 1 for 32)
+#define SEG_GRAN(x)      ((x) << 0x0F) // (0 for 1B - 1MB, 1 for 4KB - 4GB)
+#define SEG_PRIV(x)     (((x) &  0x03) << 0x05)   // Set privilege level (0 - 3)
 
-#define SEG_DESC_CODE_X             0x8
-#define SEG_DESC_CODE_XA            0x9
-#define SEG_DESC_CODE_XR            0xa
-#define SEG_DESC_CODE_XRA           0xb
-#define SEG_DESC_CODE_CX            0xc
-#define SEG_DESC_CODE_CXA           0xd
-#define SEG_DESC_CODE_CXR           0xe
-#define SEG_DESC_CODE_CXRA          0xf
+#define SEG_DESC_DATA_R             0x0 // Read-Only
+#define SEG_DESC_DATA_RA            0x1 // Read-Only, accessed
+#define SEG_DESC_DATA_RW            0x2 // Read-Write
+#define SEG_DESC_DATA_RWA           0x3 // Read/Write, accessed
+#define SEG_DESC_DATA_ER            0x4 // Read-Only, expand-down
+#define SEG_DESC_DATA_ERA           0x5 // Read-Only, expand-down, accessed
+#define SEG_DESC_DATA_ERW           0x6 // Read/Write, expand-down
+#define SEG_DESC_DATA_ERWA          0x7 // Read/Write, expand-down, accessed
+
+#define SEG_DESC_CODE_X             0x8 // Execute-Only
+#define SEG_DESC_CODE_XA            0x9 // Execute-Only, accessed
+#define SEG_DESC_CODE_XR            0xa // Execute/Read
+#define SEG_DESC_CODE_XRA           0xb // Execute/Read, accessed
+#define SEG_DESC_CODE_CX            0xc // Execute-Only, conforming
+#define SEG_DESC_CODE_CXA           0xd // Execute-Only, conforming, accessed
+#define SEG_DESC_CODE_CXR           0xe // Execute/Read, conforming
+#define SEG_DESC_CODE_CXRA          0xf // Execute/Read, conforming, accessed
 
 #define SEG_DESC_SYS_TSS_AVL_16     0x1
 #define SEG_DESC_SYS_LDT            0x2
