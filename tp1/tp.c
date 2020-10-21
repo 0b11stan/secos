@@ -24,6 +24,12 @@ int nb_segments = 0;
 gdt_reg_t gdtr; // obligé car pas encore de malloc
                 // et le tableau doit survivre à la stack
 
+//const seg_sel_t cs = { .rpl = SEG_SEL_KRN, .ti = SEG_SEL_GDT, .index = 0x1 };
+const uint16_t cs = 8; // I don't understand why the line above do not work
+const seg_sel_t ss = { .rpl = SEG_SEL_KRN, .ti = SEG_SEL_GDT, .index = 0x2 };
+const seg_sel_t ds = { .rpl = SEG_SEL_KRN, .ti = SEG_SEL_GDT, .index = 0x2 };
+
+
 void display_gdt(gdt_reg_t* gdtr);
 void display_segment(seg_desc_t* seg_desc);
 void add_seg_desc(gdt_reg_t* gdtr, seg_desc_t seg_desc);
@@ -43,13 +49,12 @@ void tp() {
 
   display_gdt(&gdtr);
 
-  seg_sel_t cs = { .rpl = SEG_SEL_KRN, .ti = SEG_SEL_GDT, .index = 0x1 };
-  seg_sel_t ss = { .rpl = SEG_SEL_KRN, .ti = SEG_SEL_GDT, .index = 0x2 };
-  seg_sel_t ds = { .rpl = SEG_SEL_KRN, .ti = SEG_SEL_GDT, .index = 0x2 };
-
   set_cs(cs);
-  set_ss(ss);
-  set_ds(ds);
+  set_ss(ss.raw);
+  set_ds(ds.raw);
+
+  debug("SS : %p\n", get_ss());
+  debug("DS : %p\n", get_ds());
 
   /*
   debug("SS : %p\n", get_ss());
