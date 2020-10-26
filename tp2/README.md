@@ -31,6 +31,18 @@ Chaque trampoline, saute dans `idt_common` qui appelle le gestionnaire d'interru
 
 **Activez les interruptions dans une boucle infinie. Que constatez-vous ?**
 
+Pour activer les interruptions on utilise l'instruction `sti` (section 7.3.13.3
+de la bible intel).
+
+On reçois des interruptions du système de timer à l'infini (pourquoi ?!).
+
+interruption 32 -> ack_pic1 -> eoi_pic1 -> idt_common
+
+Lecture :
+* https://wiki.osdev.org/Interrupts
+* https://wiki.osdev.org/PIC
+* https://wiki.osdev.org/Programmable_Interval_Timer
+
 ---
 
 ### Question 3
