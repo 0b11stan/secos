@@ -73,3 +73,5 @@ par
 **Que se passe-t-il ? Pourquoi n'y a-t-il pas de faute mémoire alors que le pointeur `dst` est NULL ?**
 
 **Effectuez à présent une copie de 64 octets. Que se passe-t-il ?**
+
+Heu rien ?? ==> ça marche mais comprend pas pourquoi ça ne devrait pas

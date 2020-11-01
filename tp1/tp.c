@@ -28,6 +28,9 @@ gdt_reg_t gdtr; // obligé car pas encore de malloc
 const uint16_t cs = 8; // I don't understand why the line above do not work
 const seg_sel_t ss = { .rpl = SEG_SEL_KRN, .ti = SEG_SEL_GDT, .index = 0x2 };
 const seg_sel_t ds = { .rpl = SEG_SEL_KRN, .ti = SEG_SEL_GDT, .index = 0x2 };
+const seg_sel_t es = { .rpl = SEG_SEL_KRN, .ti = SEG_SEL_GDT, .index = 0x3 };
+const seg_sel_t fs = { .rpl = SEG_SEL_KRN, .ti = SEG_SEL_GDT, .index = 0x2 };
+const seg_sel_t gs = { .rpl = SEG_SEL_KRN, .ti = SEG_SEL_GDT, .index = 0x2 };
 
 void display_gdt(gdt_reg_t* gdtr);
 void display_segment(seg_desc_t* seg_desc);
@@ -45,19 +48,28 @@ void tp() {
   add_seg_desc(&gdtr, build_seg_desc(0x0, 0x0, 0x0));
   add_seg_desc(&gdtr, build_seg_desc(0x0, 0xffffffff, GDT_FLAG_CODE));
   add_seg_desc(&gdtr, build_seg_desc(0x0, 0xffffffff, GDT_FLAG_DATA));
+  add_seg_desc(&gdtr, build_seg_desc(0x600000, 0x20,  GDT_FLAG_DATA));
 
   display_gdt(&gdtr);
 
   set_cs(cs);
   set_ss(ss.raw);
   set_ds(ds.raw);
-
-  debug("\n");
+  set_es(es.raw);
+  set_fs(fs.raw);
+  set_gs(gs.raw);
 
   char  src[64];
   char *dst = 0;
 
   memset(src, 0xff, 64);
+
+  debug("\n");
+
+  _memcpy8(dst, src, 64);
+
+  for (int i = 0; i < 70; i++) debug("src %d: %x\n", i, src[i]);
+  for (int i = 0; i < 70; i++) debug("dst %d: %x\n", i, dst[i]);
 
   debug("dst: %s\n", dst);
   debug("src: %s\n", src);
