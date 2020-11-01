@@ -29,7 +29,6 @@ const uint16_t cs = 8; // I don't understand why the line above do not work
 const seg_sel_t ss = { .rpl = SEG_SEL_KRN, .ti = SEG_SEL_GDT, .index = 0x2 };
 const seg_sel_t ds = { .rpl = SEG_SEL_KRN, .ti = SEG_SEL_GDT, .index = 0x2 };
 
-
 void display_gdt(gdt_reg_t* gdtr);
 void display_segment(seg_desc_t* seg_desc);
 void add_seg_desc(gdt_reg_t* gdtr, seg_desc_t seg_desc);
@@ -53,18 +52,15 @@ void tp() {
   set_ss(ss.raw);
   set_ds(ds.raw);
 
-  debug("SS : %p\n", get_ss());
-  debug("DS : %p\n", get_ds());
-
-  /*
-  debug("SS : %p\n", get_ss());
-  debug("DS : %p\n", get_ds());
-  debug("ES : %p\n", get_es());
-  debug("FS : %p\n", get_fs());
-  debug("GS : %p\n", get_gs());
-  */
-
   debug("\n");
+
+  char  src[64];
+  char *dst = 0;
+
+  memset(src, 0xff, 64);
+
+  debug("dst: %s\n", dst);
+  debug("src: %s\n", src);
 }
 
 void add_seg_desc(gdt_reg_t* gdtr, seg_desc_t seg_desc) {
