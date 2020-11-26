@@ -49,6 +49,10 @@ Lecture :
 
 **Gestion furtive des breakpoints #BP (Breakpoint Exception). Le but est de ne pas modifier `intr_hdlr` mais d'intercepter les #BP en amont depuis "tp.c".**
 
+On utilise l'IDT existante ?
+
+intéressant : https://wiki.osdev.org/Exceptions
+
 ---
 
 ### Question 3.1
