@@ -9,14 +9,17 @@ extern info_t *info;
 
 void interrupt_handler(int_ctx_t *ctx)
 {
-  debug("GOT HERE %p\n", ctx);
-  // restore stack
-  // asm volatile ("jmp %0" :: );
+  asm volatile ("pusha");
+  debug("bp triggered : %p\n", ctx);
+  // clean the context pushed by current function
+  // return from interruption
+  asm volatile ("popa ; leave ; iret");
 }
 
 void bp_trigger()
 {
   asm volatile ("int3");
+  debug("continue execution...\n");
 }
 
 void tp()
