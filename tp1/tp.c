@@ -90,7 +90,7 @@ void display_gdt(gdt_reg_t* gdtr) {
 
   seg_desc_t* seg_desc = gdtr->desc;
 
-  while ((unsigned int)seg_desc <= last_address) {
+  while ((unsigned int)seg_desc < last_address) {
     display_segment(seg_desc);
     seg_desc++;
   }
