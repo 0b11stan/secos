@@ -46,17 +46,23 @@ void userland()
 
 **Chargez progressivement les registres de segments avec des sélecteurs qui pointent vers les descripteurs ring 3.**
 
+(voir [cet article de osdev](https://wiki.osdev.org/Getting_to_Ring_3))
+
 ---
 
 ### Question 3.1
 
 **Que se passe-t-il lors du chargement de DS/ES/FS/GS ?**
 
+Une GPF.
+
 ---
 
 ### Question 3.2
 
 **Que se passe-t-il lors du chargement de SS ?**
+
+Une GPF.
 
 ---
 

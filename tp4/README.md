@@ -59,6 +59,11 @@ d'adressage.
 
 **Activez la pagination (`CR0`). Que se passe-t-il ? Pouquoi ?**
 
+Directement après avoir executer l'instruction `mov %rax, %cr3`, le processeur
+essaie d'interpréter les addresses comme des addresses virtuelles. La MMU essaie
+donc de traduire toutes les addresses dont celles contenu dans EIP, ce qui fait
+planter l'OS puisqu'il n'y à pas de système d'interruption.
+
 ---
 
 ### Question 4

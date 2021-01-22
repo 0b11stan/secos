@@ -1,5 +1,9 @@
 # SECOS
 
+notes:
+* https://alex.dzyoba.com/blog/multiboot/
+* https://alex.dzyoba.com/blog/os-segmentation/
+* https://wiki.osdev.org/Main_Page
 
 ## Pré-requis:
 
