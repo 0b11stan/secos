@@ -1,0 +1,1352 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/a3c87ab5/
+$(TARGET)	utils/rules.mk	/^$(TARGET): $(objects)$/;"	t
+%.d	utils/rules.mk	/^%.d: %.c$/;"	t
+%.d	utils/rules.mk	/^%.d: %.s$/;"	t
+%.o	utils/rules.mk	/^%.o: %.c$/;"	t
+%.o	utils/rules.mk	/^%.o: %.s$/;"	t
+.bss	utils/linker.lds	/^   .bss      : { *(.bss COMMON)                  } : phsetup$/;"	S
+.data	utils/linker.lds	/^   .data     : { *(.data)                        } : phsetup$/;"	S
+.idt_jmp	utils/linker.lds	/^   .idt_jmp  : { KEEP(*(.idt_jmp))               } : phsetup$/;"	S
+.mbh	utils/linker.lds	/^   .mbh      : { KEEP(*(.mbh)) . = ALIGN(4);     } : phboot$/;"	S
+.rodata	utils/linker.lds	/^   .rodata   : { *(.rodata)                      } : phsetup$/;"	S
+.stack	utils/linker.lds	/^   .stack    : { KEEP(*(.stack))                 } : phstack$/;"	S
+.text	utils/linker.lds	/^   .text     : { *(.text)                        } : phsetup$/;"	S
+AC_EXCP	kernel/include/excp.h	/^#define AC_EXCP /;"	d
+Astuces	tp_exam/README.md	/^## Astuces$/;"	s
+BAD_NIBBLE	kernel/include/string.h	/^#define BAD_NIBBLE /;"	d
+BIOS_BOOT_INTERRUPT	kernel/include/intr.h	/^#define BIOS_BOOT_INTERRUPT /;"	d
+BIOS_DISABLE_A20	kernel/include/intr.h	/^#define BIOS_DISABLE_A20 /;"	d
+BIOS_DISK_INTERRUPT	kernel/include/intr.h	/^#define BIOS_DISK_INTERRUPT /;"	d
+BIOS_ENABLE_A20	kernel/include/intr.h	/^#define BIOS_ENABLE_A20 /;"	d
+BIOS_GET_BIG_MEM	kernel/include/intr.h	/^#define BIOS_GET_BIG_MEM /;"	d
+BIOS_GET_EXT_MEM	kernel/include/intr.h	/^#define BIOS_GET_EXT_MEM /;"	d
+BIOS_GET_EXT_MEM_32	kernel/include/intr.h	/^#define BIOS_GET_EXT_MEM_32 /;"	d
+BIOS_GET_SMAP	kernel/include/intr.h	/^#define BIOS_GET_SMAP /;"	d
+BIOS_KBD_INTERRUPT	kernel/include/intr.h	/^#define BIOS_KBD_INTERRUPT /;"	d
+BIOS_MISC_INTERRUPT	kernel/include/intr.h	/^#define BIOS_MISC_INTERRUPT /;"	d
+BIOS_OLD_GET_EXT_MEM	kernel/include/intr.h	/^#define BIOS_OLD_GET_EXT_MEM /;"	d
+BIOS_SMAP_ERROR	kernel/include/intr.h	/^#define BIOS_SMAP_ERROR /;"	d
+BIOS_SMAP_ID	kernel/include/intr.h	/^#define BIOS_SMAP_ID /;"	d
+BIOS_STATUS_A20	kernel/include/intr.h	/^#define BIOS_STATUS_A20 /;"	d
+BIOS_SUPPORT_A20	kernel/include/intr.h	/^#define BIOS_SUPPORT_A20 /;"	d
+BIOS_VIDEO_INTERRUPT	kernel/include/intr.h	/^#define BIOS_VIDEO_INTERRUPT /;"	d
+BP_EXCP	kernel/include/excp.h	/^#define BP_EXCP /;"	d
+BR_EXCP	kernel/include/excp.h	/^#define BR_EXCP /;"	d
+CC	utils/config.mk	/^CC         := $(shell which gcc)$/;"	m
+CCLIB	utils/config.mk	/^CCLIB      := $(shell $(CC) -m32 -print-libgcc-file-name)$/;"	m
+CFLAGS	utils/config.mk	/^CFLAGS     := $(CFLG_WRN) $(CFLG_FP) $(CFLG_KRN) $(CFLG_32) $(CFLG_REL)$/;"	m
+CFLG_32	utils/config.mk	/^CFLG_32    := -m32 -g -fno-pic$/;"	m
+CFLG_FP	utils/config.mk	/^CFLG_FP    := -mno-mmx -mno-sse -mno-sse2 -mno-sse3 -mno-ssse3 -mno-sse4.1 \\$/;"	m
+CFLG_KRN	utils/config.mk	/^CFLG_KRN   := -pipe -nostdlib -nostdinc -ffreestanding -fms-extensions$/;"	m
+CFLG_REL	utils/config.mk	/^CFLG_REL   := -DRELEASE=\\"secos-$(RELEASE)\\"$/;"	m
+CFLG_WRN	utils/config.mk	/^CFLG_WRN   := -Wall -W -Werror$/;"	m
+CORE	utils/config.mk	/^CORE       := ..\/kernel\/core\/$/;"	m
+CPP	utils/config.mk	/^CPP        := $(shell which cpp)$/;"	m
+CR0_AM	kernel/include/cr.h	/^#define CR0_AM /;"	d
+CR0_AM_BIT	kernel/include/cr.h	/^#define CR0_AM_BIT /;"	d
+CR0_CD	kernel/include/cr.h	/^#define CR0_CD /;"	d
+CR0_CD_BIT	kernel/include/cr.h	/^#define CR0_CD_BIT /;"	d
+CR0_EM	kernel/include/cr.h	/^#define CR0_EM /;"	d
+CR0_EM_BIT	kernel/include/cr.h	/^#define CR0_EM_BIT /;"	d
+CR0_ET	kernel/include/cr.h	/^#define CR0_ET /;"	d
+CR0_ET_BIT	kernel/include/cr.h	/^#define CR0_ET_BIT /;"	d
+CR0_MP	kernel/include/cr.h	/^#define CR0_MP /;"	d
+CR0_MP_BIT	kernel/include/cr.h	/^#define CR0_MP_BIT /;"	d
+CR0_NE	kernel/include/cr.h	/^#define CR0_NE /;"	d
+CR0_NE_BIT	kernel/include/cr.h	/^#define CR0_NE_BIT /;"	d
+CR0_NW	kernel/include/cr.h	/^#define CR0_NW /;"	d
+CR0_NW_BIT	kernel/include/cr.h	/^#define CR0_NW_BIT /;"	d
+CR0_PE	kernel/include/cr.h	/^#define CR0_PE /;"	d
+CR0_PE_BIT	kernel/include/cr.h	/^#define CR0_PE_BIT /;"	d
+CR0_PG	kernel/include/cr.h	/^#define CR0_PG /;"	d
+CR0_PG_BIT	kernel/include/cr.h	/^#define CR0_PG_BIT /;"	d
+CR0_TS	kernel/include/cr.h	/^#define CR0_TS /;"	d
+CR0_TS_BIT	kernel/include/cr.h	/^#define CR0_TS_BIT /;"	d
+CR0_WP	kernel/include/cr.h	/^#define CR0_WP /;"	d
+CR0_WP_BIT	kernel/include/cr.h	/^#define CR0_WP_BIT /;"	d
+CR4_DE	kernel/include/cr.h	/^#define CR4_DE /;"	d
+CR4_DE_BIT	kernel/include/cr.h	/^#define CR4_DE_BIT /;"	d
+CR4_MCE	kernel/include/cr.h	/^#define CR4_MCE /;"	d
+CR4_MCE_BIT	kernel/include/cr.h	/^#define CR4_MCE_BIT /;"	d
+CR4_OSFXSR	kernel/include/cr.h	/^#define CR4_OSFXSR /;"	d
+CR4_OSFXSR_BIT	kernel/include/cr.h	/^#define CR4_OSFXSR_BIT /;"	d
+CR4_OSXMMEXCPT	kernel/include/cr.h	/^#define CR4_OSXMMEXCPT /;"	d
+CR4_OSXMMEXCPT_BIT	kernel/include/cr.h	/^#define CR4_OSXMMEXCPT_BIT /;"	d
+CR4_OSXSAVE	kernel/include/cr.h	/^#define CR4_OSXSAVE /;"	d
+CR4_OSXSAVE_BIT	kernel/include/cr.h	/^#define CR4_OSXSAVE_BIT /;"	d
+CR4_PAE	kernel/include/cr.h	/^#define CR4_PAE /;"	d
+CR4_PAE_BIT	kernel/include/cr.h	/^#define CR4_PAE_BIT /;"	d
+CR4_PCE	kernel/include/cr.h	/^#define CR4_PCE /;"	d
+CR4_PCE_BIT	kernel/include/cr.h	/^#define CR4_PCE_BIT /;"	d
+CR4_PCIDE	kernel/include/cr.h	/^#define CR4_PCIDE /;"	d
+CR4_PCIDE_BIT	kernel/include/cr.h	/^#define CR4_PCIDE_BIT /;"	d
+CR4_PGE	kernel/include/cr.h	/^#define CR4_PGE /;"	d
+CR4_PGE_BIT	kernel/include/cr.h	/^#define CR4_PGE_BIT /;"	d
+CR4_PSE	kernel/include/cr.h	/^#define CR4_PSE /;"	d
+CR4_PSE_BIT	kernel/include/cr.h	/^#define CR4_PSE_BIT /;"	d
+CR4_PVI	kernel/include/cr.h	/^#define CR4_PVI /;"	d
+CR4_PVI_BIT	kernel/include/cr.h	/^#define CR4_PVI_BIT /;"	d
+CR4_SMEP	kernel/include/cr.h	/^#define CR4_SMEP /;"	d
+CR4_SMEP_BIT	kernel/include/cr.h	/^#define CR4_SMEP_BIT /;"	d
+CR4_SMXE	kernel/include/cr.h	/^#define CR4_SMXE /;"	d
+CR4_SMXE_BIT	kernel/include/cr.h	/^#define CR4_SMXE_BIT /;"	d
+CR4_TSD	kernel/include/cr.h	/^#define CR4_TSD /;"	d
+CR4_TSD_BIT	kernel/include/cr.h	/^#define CR4_TSD_BIT /;"	d
+CR4_VME	kernel/include/cr.h	/^#define CR4_VME /;"	d
+CR4_VME_BIT	kernel/include/cr.h	/^#define CR4_VME_BIT /;"	d
+CR4_VMXE	kernel/include/cr.h	/^#define CR4_VMXE /;"	d
+CR4_VMXE_BIT	kernel/include/cr.h	/^#define CR4_VMXE_BIT /;"	d
+Comprendre le démarrage:	README.md	/^## Comprendre le démarrage:$/;"	s
+DB_EXCP	kernel/include/excp.h	/^#define DB_EXCP /;"	d
+DE_EXCP	kernel/include/excp.h	/^#define DE_EXCP /;"	d
+DFLT_PIC1_ICW2	kernel/include/pic.h	/^#define DFLT_PIC1_ICW2 /;"	d
+DFLT_PIC2_ICW2	kernel/include/pic.h	/^#define DFLT_PIC2_ICW2 /;"	d
+DF_EXCP	kernel/include/excp.h	/^#define DF_EXCP /;"	d
+Debugging:	tp3/README.DEBUG.md	/^# Debugging:$/;"	c
+Démarrer un TP:	README.md	/^## Démarrer un TP:$/;"	s
+EFLAGS_AF	kernel/include/gpr.h	/^#define EFLAGS_AF /;"	d
+EFLAGS_AF_BIT	kernel/include/gpr.h	/^#define EFLAGS_AF_BIT /;"	d
+EFLAGS_CF	kernel/include/gpr.h	/^#define EFLAGS_CF /;"	d
+EFLAGS_CF_BIT	kernel/include/gpr.h	/^#define EFLAGS_CF_BIT /;"	d
+EFLAGS_DF	kernel/include/gpr.h	/^#define EFLAGS_DF /;"	d
+EFLAGS_DF_BIT	kernel/include/gpr.h	/^#define EFLAGS_DF_BIT /;"	d
+EFLAGS_IF	kernel/include/gpr.h	/^#define EFLAGS_IF /;"	d
+EFLAGS_IF_BIT	kernel/include/gpr.h	/^#define EFLAGS_IF_BIT /;"	d
+EFLAGS_IOPL	kernel/include/gpr.h	/^#define EFLAGS_IOPL /;"	d
+EFLAGS_OF	kernel/include/gpr.h	/^#define EFLAGS_OF /;"	d
+EFLAGS_OF_BIT	kernel/include/gpr.h	/^#define EFLAGS_OF_BIT /;"	d
+EFLAGS_PF	kernel/include/gpr.h	/^#define EFLAGS_PF /;"	d
+EFLAGS_PF_BIT	kernel/include/gpr.h	/^#define EFLAGS_PF_BIT /;"	d
+EFLAGS_SF	kernel/include/gpr.h	/^#define EFLAGS_SF /;"	d
+EFLAGS_SF_BIT	kernel/include/gpr.h	/^#define EFLAGS_SF_BIT /;"	d
+EFLAGS_TF	kernel/include/gpr.h	/^#define EFLAGS_TF /;"	d
+EFLAGS_TF_BIT	kernel/include/gpr.h	/^#define EFLAGS_TF_BIT /;"	d
+EFLAGS_VIF	kernel/include/gpr.h	/^#define EFLAGS_VIF /;"	d
+EFLAGS_VIF_BIT	kernel/include/gpr.h	/^#define EFLAGS_VIF_BIT /;"	d
+EFLAGS_VIP	kernel/include/gpr.h	/^#define EFLAGS_VIP /;"	d
+EFLAGS_VIP_BIT	kernel/include/gpr.h	/^#define EFLAGS_VIP_BIT /;"	d
+EFLAGS_VM	kernel/include/gpr.h	/^#define EFLAGS_VM /;"	d
+EFLAGS_VM_BIT	kernel/include/gpr.h	/^#define EFLAGS_VM_BIT /;"	d
+EFLAGS_ZF	kernel/include/gpr.h	/^#define EFLAGS_ZF /;"	d
+EFLAGS_ZF_BIT	kernel/include/gpr.h	/^#define EFLAGS_ZF_BIT /;"	d
+Examen "Rappels OS" - TLS-SEC 2018/2019 - (c) Airbus	tp_exam/README.md	/^# Examen "Rappels OS" - TLS-SEC 2018\/2019 - (c) Airbus$/;"	c
+Exemple de session GDB:	tp3/README.DEBUG.md	/^## Exemple de session GDB:$/;"	s
+FIND	utils/config.mk	/^FIND       := $(shell which find)$/;"	m
+GDT_FLAG_CODE	tp1/tp.c	/^#define GDT_FLAG_CODE /;"	d	file:
+GDT_FLAG_DATA	tp1/tp.c	/^#define GDT_FLAG_DATA /;"	d	file:
+GDT_FLAG_KERNEL_CODE	tp3/xsegmentation.h	/^#define GDT_FLAG_KERNEL_CODE /;"	d
+GDT_FLAG_KERNEL_DATA	tp3/xsegmentation.h	/^#define GDT_FLAG_KERNEL_DATA /;"	d
+GDT_FLAG_USER_CODE	tp3/xsegmentation.h	/^#define GDT_FLAG_USER_CODE /;"	d
+GDT_FLAG_USER_DATA	tp3/xsegmentation.h	/^#define GDT_FLAG_USER_DATA /;"	d
+GDT_MASK_BASE_2	tp1/tp.c	/^#define GDT_MASK_BASE_2 /;"	d	file:
+GDT_MASK_BASE_2	tp3/xsegmentation.h	/^#define GDT_MASK_BASE_2 /;"	d
+GDT_MASK_BASE_3	tp1/tp.c	/^#define GDT_MASK_BASE_3 /;"	d	file:
+GDT_MASK_BASE_3	tp3/xsegmentation.h	/^#define GDT_MASK_BASE_3 /;"	d
+GDT_MASK_FLAGS	tp1/tp.c	/^#define GDT_MASK_FLAGS /;"	d	file:
+GDT_MASK_FLAGS	tp3/xsegmentation.h	/^#define GDT_MASK_FLAGS /;"	d
+GDT_MASK_LIMIT_1	tp1/tp.c	/^#define GDT_MASK_LIMIT_1 /;"	d	file:
+GDT_MASK_LIMIT_1	tp3/xsegmentation.h	/^#define GDT_MASK_LIMIT_1 /;"	d
+GDT_MASK_LIMIT_2	tp1/tp.c	/^#define GDT_MASK_LIMIT_2 /;"	d	file:
+GDT_MASK_LIMIT_2	tp3/xsegmentation.h	/^#define GDT_MASK_LIMIT_2 /;"	d
+GIT	utils/config.mk	/^GIT        := $(shell which git)$/;"	m
+GP_EXCP	kernel/include/excp.h	/^#define GP_EXCP /;"	d
+GRUB_STR	kernel/include/mbi.h	/^#define GRUB_STR /;"	d
+IDT	kernel/core/intr.c	/^static int_desc_t IDT[IDT_NR_DESC]; \/\/ l'IDT (tableau de descripteur)$/;"	v	typeref:typename:int_desc_t[]	file:
+IDT_ISR_ALGN	kernel/include/intr.h	/^#define IDT_ISR_ALGN /;"	d
+IDT_NR_DESC	kernel/include/intr.h	/^#define IDT_NR_DESC /;"	d
+INCLUDE	utils/config.mk	/^INCLUDE    := -I..\/kernel\/include$/;"	m
+LD	utils/config.mk	/^LD         := $(shell which ld)$/;"	m
+LDFLAGS	utils/config.mk	/^LDFLAGS    := $(LDFLG_WRN) $(LDFLG_32)$/;"	m
+LDFLG_32	utils/config.mk	/^LDFLG_32   := -melf_i386$/;"	m
+LDFLG_WRN	utils/config.mk	/^LDFLG_WRN  := --warn-common --no-check-sections -n$/;"	m
+LDSCRIPT	utils/config.mk	/^LDSCRIPT   := ..\/utils\/linker.lds$/;"	m
+La stack	tp0/README.md	/^#### La stack$/;"	t
+MAKEFLAGS	utils/config.mk	/^MAKEFLAGS  := --no-print-directory$/;"	m
+MBH (MultiBoot Headers)	tp0/README.md	/^#### MBH (MultiBoot Headers)$/;"	t
+MBH_FLAGS	kernel/include/mbi.h	/^#define MBH_FLAGS /;"	d
+MBH_MAGIC	kernel/include/mbi.h	/^#define MBH_MAGIC /;"	d
+MBI_FLAG_BDEV	kernel/include/mbi.h	/^#define MBI_FLAG_BDEV /;"	d
+MBI_FLAG_BLDR	kernel/include/mbi.h	/^#define MBI_FLAG_BLDR /;"	d
+MBI_FLAG_CMDLINE	kernel/include/mbi.h	/^#define MBI_FLAG_CMDLINE /;"	d
+MBI_FLAG_MEM	kernel/include/mbi.h	/^#define MBI_FLAG_MEM /;"	d
+MBI_FLAG_MMAP	kernel/include/mbi.h	/^#define MBI_FLAG_MMAP /;"	d
+MBI_FLAG_MODS	kernel/include/mbi.h	/^#define MBI_FLAG_MODS /;"	d
+MBI_FLAG_VER	kernel/include/mbi.h	/^#define MBI_FLAG_VER /;"	d
+MC_EXCP	kernel/include/excp.h	/^#define MC_EXCP /;"	d
+MF_EXCP	kernel/include/excp.h	/^#define MF_EXCP /;"	d
+MO_EXCP	kernel/include/excp.h	/^#define MO_EXCP /;"	d
+MULTIBOOT_AOUT_KLUDGE	kernel/include/grub_mbi.h	/^#define MULTIBOOT_AOUT_KLUDGE /;"	d
+MULTIBOOT_BOOTLOADER_MAGIC	kernel/include/grub_mbi.h	/^#define MULTIBOOT_BOOTLOADER_MAGIC /;"	d
+MULTIBOOT_FRAMEBUFFER_TYPE_EGA_TEXT	kernel/include/grub_mbi.h	/^#define MULTIBOOT_FRAMEBUFFER_TYPE_EGA_TEXT /;"	d
+MULTIBOOT_FRAMEBUFFER_TYPE_INDEXED	kernel/include/grub_mbi.h	/^#define MULTIBOOT_FRAMEBUFFER_TYPE_INDEXED /;"	d
+MULTIBOOT_FRAMEBUFFER_TYPE_RGB	kernel/include/grub_mbi.h	/^#define MULTIBOOT_FRAMEBUFFER_TYPE_RGB /;"	d
+MULTIBOOT_HEADER	kernel/include/grub_mbi.h	/^#define MULTIBOOT_HEADER /;"	d
+MULTIBOOT_HEADER_MAGIC	kernel/include/grub_mbi.h	/^#define MULTIBOOT_HEADER_MAGIC /;"	d
+MULTIBOOT_INFO_ALIGN	kernel/include/grub_mbi.h	/^#define MULTIBOOT_INFO_ALIGN /;"	d
+MULTIBOOT_INFO_AOUT_SYMS	kernel/include/grub_mbi.h	/^#define MULTIBOOT_INFO_AOUT_SYMS /;"	d
+MULTIBOOT_INFO_APM_TABLE	kernel/include/grub_mbi.h	/^#define MULTIBOOT_INFO_APM_TABLE /;"	d
+MULTIBOOT_INFO_BOOTDEV	kernel/include/grub_mbi.h	/^#define MULTIBOOT_INFO_BOOTDEV /;"	d
+MULTIBOOT_INFO_BOOT_LOADER_NAME	kernel/include/grub_mbi.h	/^#define MULTIBOOT_INFO_BOOT_LOADER_NAME /;"	d
+MULTIBOOT_INFO_CMDLINE	kernel/include/grub_mbi.h	/^#define MULTIBOOT_INFO_CMDLINE /;"	d
+MULTIBOOT_INFO_CONFIG_TABLE	kernel/include/grub_mbi.h	/^#define MULTIBOOT_INFO_CONFIG_TABLE /;"	d
+MULTIBOOT_INFO_DRIVE_INFO	kernel/include/grub_mbi.h	/^#define MULTIBOOT_INFO_DRIVE_INFO /;"	d
+MULTIBOOT_INFO_ELF_SHDR	kernel/include/grub_mbi.h	/^#define MULTIBOOT_INFO_ELF_SHDR /;"	d
+MULTIBOOT_INFO_FRAMEBUFFER_INFO	kernel/include/grub_mbi.h	/^#define MULTIBOOT_INFO_FRAMEBUFFER_INFO /;"	d
+MULTIBOOT_INFO_MEMORY	kernel/include/grub_mbi.h	/^#define MULTIBOOT_INFO_MEMORY /;"	d
+MULTIBOOT_INFO_MEM_MAP	kernel/include/grub_mbi.h	/^#define MULTIBOOT_INFO_MEM_MAP /;"	d
+MULTIBOOT_INFO_MODS	kernel/include/grub_mbi.h	/^#define MULTIBOOT_INFO_MODS /;"	d
+MULTIBOOT_INFO_VBE_INFO	kernel/include/grub_mbi.h	/^#define MULTIBOOT_INFO_VBE_INFO /;"	d
+MULTIBOOT_MEMORY_ACPI_RECLAIMABLE	kernel/include/grub_mbi.h	/^#define MULTIBOOT_MEMORY_ACPI_RECLAIMABLE /;"	d
+MULTIBOOT_MEMORY_AVAILABLE	kernel/include/grub_mbi.h	/^#define MULTIBOOT_MEMORY_AVAILABLE /;"	d
+MULTIBOOT_MEMORY_INFO	kernel/include/grub_mbi.h	/^#define MULTIBOOT_MEMORY_INFO /;"	d
+MULTIBOOT_MEMORY_NVS	kernel/include/grub_mbi.h	/^#define MULTIBOOT_MEMORY_NVS /;"	d
+MULTIBOOT_MEMORY_RESERVED	kernel/include/grub_mbi.h	/^#define MULTIBOOT_MEMORY_RESERVED /;"	d
+MULTIBOOT_MOD_ALIGN	kernel/include/grub_mbi.h	/^#define MULTIBOOT_MOD_ALIGN /;"	d
+MULTIBOOT_PAGE_ALIGN	kernel/include/grub_mbi.h	/^#define MULTIBOOT_PAGE_ALIGN /;"	d
+MULTIBOOT_SEARCH	kernel/include/grub_mbi.h	/^#define MULTIBOOT_SEARCH /;"	d
+MULTIBOOT_VIDEO_MODE	kernel/include/grub_mbi.h	/^#define MULTIBOOT_VIDEO_MODE /;"	d
+NMI_EXCP	kernel/include/excp.h	/^#define NMI_EXCP /;"	d
+NM_EXCP	kernel/include/excp.h	/^#define NM_EXCP /;"	d
+NP_EXCP	kernel/include/excp.h	/^#define NP_EXCP /;"	d
+NR_EXCP	kernel/include/excp.h	/^#define NR_EXCP /;"	d
+NULL	kernel/include/types.h	/^#define NULL /;"	d
+OF_EXCP	kernel/include/excp.h	/^#define OF_EXCP /;"	d
+Objectifs	tp_exam/README.md	/^## Objectifs$/;"	s
+Organisation du cours:	README.md	/^## Organisation du cours:$/;"	s
+PAGE_SHIFT	kernel/include/pagemem.h	/^#define PAGE_SHIFT /;"	d
+PAGE_SIZE	kernel/include/pagemem.h	/^#define PAGE_SIZE /;"	d
+PDE32_PER_PD	kernel/include/pagemem.h	/^#define PDE32_PER_PD /;"	d
+PF_EXCP	kernel/include/excp.h	/^#define PF_EXCP /;"	d
+PG_4K_SHIFT	kernel/include/pagemem.h	/^#define PG_4K_SHIFT /;"	d
+PG_4K_SIZE	kernel/include/pagemem.h	/^#define PG_4K_SIZE /;"	d
+PG_4M_SHIFT	kernel/include/pagemem.h	/^#define PG_4M_SHIFT /;"	d
+PG_4M_SIZE	kernel/include/pagemem.h	/^#define PG_4M_SIZE /;"	d
+PG_ACC	kernel/include/pagemem.h	/^#define PG_ACC /;"	d
+PG_ACC_BIT	kernel/include/pagemem.h	/^#define PG_ACC_BIT /;"	d
+PG_DRT	kernel/include/pagemem.h	/^#define PG_DRT /;"	d
+PG_DRT_BIT	kernel/include/pagemem.h	/^#define PG_DRT_BIT /;"	d
+PG_GLB	kernel/include/pagemem.h	/^#define PG_GLB /;"	d
+PG_GLB_BIT	kernel/include/pagemem.h	/^#define PG_GLB_BIT /;"	d
+PG_KRN	kernel/include/pagemem.h	/^#define PG_KRN /;"	d
+PG_LPAT	kernel/include/pagemem.h	/^#define PG_LPAT /;"	d
+PG_LPAT_BIT	kernel/include/pagemem.h	/^#define PG_LPAT_BIT /;"	d
+PG_LVL_BIT	kernel/include/pagemem.h	/^#define PG_LVL_BIT /;"	d
+PG_P	kernel/include/pagemem.h	/^#define PG_P /;"	d
+PG_PAT	kernel/include/pagemem.h	/^#define PG_PAT /;"	d
+PG_PAT_BIT	kernel/include/pagemem.h	/^#define PG_PAT_BIT /;"	d
+PG_PCD	kernel/include/pagemem.h	/^#define PG_PCD /;"	d
+PG_PCD_BIT	kernel/include/pagemem.h	/^#define PG_PCD_BIT /;"	d
+PG_PS	kernel/include/pagemem.h	/^#define PG_PS /;"	d
+PG_PS_BIT	kernel/include/pagemem.h	/^#define PG_PS_BIT /;"	d
+PG_PWT	kernel/include/pagemem.h	/^#define PG_PWT /;"	d
+PG_PWT_BIT	kernel/include/pagemem.h	/^#define PG_PWT_BIT /;"	d
+PG_P_BIT	kernel/include/pagemem.h	/^#define PG_P_BIT /;"	d
+PG_RO	kernel/include/pagemem.h	/^#define PG_RO /;"	d
+PG_RW	kernel/include/pagemem.h	/^#define PG_RW /;"	d
+PG_RW_BIT	kernel/include/pagemem.h	/^#define PG_RW_BIT /;"	d
+PG_USR	kernel/include/pagemem.h	/^#define PG_USR /;"	d
+PIC1	kernel/include/pic.h	/^#define PIC1 /;"	d
+PIC2	kernel/include/pic.h	/^#define PIC2 /;"	d
+PIC_EOI	kernel/include/pic.h	/^#define PIC_EOI /;"	d
+PIC_FD_IRQ	kernel/include/pic.h	/^#define PIC_FD_IRQ /;"	d
+PIC_HDD_IRQ	kernel/include/pic.h	/^#define PIC_HDD_IRQ /;"	d
+PIC_ICW1	kernel/include/pic.h	/^#define PIC_ICW1(/;"	d
+PIC_ICW2	kernel/include/pic.h	/^#define PIC_ICW2(/;"	d
+PIC_ICW3	kernel/include/pic.h	/^#define PIC_ICW3(/;"	d
+PIC_ICW4	kernel/include/pic.h	/^#define PIC_ICW4(/;"	d
+PIC_IMR	kernel/include/pic.h	/^#define PIC_IMR(/;"	d
+PIC_IRQ_NR	kernel/include/pic.h	/^#define PIC_IRQ_NR /;"	d
+PIC_IRR	kernel/include/pic.h	/^#define PIC_IRR(/;"	d
+PIC_ISR	kernel/include/pic.h	/^#define PIC_ISR(/;"	d
+PIC_KBD_IRQ	kernel/include/pic.h	/^#define PIC_KBD_IRQ /;"	d
+PIC_MATH_IRQ	kernel/include/pic.h	/^#define PIC_MATH_IRQ /;"	d
+PIC_OCW2	kernel/include/pic.h	/^#define PIC_OCW2(/;"	d
+PIC_OCW2_DISABLE_ROTATE_AEOI	kernel/include/pic.h	/^#define PIC_OCW2_DISABLE_ROTATE_AEOI /;"	d
+PIC_OCW2_ENABLE_ROTATE_AEOI	kernel/include/pic.h	/^#define PIC_OCW2_ENABLE_ROTATE_AEOI /;"	d
+PIC_OCW2_NON_SPECIFIC_EOI	kernel/include/pic.h	/^#define PIC_OCW2_NON_SPECIFIC_EOI /;"	d
+PIC_OCW2_NO_OPERATION	kernel/include/pic.h	/^#define PIC_OCW2_NO_OPERATION /;"	d
+PIC_OCW2_ROTATE_NON_SPECIFIC_EOI	kernel/include/pic.h	/^#define PIC_OCW2_ROTATE_NON_SPECIFIC_EOI /;"	d
+PIC_OCW2_ROTATE_SPECIFIC_EOI	kernel/include/pic.h	/^#define PIC_OCW2_ROTATE_SPECIFIC_EOI /;"	d
+PIC_OCW2_SET_PRIORITY	kernel/include/pic.h	/^#define PIC_OCW2_SET_PRIORITY /;"	d
+PIC_OCW2_SPECIFIC_EOI	kernel/include/pic.h	/^#define PIC_OCW2_SPECIFIC_EOI /;"	d
+PIC_OCW3	kernel/include/pic.h	/^#define PIC_OCW3(/;"	d
+PIC_OCW3_SPECIAL_MASK_MODE_DISABLED	kernel/include/pic.h	/^#define PIC_OCW3_SPECIAL_MASK_MODE_DISABLED /;"	d
+PIC_OCW3_SPECIAL_MASK_MODE_ENABLED	kernel/include/pic.h	/^#define PIC_OCW3_SPECIAL_MASK_MODE_ENABLED /;"	d
+PIC_PP_IRQ	kernel/include/pic.h	/^#define PIC_PP_IRQ /;"	d
+PIC_PS2_IRQ	kernel/include/pic.h	/^#define PIC_PS2_IRQ /;"	d
+PIC_RTC_IRQ	kernel/include/pic.h	/^#define PIC_RTC_IRQ /;"	d
+PIC_SLAVE_IRQ	kernel/include/pic.h	/^#define PIC_SLAVE_IRQ /;"	d
+PIC_SND_IRQ	kernel/include/pic.h	/^#define PIC_SND_IRQ /;"	d
+PIC_TIMER_IRQ	kernel/include/pic.h	/^#define PIC_TIMER_IRQ /;"	d
+PIC_UART1_IRQ	kernel/include/pic.h	/^#define PIC_UART1_IRQ /;"	d
+PIC_UART2_IRQ	kernel/include/pic.h	/^#define PIC_UART2_IRQ /;"	d
+PTE32_PER_PT	kernel/include/pagemem.h	/^#define PTE32_PER_PT /;"	d
+Pré-requis:	README.md	/^## Pré-requis:$/;"	s
+QDBG	utils/config.mk	/^QDBG := -d int,pcall,cpu_reset,unimp,guest_errors$/;"	m
+QEMU	utils/config.mk	/^QEMU := $(shell which qemu-system-x86_64)$/;"	m
+QFDA	utils/config.mk	/^QFDA := -drive media=disk,format=raw,if=floppy,file=..\/utils\/grub.floppy$/;"	m
+QHDD	utils/config.mk	/^QHDD := -drive media=disk,format=raw,if=ide,index=0,file=fat:rw:.$/;"	m
+QOPT	utils/config.mk	/^QOPT := $(QFDA) $(QHDD) $(QSRL) -boot a -nographic$/;"	m
+QSRL	utils/config.mk	/^QSRL := -serial mon:stdio$/;"	m
+Question 0	tp5/README.md	/^### Question 0$/;"	S
+Question 1	tp0/README.md	/^### Question 1$/;"	S
+Question 1	tp1/README.md	/^### Question 1$/;"	S
+Question 1	tp2/README.md	/^### Question 1$/;"	S
+Question 1	tp3/README.md	/^### Question 1$/;"	S
+Question 1	tp4/README.md	/^### Question 1$/;"	S
+Question 1	tp5/README.md	/^### Question 1$/;"	S
+Question 2	tp0/README.md	/^### Question 2$/;"	S
+Question 2	tp1/README.md	/^### Question 2$/;"	S
+Question 2	tp2/README.md	/^### Question 2$/;"	S
+Question 2	tp3/README.md	/^### Question 2$/;"	S
+Question 2	tp4/README.md	/^### Question 2$/;"	S
+Question 2	tp5/README.md	/^### Question 2$/;"	S
+Question 3	tp0/README.md	/^### Question 3$/;"	S
+Question 3	tp1/README.md	/^### Question 3$/;"	S
+Question 3	tp2/README.md	/^### Question 3$/;"	S
+Question 3	tp3/README.md	/^### Question 3$/;"	S
+Question 3	tp4/README.md	/^### Question 3$/;"	S
+Question 3	tp5/README.md	/^### Question 3$/;"	S
+Question 3.1	tp2/README.md	/^### Question 3.1$/;"	S
+Question 3.1	tp3/README.md	/^### Question 3.1$/;"	S
+Question 3.2	tp2/README.md	/^### Question 3.2$/;"	S
+Question 3.2	tp3/README.md	/^### Question 3.2$/;"	S
+Question 3.3	tp2/README.md	/^### Question 3.3$/;"	S
+Question 3.3	tp3/README.md	/^### Question 3.3$/;"	S
+Question 3.4	tp2/README.md	/^### Question 3.4$/;"	S
+Question 3.4	tp3/README.md	/^### Question 3.4$/;"	S
+Question 3.5	tp2/README.md	/^### Question 3.5$/;"	S
+Question 3.6	tp2/README.md	/^### Question 3.6$/;"	S
+Question 3.7	tp2/README.md	/^### Question 3.7$/;"	S
+Question 4	tp0/README.md	/^### Question 4$/;"	S
+Question 4	tp4/README.md	/^### Question 4$/;"	S
+Question 4	tp5/README.md	/^### Question 4$/;"	S
+Question 5	tp4/README.md	/^### Question 5$/;"	S
+Question 5	tp5/README.md	/^### Question 5$/;"	S
+Question 6	tp4/README.md	/^### Question 6$/;"	S
+Question 7	tp4/README.md	/^### Question 7$/;"	S
+Question 8	tp4/README.md	/^### Question 8$/;"	S
+Question 9	tp4/README.md	/^### Question 9$/;"	S
+Question Bonus	tp3/README.md	/^### Question Bonus$/;"	S
+Questions	tp0/README.md	/^## Questions$/;"	s
+Questions	tp1/README.md	/^## Questions$/;"	s
+Questions	tp2/README.md	/^## Questions$/;"	s
+Questions	tp3/README.md	/^## Questions$/;"	s
+Questions	tp4/README.md	/^## Questions$/;"	s
+Questions	tp5/README.md	/^## Questions$/;"	s
+RELEASE	utils/config.mk	/^RELEASE    := $(shell $(GIT) log -n 1 --no-merges --pretty=format:%h-%t)$/;"	m
+RM	utils/config.mk	/^RM         := $(shell which rm)$/;"	m
+RSV_EXCP	kernel/include/excp.h	/^#define RSV_EXCP /;"	d
+Rappels sur les tableaux et pointeurs en C:	tp4/README.md	/^## Rappels sur les tableaux et pointeurs en C:$/;"	s
+SECOS	README.md	/^# SECOS$/;"	c
+SEG_DESCTYPE	kernel/include/segmem.h	/^#define SEG_DESCTYPE(/;"	d
+SEG_DESC_CODE_CX	kernel/include/segmem.h	/^#define SEG_DESC_CODE_CX /;"	d
+SEG_DESC_CODE_CXA	kernel/include/segmem.h	/^#define SEG_DESC_CODE_CXA /;"	d
+SEG_DESC_CODE_CXR	kernel/include/segmem.h	/^#define SEG_DESC_CODE_CXR /;"	d
+SEG_DESC_CODE_CXRA	kernel/include/segmem.h	/^#define SEG_DESC_CODE_CXRA /;"	d
+SEG_DESC_CODE_X	kernel/include/segmem.h	/^#define SEG_DESC_CODE_X /;"	d
+SEG_DESC_CODE_XA	kernel/include/segmem.h	/^#define SEG_DESC_CODE_XA /;"	d
+SEG_DESC_CODE_XR	kernel/include/segmem.h	/^#define SEG_DESC_CODE_XR /;"	d
+SEG_DESC_CODE_XRA	kernel/include/segmem.h	/^#define SEG_DESC_CODE_XRA /;"	d
+SEG_DESC_DATA_ER	kernel/include/segmem.h	/^#define SEG_DESC_DATA_ER /;"	d
+SEG_DESC_DATA_ERA	kernel/include/segmem.h	/^#define SEG_DESC_DATA_ERA /;"	d
+SEG_DESC_DATA_ERW	kernel/include/segmem.h	/^#define SEG_DESC_DATA_ERW /;"	d
+SEG_DESC_DATA_ERWA	kernel/include/segmem.h	/^#define SEG_DESC_DATA_ERWA /;"	d
+SEG_DESC_DATA_R	kernel/include/segmem.h	/^#define SEG_DESC_DATA_R /;"	d
+SEG_DESC_DATA_RA	kernel/include/segmem.h	/^#define SEG_DESC_DATA_RA /;"	d
+SEG_DESC_DATA_RW	kernel/include/segmem.h	/^#define SEG_DESC_DATA_RW /;"	d
+SEG_DESC_DATA_RWA	kernel/include/segmem.h	/^#define SEG_DESC_DATA_RWA /;"	d
+SEG_DESC_SYS_CALL_GATE_16	kernel/include/segmem.h	/^#define SEG_DESC_SYS_CALL_GATE_16 /;"	d
+SEG_DESC_SYS_CALL_GATE_32	kernel/include/segmem.h	/^#define SEG_DESC_SYS_CALL_GATE_32 /;"	d
+SEG_DESC_SYS_CALL_GATE_64	kernel/include/segmem.h	/^#define SEG_DESC_SYS_CALL_GATE_64 /;"	d
+SEG_DESC_SYS_INTR_GATE_16	kernel/include/segmem.h	/^#define SEG_DESC_SYS_INTR_GATE_16 /;"	d
+SEG_DESC_SYS_INTR_GATE_32	kernel/include/segmem.h	/^#define SEG_DESC_SYS_INTR_GATE_32 /;"	d
+SEG_DESC_SYS_INTR_GATE_64	kernel/include/segmem.h	/^#define SEG_DESC_SYS_INTR_GATE_64 /;"	d
+SEG_DESC_SYS_LDT	kernel/include/segmem.h	/^#define SEG_DESC_SYS_LDT /;"	d
+SEG_DESC_SYS_LDT_64	kernel/include/segmem.h	/^#define SEG_DESC_SYS_LDT_64 /;"	d
+SEG_DESC_SYS_TASK_GATE	kernel/include/segmem.h	/^#define SEG_DESC_SYS_TASK_GATE /;"	d
+SEG_DESC_SYS_TRAP_GATE_16	kernel/include/segmem.h	/^#define SEG_DESC_SYS_TRAP_GATE_16 /;"	d
+SEG_DESC_SYS_TRAP_GATE_32	kernel/include/segmem.h	/^#define SEG_DESC_SYS_TRAP_GATE_32 /;"	d
+SEG_DESC_SYS_TRAP_GATE_64	kernel/include/segmem.h	/^#define SEG_DESC_SYS_TRAP_GATE_64 /;"	d
+SEG_DESC_SYS_TSS_AVL_16	kernel/include/segmem.h	/^#define SEG_DESC_SYS_TSS_AVL_16 /;"	d
+SEG_DESC_SYS_TSS_AVL_32	kernel/include/segmem.h	/^#define SEG_DESC_SYS_TSS_AVL_32 /;"	d
+SEG_DESC_SYS_TSS_AVL_64	kernel/include/segmem.h	/^#define SEG_DESC_SYS_TSS_AVL_64 /;"	d
+SEG_DESC_SYS_TSS_BUSY_16	kernel/include/segmem.h	/^#define SEG_DESC_SYS_TSS_BUSY_16 /;"	d
+SEG_DESC_SYS_TSS_BUSY_32	kernel/include/segmem.h	/^#define SEG_DESC_SYS_TSS_BUSY_32 /;"	d
+SEG_DESC_SYS_TSS_BUSY_64	kernel/include/segmem.h	/^#define SEG_DESC_SYS_TSS_BUSY_64 /;"	d
+SEG_GRAN	kernel/include/segmem.h	/^#define SEG_GRAN(/;"	d
+SEG_LONG	kernel/include/segmem.h	/^#define SEG_LONG(/;"	d
+SEG_PRES	kernel/include/segmem.h	/^#define SEG_PRES(/;"	d
+SEG_PRIV	kernel/include/segmem.h	/^#define SEG_PRIV(/;"	d
+SEG_SAVL	kernel/include/segmem.h	/^#define SEG_SAVL(/;"	d
+SEG_SEL_GDT	kernel/include/segmem.h	/^#define SEG_SEL_GDT /;"	d
+SEG_SEL_KRN	kernel/include/segmem.h	/^#define SEG_SEL_KRN /;"	d
+SEG_SEL_LDT	kernel/include/segmem.h	/^#define SEG_SEL_LDT /;"	d
+SEG_SEL_USR	kernel/include/segmem.h	/^#define SEG_SEL_USR /;"	d
+SEG_SIZE	kernel/include/segmem.h	/^#define SEG_SIZE(/;"	d
+SERIAL_COM1	kernel/include/uart.h	/^#define SERIAL_COM1 /;"	d
+SERIAL_COM2	kernel/include/uart.h	/^#define SERIAL_COM2 /;"	d
+SERIAL_COM3	kernel/include/uart.h	/^#define SERIAL_COM3 /;"	d
+SERIAL_COM4	kernel/include/uart.h	/^#define SERIAL_COM4 /;"	d
+SERIAL_DLA_LSB	kernel/include/uart.h	/^#define SERIAL_DLA_LSB(/;"	d
+SERIAL_DLA_MSB	kernel/include/uart.h	/^#define SERIAL_DLA_MSB(/;"	d
+SERIAL_EFR	kernel/include/uart.h	/^#define SERIAL_EFR(/;"	d
+SERIAL_FCR	kernel/include/uart.h	/^#define SERIAL_FCR(/;"	d
+SERIAL_FCR_RX_FIFO_1	kernel/include/uart.h	/^#define SERIAL_FCR_RX_FIFO_1 /;"	d
+SERIAL_FCR_RX_FIFO_14	kernel/include/uart.h	/^#define SERIAL_FCR_RX_FIFO_14 /;"	d
+SERIAL_FCR_RX_FIFO_4	kernel/include/uart.h	/^#define SERIAL_FCR_RX_FIFO_4 /;"	d
+SERIAL_FCR_RX_FIFO_8	kernel/include/uart.h	/^#define SERIAL_FCR_RX_FIFO_8 /;"	d
+SERIAL_IER	kernel/include/uart.h	/^#define SERIAL_IER(/;"	d
+SERIAL_IER_LOW	kernel/include/uart.h	/^#define SERIAL_IER_LOW /;"	d
+SERIAL_IER_MSR	kernel/include/uart.h	/^#define SERIAL_IER_MSR /;"	d
+SERIAL_IER_RECV	kernel/include/uart.h	/^#define SERIAL_IER_RECV /;"	d
+SERIAL_IER_RESERVED1	kernel/include/uart.h	/^#define SERIAL_IER_RESERVED1 /;"	d
+SERIAL_IER_RESERVED2	kernel/include/uart.h	/^#define SERIAL_IER_RESERVED2 /;"	d
+SERIAL_IER_RLSR	kernel/include/uart.h	/^#define SERIAL_IER_RLSR /;"	d
+SERIAL_IER_SLEEP	kernel/include/uart.h	/^#define SERIAL_IER_SLEEP /;"	d
+SERIAL_IER_THRE	kernel/include/uart.h	/^#define SERIAL_IER_THRE /;"	d
+SERIAL_IIR	kernel/include/uart.h	/^#define SERIAL_IIR(/;"	d
+SERIAL_IIR_INFO_CHAR_TIMEOUT	kernel/include/uart.h	/^#define SERIAL_IIR_INFO_CHAR_TIMEOUT /;"	d
+SERIAL_IIR_INFO_FIFO_ENABLED	kernel/include/uart.h	/^#define SERIAL_IIR_INFO_FIFO_ENABLED /;"	d
+SERIAL_IIR_INFO_FIFO_NO	kernel/include/uart.h	/^#define SERIAL_IIR_INFO_FIFO_NO /;"	d
+SERIAL_IIR_INFO_FIFO_USABLE	kernel/include/uart.h	/^#define SERIAL_IIR_INFO_FIFO_USABLE /;"	d
+SERIAL_IIR_INFO_LINE_STATUS_CHANGE	kernel/include/uart.h	/^#define SERIAL_IIR_INFO_LINE_STATUS_CHANGE /;"	d
+SERIAL_IIR_INFO_MODEM_STATUS_CHANGE	kernel/include/uart.h	/^#define SERIAL_IIR_INFO_MODEM_STATUS_CHANGE /;"	d
+SERIAL_IIR_INFO_RECV_DATA_AVAILABLE	kernel/include/uart.h	/^#define SERIAL_IIR_INFO_RECV_DATA_AVAILABLE /;"	d
+SERIAL_IIR_INFO_THR_EMPTY	kernel/include/uart.h	/^#define SERIAL_IIR_INFO_THR_EMPTY /;"	d
+SERIAL_IIR_RECV_MASK	kernel/include/uart.h	/^#define SERIAL_IIR_RECV_MASK /;"	d
+SERIAL_LCR	kernel/include/uart.h	/^#define SERIAL_LCR(/;"	d
+SERIAL_LSR	kernel/include/uart.h	/^#define SERIAL_LSR(/;"	d
+SERIAL_LSR_BREAK_INT	kernel/include/uart.h	/^#define SERIAL_LSR_BREAK_INT /;"	d
+SERIAL_LSR_BREAK_INT_BIT	kernel/include/uart.h	/^#define SERIAL_LSR_BREAK_INT_BIT /;"	d
+SERIAL_LSR_DATA_READY	kernel/include/uart.h	/^#define SERIAL_LSR_DATA_READY /;"	d
+SERIAL_LSR_DATA_READY_BIT	kernel/include/uart.h	/^#define SERIAL_LSR_DATA_READY_BIT /;"	d
+SERIAL_LSR_FRAME_ERR	kernel/include/uart.h	/^#define SERIAL_LSR_FRAME_ERR /;"	d
+SERIAL_LSR_FRAME_ERR_BIT	kernel/include/uart.h	/^#define SERIAL_LSR_FRAME_ERR_BIT /;"	d
+SERIAL_LSR_OVERRUN_ERR	kernel/include/uart.h	/^#define SERIAL_LSR_OVERRUN_ERR /;"	d
+SERIAL_LSR_OVERRUN_ERR_BIT	kernel/include/uart.h	/^#define SERIAL_LSR_OVERRUN_ERR_BIT /;"	d
+SERIAL_LSR_PARITY_ERR	kernel/include/uart.h	/^#define SERIAL_LSR_PARITY_ERR /;"	d
+SERIAL_LSR_PARITY_ERR_BIT	kernel/include/uart.h	/^#define SERIAL_LSR_PARITY_ERR_BIT /;"	d
+SERIAL_LSR_THRE	kernel/include/uart.h	/^#define SERIAL_LSR_THRE /;"	d
+SERIAL_LSR_THRE_BIT	kernel/include/uart.h	/^#define SERIAL_LSR_THRE_BIT /;"	d
+SERIAL_LSR_TSRE	kernel/include/uart.h	/^#define SERIAL_LSR_TSRE /;"	d
+SERIAL_LSR_TSRE_BIT	kernel/include/uart.h	/^#define SERIAL_LSR_TSRE_BIT /;"	d
+SERIAL_LSR_ZERO	kernel/include/uart.h	/^#define SERIAL_LSR_ZERO /;"	d
+SERIAL_LSR_ZERO_BIT	kernel/include/uart.h	/^#define SERIAL_LSR_ZERO_BIT /;"	d
+SERIAL_MCR	kernel/include/uart.h	/^#define SERIAL_MCR(/;"	d
+SERIAL_MSR	kernel/include/uart.h	/^#define SERIAL_MSR(/;"	d
+SERIAL_RX	kernel/include/uart.h	/^#define SERIAL_RX(/;"	d
+SERIAL_SCR	kernel/include/uart.h	/^#define SERIAL_SCR(/;"	d
+SERIAL_TX	kernel/include/uart.h	/^#define SERIAL_TX(/;"	d
+SERIAL_TXRX	kernel/include/uart.h	/^#define SERIAL_TXRX(/;"	d
+SERIAL_XOFF1	kernel/include/uart.h	/^#define SERIAL_XOFF1(/;"	d
+SERIAL_XOFF2	kernel/include/uart.h	/^#define SERIAL_XOFF2(/;"	d
+SERIAL_XON1	kernel/include/uart.h	/^#define SERIAL_XON1(/;"	d
+SERIAL_XON2	kernel/include/uart.h	/^#define SERIAL_XON2(/;"	d
+SS_EXCP	kernel/include/excp.h	/^#define SS_EXCP /;"	d
+TARGET	utils/config.mk	/^TARGET     := kernel.elf$/;"	m
+TOP_4GB	kernel/include/types.h	/^#define TOP_4GB /;"	d
+TP 5 - Les appels systèmes	tp5/README.md	/^# TP 5 - Les appels systèmes$/;"	c
+TP0 - Familiarisation avec le noyau secos	tp0/README.md	/^# TP0 - Familiarisation avec le noyau secos$/;"	c
+TP1 - La segmentation	tp1/README.md	/^# TP1 - La segmentation$/;"	c
+TP2 - Les interruptions et les exceptions	tp2/README.md	/^# TP2 - Les interruptions et les exceptions$/;"	c
+TP3 - Les niveaux de privilèges	tp3/README.md	/^# TP3 - Les niveaux de privilèges$/;"	c
+TP4 - La pagination	tp4/README.md	/^# TP4 - La pagination$/;"	c
+TS_EXCP	kernel/include/excp.h	/^#define TS_EXCP /;"	d
+UD_EXCP	kernel/include/excp.h	/^#define UD_EXCP /;"	d
+XF_EXCP	kernel/include/excp.h	/^#define XF_EXCP /;"	d
+__ASM_H__	kernel/include/asm.h	/^#define __ASM_H__$/;"	d
+__CR_H__	kernel/include/cr.h	/^#define __CR_H__$/;"	d
+__DEBUG_H__	kernel/include/debug.h	/^#define __DEBUG_H__$/;"	d
+__EXCP_H__	kernel/include/excp.h	/^#define __EXCP_H__$/;"	d
+__GPR_H__	kernel/include/gpr.h	/^#define __GPR_H__$/;"	d
+__INFO_DATA_H__	kernel/include/info.h	/^#define __INFO_DATA_H__$/;"	d
+__INTR_H__	kernel/include/intr.h	/^#define __INTR_H__$/;"	d
+__IO_H__	kernel/include/io.h	/^#define __IO_H__$/;"	d
+__MATH_H__	kernel/include/math.h	/^#define __MATH_H__$/;"	d
+__MULTIBOOT_H__	kernel/include/mbi.h	/^#define __MULTIBOOT_H__$/;"	d
+__PAGEMEM_H__	kernel/include/pagemem.h	/^#define __PAGEMEM_H__$/;"	d
+__PIC_H__	kernel/include/pic.h	/^#define __PIC_H__$/;"	d
+__PRINT_H__	kernel/include/print.h	/^#define __PRINT_H__$/;"	d
+__SEGMEM_H__	kernel/include/segmem.h	/^#define __SEGMEM_H__$/;"	d
+__START_H__	kernel/include/start.h	/^#define __START_H__$/;"	d
+__STRING_H__	kernel/include/string.h	/^#define __STRING_H__$/;"	d
+__TYPES_H__	kernel/include/types.h	/^#define __TYPES_H__$/;"	d
+__UART_H__	kernel/include/uart.h	/^#define __UART_H__$/;"	d
+__align	kernel/include/types.h	/^#define __align(/;"	d
+__align_next	kernel/include/types.h	/^#define __align_next(/;"	d
+__aligned	kernel/include/types.h	/^#define __aligned(/;"	d
+__anon29b0c28e0108	kernel/include/excp.h	/^   {$/;"	s	union:selector_error_code
+__anon29b0c28e0208	kernel/include/excp.h	/^   {$/;"	s	union:page_fault_error_code
+__anon4d6b63ba0108	kernel/include/uart.h	/^   {$/;"	s	union:serial_efr_register
+__anon4d6b63ba0208	kernel/include/uart.h	/^   {$/;"	s	union:serial_ier_register
+__anon4d6b63ba0308	kernel/include/uart.h	/^   {$/;"	s	union:serial_iir_register
+__anon4d6b63ba0408	kernel/include/uart.h	/^   {$/;"	s	union:serial_fcr_register
+__anon4d6b63ba0508	kernel/include/uart.h	/^   {$/;"	s	union:serial_lcr_register
+__anon4d6b63ba0608	kernel/include/uart.h	/^   {$/;"	s	union:serial_mcr_register
+__anon4d6b63ba0708	kernel/include/uart.h	/^   {$/;"	s	union:serial_lsr_register
+__anon4d6b63ba0808	kernel/include/uart.h	/^   {$/;"	s	union:serial_msr_register
+__anon4d6b63ba0908	kernel/include/uart.h	/^   {$/;"	s	union:serial_dla
+__anon5c82875a0108	kernel/include/pagemem.h	/^   {$/;"	s	union:page_directory_entry
+__anon5c82875a0208	kernel/include/pagemem.h	/^   {$/;"	s	union:page_directory_entry
+__anon5c82875a0308	kernel/include/pagemem.h	/^   {$/;"	s	union:page_table_entry
+__anon69463e85010a	kernel/include/grub_mbi.h	/^  {$/;"	u	struct:multiboot_info
+__anon69463e85020a	kernel/include/grub_mbi.h	/^  {$/;"	u	struct:multiboot_info
+__anon69463e850308	kernel/include/grub_mbi.h	/^    {$/;"	s	union:multiboot_info::__anon69463e85020a
+__anon69463e850408	kernel/include/grub_mbi.h	/^    {$/;"	s	union:multiboot_info::__anon69463e85020a
+__anon972f5d7c0108	kernel/include/segmem.h	/^   {$/;"	s	union:segment_selector
+__anon972f5d7c0208	kernel/include/segmem.h	/^   {$/;"	s	union:segment_descriptor
+__anon972f5d7c030a	kernel/include/segmem.h	/^   {$/;"	u	struct:global_descriptor_table_register
+__anon972f5d7c040a	kernel/include/segmem.h	/^   {$/;"	u	struct:local_descriptor_table_register
+__anon972f5d7c0508	kernel/include/segmem.h	/^   {$/;"	s	union:interrupt_descriptor
+__anon972f5d7c060a	kernel/include/segmem.h	/^   {$/;"	u	struct:interrupt_descriptor_table_register
+__anon972f5d7c0708	kernel/include/segmem.h	/^   {$/;"	s	union:task_state_segment_trap
+__anonac0e1ae70108	kernel/include/gpr.h	/^   {$/;"	s	union:general_purpose_registers
+__anonac0e1ae70208	kernel/include/gpr.h	/^   {$/;"	s	union:general_purpose_registers_context
+__anonacace0fa0108	kernel/include/pic.h	/^   {$/;"	s	union:pic_init_command_word_1
+__anonacace0fa0208	kernel/include/pic.h	/^   {$/;"	s	union:pic_init_command_word_2
+__anonacace0fa0308	kernel/include/pic.h	/^   {$/;"	s	union:pic_init_command_word_3
+__anonacace0fa0408	kernel/include/pic.h	/^   {$/;"	s	union:pic_init_command_word_3
+__anonacace0fa0508	kernel/include/pic.h	/^   {$/;"	s	union:pic_init_command_word_4
+__anonacace0fa0608	kernel/include/pic.h	/^   {$/;"	s	union:pic_operation_control_word_1
+__anonacace0fa0708	kernel/include/pic.h	/^   {$/;"	s	union:pic_operation_control_word_2
+__anonacace0fa0808	kernel/include/pic.h	/^   {$/;"	s	union:pic_operation_control_word_3
+__anonbf6315130108	kernel/include/cr.h	/^   {$/;"	s	union:control_register_0
+__anonbf6315130208	kernel/include/cr.h	/^   {$/;"	s	union:control_register_3
+__anonbf6315130308	kernel/include/cr.h	/^   {$/;"	s	union:control_register_4
+__anone5ae21130103	kernel/include/types.h	/^typedef enum { false=0, true } bool_t;$/;"	g
+__anone5ae21130208	kernel/include/types.h	/^   {$/;"	s	union:raw_16_bits_entry
+__anone5ae21130308	kernel/include/types.h	/^   {$/;"	s	union:raw_32_bits_entry
+__anone5ae21130408	kernel/include/types.h	/^   {$/;"	s	union:raw_32_bits_entry
+__anone5ae2113050a	kernel/include/types.h	/^      {$/;"	u	struct:raw_32_bits_entry::__anone5ae21130408
+__anone5ae21130608	kernel/include/types.h	/^         {$/;"	s	union:raw_32_bits_entry::__anone5ae21130408::__anone5ae2113050a
+__anone5ae21130708	kernel/include/types.h	/^   {$/;"	s	union:raw_64_bits_entry
+__anone5ae21130808	kernel/include/types.h	/^   {$/;"	s	union:raw_64_bits_entry
+__anone5ae2113090a	kernel/include/types.h	/^      {$/;"	u	struct:raw_64_bits_entry::__anone5ae21130808
+__anone5ae21130a08	kernel/include/types.h	/^         {$/;"	s	union:raw_64_bits_entry::__anone5ae21130808::__anone5ae2113090a
+__anone5ae21130b0a	kernel/include/types.h	/^            {$/;"	u	struct:raw_64_bits_entry::__anone5ae21130808::__anone5ae2113090a::__anone5ae21130a08
+__anone5ae21130c08	kernel/include/types.h	/^               {$/;"	s	union:raw_64_bits_entry::__anone5ae21130808::__anone5ae2113090a::__anone5ae21130a08::__anone5ae21130b0a
+__buf_add	kernel/include/string.h	/^static inline void __buf_add(buffer_t *buf, size_t len, char c)$/;"	f	typeref:typename:void
+__clear_page	kernel/include/pagemem.h	/^#define __clear_page(/;"	d
+__copy_page	kernel/include/pagemem.h	/^#define __copy_page(/;"	d
+__divrm	kernel/include/math.h	/^#define __divrm(/;"	d
+__fix_str_dir	kernel/include/string.h	/^#define __fix_str_dir(/;"	d
+__format_add_bin	kernel/core/print.c	/^static inline void __format_add_bin(buffer_t *buf, size_t len,$/;"	f	typeref:typename:void	file:
+__format_add_chr	kernel/core/print.c	/^static inline void __format_add_chr(buffer_t *buf, size_t len, int c)$/;"	f	typeref:typename:void	file:
+__format_add_hex	kernel/core/print.c	/^static inline void __format_add_hex(buffer_t *buf, size_t len,$/;"	f	typeref:typename:void	file:
+__format_add_idec	kernel/core/print.c	/^static inline void __format_add_idec(buffer_t *buf, size_t len, sint64_t value)$/;"	f	typeref:typename:void	file:
+__format_add_str	kernel/core/print.c	/^static inline void __format_add_str(buffer_t *buf, size_t len, char *s)$/;"	f	typeref:typename:void	file:
+__format_add_udec	kernel/core/print.c	/^static inline void __format_add_udec(buffer_t *buf, size_t len, uint64_t value)$/;"	f	typeref:typename:void	file:
+__hextable	kernel/core/print.c	/^static char __hextable[] = {'0','1','2','3','4','5','6','7',$/;"	v	typeref:typename:char[]	file:
+__info	kernel/core/start.c	/^static info_t __info __attribute__ ((aligned(16)));$/;"	v	typeref:typename:info_t	file:
+__mbh__	kernel/include/mbi.h	/^#define __mbh__ /;"	d
+__memchr32	kernel/include/string.h	/^#define __memchr32(/;"	d
+__memchr8	kernel/include/string.h	/^#define __memchr8(/;"	d
+__memcpy32	kernel/include/string.h	/^#define __memcpy32(/;"	d
+__memcpy8	kernel/include/string.h	/^#define __memcpy8(/;"	d
+__memset32	kernel/include/string.h	/^#define __memset32(/;"	d
+__memset8	kernel/include/string.h	/^#define __memset8(/;"	d
+__range_exc	kernel/include/types.h	/^#define __range_exc(/;"	d
+__range_inc	kernel/include/types.h	/^#define __range_inc(/;"	d
+__regparm__	kernel/include/types.h	/^#define __regparm__(/;"	d
+__rep_8_16	kernel/include/string.h	/^#define  __rep_8_16(/;"	d
+__rep_8_32	kernel/include/string.h	/^#define  __rep_8_32(/;"	d
+__replicate_byte_on_dword	kernel/include/string.h	/^#define __replicate_byte_on_dword(/;"	d
+__replicate_byte_on_long	kernel/include/string.h	/^#define __replicate_byte_on_long(/;"	d
+__replicate_byte_on_word	kernel/include/string.h	/^#define __replicate_byte_on_word(/;"	d
+__uart_can_recv	kernel/include/uart.h	/^#define __uart_can_recv(/;"	d
+__uart_can_send	kernel/include/uart.h	/^#define __uart_can_send(/;"	d
+__uart_common_init	kernel/core/uart.c	/^static void __uart_common_init(uint16_t port)$/;"	f	typeref:typename:void	file:
+__uart_fifo_init	kernel/core/uart.c	/^static void __uart_fifo_init(uint16_t port)$/;"	f	typeref:typename:void	file:
+__uart_flush_recv	kernel/core/uart.c	/^static void __uart_flush_recv(uint16_t port)$/;"	f	typeref:typename:void	file:
+__uart_read	kernel/core/uart.c	/^static inline void __uart_read(uint16_t port, buffer_t *buf, size_t max)$/;"	f	typeref:typename:void	file:
+__uart_recv_char	kernel/include/uart.h	/^#define __uart_recv_char(/;"	d
+__uart_send_char	kernel/include/uart.h	/^#define __uart_send_char(/;"	d
+__uart_write	kernel/core/uart.c	/^static inline void __uart_write(uint16_t port, buffer_t *buf, size_t max)$/;"	f	typeref:typename:void	file:
+__unused__	kernel/include/types.h	/^#define __unused__ /;"	d
+__vprintf	kernel/core/print.c	/^size_t __vprintf(const char *format, va_list params)$/;"	f	typeref:typename:size_t
+__vsnprintf	kernel/core/print.c	/^size_t __vsnprintf(char *buffer, size_t len,$/;"	f	typeref:typename:size_t
+_high	kernel/include/types.h	/^      raw32_t _high;$/;"	m	struct:raw_64_bits_entry::__anone5ae21130708	typeref:typename:raw32_t
+_low	kernel/include/types.h	/^      raw32_t _low;$/;"	m	struct:raw_64_bits_entry::__anone5ae21130708	typeref:typename:raw32_t
+_memchr32	kernel/include/string.h	/^#define _memchr32(/;"	d
+_memchr8	kernel/include/string.h	/^#define _memchr8(/;"	d
+_memcpy32	kernel/include/string.h	/^#define _memcpy32(/;"	d
+_memcpy8	kernel/include/string.h	/^#define _memcpy8(/;"	d
+_memset32	kernel/include/string.h	/^#define _memset32(/;"	d
+_memset8	kernel/include/string.h	/^#define _memset8(/;"	d
+_whigh	kernel/include/types.h	/^      raw16_t _whigh;$/;"	m	struct:raw_32_bits_entry::__anone5ae21130308	typeref:typename:raw16_t
+_wlow	kernel/include/types.h	/^      raw16_t _wlow;$/;"	m	struct:raw_32_bits_entry::__anone5ae21130308	typeref:typename:raw16_t
+a_cts	kernel/include/uart.h	/^      uint8_t   a_cts:1;    \/* (1) automatic CTS *\/$/;"	m	struct:serial_efr_register::__anon4d6b63ba0108	typeref:typename:uint8_t:1
+a_rts	kernel/include/uart.h	/^      uint8_t   a_rts:1;    \/* (1) automatic RTS *\/$/;"	m	struct:serial_efr_register::__anon4d6b63ba0108	typeref:typename:uint8_t:1
+abs	kernel/include/math.h	/^static inline uint32_t abs(int x)$/;"	f	typeref:typename:uint32_t
+ac	kernel/include/gpr.h	/^   uint32_t   ac:1;     \/* align *\/$/;"	m	struct:cpu_eflags_register_fields	typeref:typename:uint32_t:1
+acc	kernel/include/pagemem.h	/^      uint32_t  acc:1;$/;"	m	struct:page_directory_entry::__anon5c82875a0108	typeref:typename:uint32_t:1
+acc	kernel/include/pagemem.h	/^      uint32_t  acc:1;$/;"	m	struct:page_directory_entry::__anon5c82875a0208	typeref:typename:uint32_t:1
+acc	kernel/include/pagemem.h	/^      uint32_t  acc:1;$/;"	m	struct:page_table_entry::__anon5c82875a0308	typeref:typename:uint32_t:1
+ack_pic1	kernel/core/idt.s	/^ack_pic1:$/;"	l
+ack_pic2	kernel/core/idt.s	/^ack_pic2:$/;"	l
+adc16	kernel/include/math.h	/^#define adc16(/;"	d
+add_seg_desc	tp1/tp.c	/^void add_seg_desc(gdt_reg_t* gdtr, seg_desc_t seg_desc) {$/;"	f	typeref:typename:void
+add_seg_desc	tp3/xsegmentation.c	/^void add_seg_desc(gdt_reg_t* gdtr, seg_desc_t seg_desc) {$/;"	f	typeref:typename:void
+addr	kernel/include/cr.h	/^      uint32_t  addr:20;$/;"	m	struct:control_register_3::__anonbf6315130208	typeref:typename:uint32_t:20
+addr	kernel/include/grub_mbi.h	/^  multiboot_uint32_t addr;$/;"	m	struct:multiboot_aout_symbol_table	typeref:typename:multiboot_uint32_t
+addr	kernel/include/grub_mbi.h	/^  multiboot_uint32_t addr;$/;"	m	struct:multiboot_elf_section_header_table	typeref:typename:multiboot_uint32_t
+addr	kernel/include/grub_mbi.h	/^  multiboot_uint64_t addr;$/;"	m	struct:multiboot_mmap_entry	typeref:typename:multiboot_uint64_t
+addr	kernel/include/pagemem.h	/^      uint32_t  addr:10;$/;"	m	struct:page_directory_entry::__anon5c82875a0208	typeref:typename:uint32_t:10
+addr	kernel/include/pagemem.h	/^      uint32_t  addr:20;$/;"	m	struct:page_directory_entry::__anon5c82875a0108	typeref:typename:uint32_t:20
+addr	kernel/include/pagemem.h	/^      uint32_t  addr:20;$/;"	m	struct:page_table_entry::__anon5c82875a0308	typeref:typename:uint32_t:20
+addr	kernel/include/segmem.h	/^      offset_t         addr;$/;"	m	union:global_descriptor_table_register::__anon972f5d7c030a	typeref:typename:offset_t
+addr	kernel/include/segmem.h	/^      offset_t         addr;$/;"	m	union:local_descriptor_table_register::__anon972f5d7c040a	typeref:typename:offset_t
+addr	kernel/include/segmem.h	/^      offset_t     addr;$/;"	m	union:interrupt_descriptor_table_register::__anon972f5d7c060a	typeref:typename:offset_t
+addr	kernel/include/segmem.h	/^   uint16_t addr;$/;"	m	struct:task_state_segment_maps	typeref:typename:uint16_t
+addr	kernel/include/types.h	/^   void      *addr;$/;"	m	union:location	typeref:typename:void *
+aeoi	kernel/include/pic.h	/^      uint8_t   aeoi:1;   \/* (1) Auto EOI  (0) Normal EOI *\/$/;"	m	struct:pic_init_command_word_4::__anonacace0fa0508	typeref:typename:uint8_t:1
+af	kernel/include/gpr.h	/^   uint32_t   af:1;     \/* adjust *\/$/;"	m	struct:cpu_eflags_register_fields	typeref:typename:uint32_t:1
+all	utils/rules.mk	/^all:$(TARGET)$/;"	t
+am	kernel/include/cr.h	/^      uint32_t    am:1;   \/* align mask *\/$/;"	m	struct:control_register_0::__anonbf6315130108	typeref:typename:uint32_t:1
+aout_sym	kernel/include/grub_mbi.h	/^    multiboot_aout_symbol_table_t aout_sym;$/;"	m	union:multiboot_info::__anon69463e85010a	typeref:typename:multiboot_aout_symbol_table_t
+apm_table	kernel/include/grub_mbi.h	/^  multiboot_uint32_t apm_table;$/;"	m	struct:multiboot_info	typeref:typename:multiboot_uint32_t
+arg_t	kernel/include/types.h	/^typedef loc_t arg_t;$/;"	t	typeref:typename:loc_t
+assemble	utils/rules.mk	/^define assemble$/;"	m
+auto_flow	kernel/include/uart.h	/^      uint8_t   auto_flow:1; \/* auto flow control *\/$/;"	m	struct:serial_mcr_register::__anon4d6b63ba0608	typeref:typename:uint8_t:1
+aux1	kernel/include/uart.h	/^      uint8_t   aux1:1;      \/* auxiliary output 1 *\/$/;"	m	struct:serial_mcr_register::__anon4d6b63ba0608	typeref:typename:uint8_t:1
+aux2	kernel/include/uart.h	/^      uint8_t   aux2:1;      \/* auxiliary output 2 *\/$/;"	m	struct:serial_mcr_register::__anon4d6b63ba0608	typeref:typename:uint8_t:1
+avl	kernel/include/pagemem.h	/^      uint32_t  avl:3;$/;"	m	struct:page_directory_entry::__anon5c82875a0108	typeref:typename:uint32_t:3
+avl	kernel/include/pagemem.h	/^      uint32_t  avl:3;$/;"	m	struct:page_directory_entry::__anon5c82875a0208	typeref:typename:uint32_t:3
+avl	kernel/include/pagemem.h	/^      uint32_t  avl:3;$/;"	m	struct:page_table_entry::__anon5c82875a0308	typeref:typename:uint32_t:3
+avl	kernel/include/segmem.h	/^      uint64_t    avl:1;         \/* available for fun and profit *\/$/;"	m	struct:segment_descriptor::__anon972f5d7c0208	typeref:typename:uint64_t:1
+back_link	kernel/include/segmem.h	/^   uint16_t     back_link, r1;$/;"	m	struct:task_state_segment	typeref:typename:uint16_t
+base	kernel/include/segmem.h	/^   raw32_t   base;$/;"	m	struct:descriptor_table_register	typeref:typename:raw32_t
+base_1	kernel/include/segmem.h	/^      uint64_t    base_1:16;     \/* bits 00-15 of the base address *\/$/;"	m	struct:segment_descriptor::__anon972f5d7c0208	typeref:typename:uint64_t:16
+base_2	kernel/include/segmem.h	/^      uint64_t    base_2:8;      \/* bits 16-23 of the base address *\/$/;"	m	struct:segment_descriptor::__anon972f5d7c0208	typeref:typename:uint64_t:8
+base_3	kernel/include/segmem.h	/^      uint64_t    base_3:8;      \/* bits 24-31 of the base address *\/$/;"	m	struct:segment_descriptor::__anon972f5d7c0208	typeref:typename:uint64_t:8
+bhigh	kernel/include/types.h	/^                  uint8_t bhigh;$/;"	m	struct:raw_64_bits_entry::__anone5ae21130808::__anone5ae2113090a::__anone5ae21130a08::__anone5ae21130b0a::__anone5ae21130c08	typeref:typename:uint8_t
+bhigh	kernel/include/types.h	/^            uint8_t bhigh;$/;"	m	struct:raw_32_bits_entry::__anone5ae21130408::__anone5ae2113050a::__anone5ae21130608	typeref:typename:uint8_t
+bhigh	kernel/include/types.h	/^      uint8_t bhigh;$/;"	m	struct:raw_16_bits_entry::__anone5ae21130208	typeref:typename:uint8_t
+blow	kernel/include/types.h	/^                  uint8_t blow;$/;"	m	struct:raw_64_bits_entry::__anone5ae21130808::__anone5ae2113090a::__anone5ae21130a08::__anone5ae21130b0a::__anone5ae21130c08	typeref:typename:uint8_t
+blow	kernel/include/types.h	/^            uint8_t blow;$/;"	m	struct:raw_32_bits_entry::__anone5ae21130408::__anone5ae2113050a::__anone5ae21130608	typeref:typename:uint8_t
+blow	kernel/include/types.h	/^      uint8_t blow;$/;"	m	struct:raw_16_bits_entry::__anone5ae21130208	typeref:typename:uint8_t
+blue	kernel/include/grub_mbi.h	/^  multiboot_uint8_t blue;$/;"	m	struct:multiboot_color	typeref:typename:multiboot_uint8_t
+bool_t	kernel/include/types.h	/^typedef enum { false=0, true } bool_t;$/;"	t	typeref:enum:__anone5ae21130103
+boot_device	kernel/include/grub_mbi.h	/^  multiboot_uint32_t boot_device;$/;"	m	struct:multiboot_info	typeref:typename:multiboot_uint32_t
+boot_loader_name	kernel/include/grub_mbi.h	/^  multiboot_uint32_t boot_loader_name;$/;"	m	struct:multiboot_info	typeref:typename:multiboot_uint32_t
+boundary	kernel/include/segmem.h	/^   uint8_t  boundary;$/;"	m	struct:task_state_segment_maps	typeref:typename:uint8_t
+bp_trigger	tp2/tp.c	/^void bp_trigger()$/;"	f	typeref:typename:void
+brk	kernel/include/uart.h	/^      uint8_t   brk:1;       \/* break interrupt *\/$/;"	m	struct:serial_lsr_register::__anon4d6b63ba0708	typeref:typename:uint8_t:1
+brk	kernel/include/uart.h	/^      uint8_t  brk:1;        \/* (1) break enable *\/$/;"	m	struct:serial_lcr_register::__anon4d6b63ba0508	typeref:typename:uint8_t:1
+bss_end_addr	kernel/include/grub_mbi.h	/^  multiboot_uint32_t bss_end_addr;$/;"	m	struct:multiboot_header	typeref:typename:multiboot_uint32_t
+buff	kernel/include/pic.h	/^      uint8_t   buff:1;   \/* (1) buffered mode (0) non buffered mode *\/$/;"	m	struct:pic_init_command_word_4::__anonacace0fa0508	typeref:typename:uint8_t:1
+buffer	kernel/include/types.h	/^typedef struct buffer$/;"	s
+buffer_t	kernel/include/types.h	/^} __attribute__((packed)) buffer_t;$/;"	t	typeref:struct:buffer
+build_flat_seg	tp3/xsegmentation.c	/^seg_desc_t build_flat_seg(uint16_t flag) {$/;"	f	typeref:typename:seg_desc_t
+build_seg_desc	tp1/tp.c	/^seg_desc_t build_seg_desc(uint32_t base, uint32_t limit, uint16_t flag) {$/;"	f	typeref:typename:seg_desc_t
+build_seg_desc	tp3/xsegmentation.c	/^seg_desc_t build_seg_desc(uint32_t base, uint32_t limit, uint16_t flag) {$/;"	f	typeref:typename:seg_desc_t
+byte	kernel/include/types.h	/^   uint8_t  byte[2];$/;"	m	union:raw_16_bits_entry	typeref:typename:uint8_t[2]
+byte	kernel/include/types.h	/^   uint8_t  byte[4];$/;"	m	union:raw_32_bits_entry	typeref:typename:uint8_t[4]
+byte	kernel/include/types.h	/^   uint8_t  byte[8];$/;"	m	union:raw_64_bits_entry	typeref:typename:uint8_t[8]
+cd	kernel/include/cr.h	/^      uint32_t    cd:1;   \/* cache disable *\/$/;"	m	struct:control_register_0::__anonbf6315130108	typeref:typename:uint32_t:1
+cd	kernel/include/uart.h	/^      uint8_t   cd:1;      \/* carrier detect *\/$/;"	m	struct:serial_msr_register::__anon4d6b63ba0808	typeref:typename:uint8_t:1
+cf	kernel/include/gpr.h	/^   uint32_t   cf:1;     \/* carry *\/$/;"	m	struct:cpu_eflags_register_fields	typeref:typename:uint32_t:1
+checksum	kernel/include/grub_mbi.h	/^  multiboot_uint32_t checksum;$/;"	m	struct:multiboot_header	typeref:typename:multiboot_uint32_t
+clean	utils/rules.mk	/^clean:$/;"	t
+clear_flags	kernel/include/gpr.h	/^#define clear_flags(/;"	d
+cmd	kernel/include/pic.h	/^      uint8_t   cmd:3;$/;"	m	struct:pic_operation_control_word_2::__anonacace0fa0708	typeref:typename:uint8_t:3
+cmdline	kernel/include/grub_mbi.h	/^  multiboot_uint32_t cmdline;$/;"	m	struct:multiboot_info	typeref:typename:multiboot_uint32_t
+cmdline	kernel/include/grub_mbi.h	/^  multiboot_uint32_t cmdline;$/;"	m	struct:multiboot_mod_list	typeref:typename:multiboot_uint32_t
+compile	utils/rules.mk	/^define compile$/;"	m
+config_table	kernel/include/grub_mbi.h	/^  multiboot_uint32_t config_table;$/;"	m	struct:multiboot_info	typeref:typename:multiboot_uint32_t
+contributory_exception	kernel/include/excp.h	/^#define contributory_exception(/;"	d
+control_register_0	kernel/include/cr.h	/^typedef union control_register_0$/;"	u
+control_register_3	kernel/include/cr.h	/^typedef union control_register_3$/;"	u
+control_register_4	kernel/include/cr.h	/^typedef union control_register_4$/;"	u
+core_obj	utils/config.mk	/^core_obj   :=	entry.o \\$/;"	m
+cpu_context	kernel/include/intr.h	/^typedef struct cpu_context$/;"	s
+cpu_ctx_t	kernel/include/intr.h	/^} __attribute__((packed)) cpu_ctx_t;$/;"	t	typeref:struct:cpu_context
+cpu_eflags_register	kernel/include/gpr.h	/^typedef union cpu_eflags_register$/;"	u
+cpu_eflags_register_fields	kernel/include/gpr.h	/^typedef struct cpu_eflags_register_fields$/;"	s
+cr0_reg_t	kernel/include/cr.h	/^} __attribute__((packed)) cr0_reg_t;$/;"	t	typeref:union:control_register_0
+cr3	kernel/include/segmem.h	/^   uint32_t     cr3;$/;"	m	struct:task_state_segment	typeref:typename:uint32_t
+cr3_reg_t	kernel/include/cr.h	/^} __attribute__((packed)) cr3_reg_t;$/;"	t	typeref:union:control_register_3
+cr4_reg_t	kernel/include/cr.h	/^} __attribute__((packed)) cr4_reg_t;$/;"	t	typeref:union:control_register_4
+cs	kernel/include/intr.h	/^   raw32_t         cs;$/;"	m	struct:cpu_context	typeref:typename:raw32_t
+cs	kernel/include/segmem.h	/^   uint16_t     cs, r6;$/;"	m	struct:task_state_segment	typeref:typename:uint16_t
+cs	tp1/tp.c	/^const uint16_t cs = 8; \/\/ I don't understand why the line above do not work$/;"	v	typeref:typename:const uint16_t
+ctl	kernel/include/uart.h	/^      uint8_t   ctl:1;      \/* (1) to modify IER[7-4], ISR[5-4], FCR[5-4] *\/$/;"	m	struct:serial_efr_register::__anon4d6b63ba0108	typeref:typename:uint8_t:1
+cts	kernel/include/uart.h	/^      uint8_t   cts:1;      \/* (1) enable CTS interrupts *\/$/;"	m	struct:serial_ier_register::__anon4d6b63ba0208	typeref:typename:uint8_t:1
+cts	kernel/include/uart.h	/^      uint8_t   cts:1;     \/* clear to send *\/$/;"	m	struct:serial_msr_register::__anon4d6b63ba0808	typeref:typename:uint8_t:1
+d	kernel/include/pagemem.h	/^      uint32_t  d:1;$/;"	m	struct:page_directory_entry::__anon5c82875a0208	typeref:typename:uint32_t:1
+d	kernel/include/pagemem.h	/^      uint32_t  d:1;$/;"	m	struct:page_table_entry::__anon5c82875a0308	typeref:typename:uint32_t:1
+d	kernel/include/segmem.h	/^      uint64_t    d:1;           \/* default length, depend on seg type *\/$/;"	m	struct:segment_descriptor::__anon972f5d7c0208	typeref:typename:uint64_t:1
+data	kernel/include/types.h	/^   loc_t  data;$/;"	m	struct:buffer	typeref:typename:loc_t
+data	kernel/include/uart.h	/^      uint8_t   data:1;      \/* data ready *\/$/;"	m	struct:serial_lsr_register::__anon4d6b63ba0708	typeref:typename:uint8_t:1
+data	kernel/include/uart.h	/^      uint8_t   data:1;      \/* data terminal ready *\/$/;"	m	struct:serial_mcr_register::__anon4d6b63ba0608	typeref:typename:uint8_t:1
+dcts	kernel/include/uart.h	/^      uint8_t   dcts:1;    \/* delta clear to send *\/$/;"	m	struct:serial_msr_register::__anon4d6b63ba0808	typeref:typename:uint8_t:1
+ddcd	kernel/include/uart.h	/^      uint8_t   ddcd:1;    \/* delta data carrier detect *\/$/;"	m	struct:serial_msr_register::__anon4d6b63ba0808	typeref:typename:uint8_t:1
+ddsr	kernel/include/uart.h	/^      uint8_t   ddsr:1;    \/* delta data set ready *\/$/;"	m	struct:serial_msr_register::__anon4d6b63ba0808	typeref:typename:uint8_t:1
+de	kernel/include/cr.h	/^      uint32_t    de:1;         \/* debug ext *\/$/;"	m	struct:control_register_4::__anonbf6315130308	typeref:typename:uint32_t:1
+debug	kernel/include/debug.h	/^#define debug(/;"	d
+debug	utils/rules.mk	/^debug: $(TARGET)$/;"	t
+debug	utils/rules.mk	/^define debug$/;"	m
+depend	utils/rules.mk	/^define depend$/;"	m
+dependencies	utils/rules.mk	/^dependencies := $(objects:.o=.d)$/;"	m
+depth	kernel/include/grub_mbi.h	/^  multiboot_uint32_t depth;$/;"	m	struct:multiboot_header	typeref:typename:multiboot_uint32_t
+desc	kernel/include/segmem.h	/^      int_desc_t   *desc;$/;"	m	union:interrupt_descriptor_table_register::__anon972f5d7c060a	typeref:typename:int_desc_t *
+desc	kernel/include/segmem.h	/^      seg_desc_t       *desc;$/;"	m	union:global_descriptor_table_register::__anon972f5d7c030a	typeref:typename:seg_desc_t *
+desc	kernel/include/segmem.h	/^      seg_desc_t       *desc;$/;"	m	union:local_descriptor_table_register::__anon972f5d7c040a	typeref:typename:seg_desc_t *
+descriptor_table_register	kernel/include/segmem.h	/^typedef struct descriptor_table_register$/;"	s
+df	kernel/include/gpr.h	/^   uint32_t   df:1;     \/* div *\/$/;"	m	struct:cpu_eflags_register_fields	typeref:typename:uint32_t:1
+disable_interrupts	kernel/include/asm.h	/^#define disable_interrupts(/;"	d
+display_gdt	tp1/tp.c	/^void display_gdt(gdt_reg_t* gdtr) {$/;"	f	typeref:typename:void
+display_gdt	tp3/xsegmentation.c	/^void display_gdt(gdt_reg_t* gdtr) {$/;"	f	typeref:typename:void
+display_segment	tp1/tp.c	/^void display_segment(seg_desc_t* seg_desc) {$/;"	f	typeref:typename:void
+display_segment	tp3/xsegmentation.c	/^void display_segment(seg_desc_t* seg_desc) {$/;"	f	typeref:typename:void
+dla	kernel/include/uart.h	/^      uint8_t  dla:1;        \/* (1) Divisor Latch Access Bit *\/$/;"	m	struct:serial_lcr_register::__anon4d6b63ba0508	typeref:typename:uint8_t:1
+dma	kernel/include/uart.h	/^      uint8_t   dma:1;        \/* rx\/tx ready pins *\/$/;"	m	struct:serial_fcr_register::__anon4d6b63ba0408	typeref:typename:uint8_t:1
+double_fault	kernel/include/excp.h	/^#define double_fault(/;"	d
+dpl	kernel/include/segmem.h	/^      uint64_t    dpl:2;         \/* descriptor privilege level *\/$/;"	m	struct:segment_descriptor::__anon972f5d7c0208	typeref:typename:uint64_t:2
+dpl	kernel/include/segmem.h	/^      uint64_t  dpl:2;          \/* privilege level *\/$/;"	m	struct:interrupt_descriptor::__anon972f5d7c0508	typeref:typename:uint64_t:2
+drives_addr	kernel/include/grub_mbi.h	/^  multiboot_uint32_t drives_addr;$/;"	m	struct:multiboot_info	typeref:typename:multiboot_uint32_t
+drives_length	kernel/include/grub_mbi.h	/^  multiboot_uint32_t drives_length;$/;"	m	struct:multiboot_info	typeref:typename:multiboot_uint32_t
+ds	kernel/include/segmem.h	/^   uint16_t     ds, r8;$/;"	m	struct:task_state_segment	typeref:typename:uint16_t
+ds	tp1/tp.c	/^const seg_sel_t ds = { .rpl = SEG_SEL_KRN, .ti = SEG_SEL_GDT, .index = 0x2 };$/;"	v	typeref:typename:const seg_sel_t
+dsr	kernel/include/uart.h	/^      uint8_t   dsr:1;     \/* data set ready *\/$/;"	m	struct:serial_msr_register::__anon4d6b63ba0808	typeref:typename:uint8_t:1
+dt_reg_t	kernel/include/segmem.h	/^} __attribute__((packed)) dt_reg_t;$/;"	t	typeref:struct:descriptor_table_register
+dt_seg_sel	kernel/include/segmem.h	/^#define dt_seg_sel(/;"	d
+eax	kernel/include/gpr.h	/^      raw32_t   eax;$/;"	m	struct:general_purpose_registers::__anonac0e1ae70108	typeref:typename:raw32_t
+eax	kernel/include/gpr.h	/^      raw32_t   eax;$/;"	m	struct:general_purpose_registers_context::__anonac0e1ae70208	typeref:typename:raw32_t
+ebp	kernel/include/gpr.h	/^      raw32_t   ebp;$/;"	m	struct:general_purpose_registers::__anonac0e1ae70108	typeref:typename:raw32_t
+ebp	kernel/include/gpr.h	/^      raw32_t   ebp;$/;"	m	struct:general_purpose_registers_context::__anonac0e1ae70208	typeref:typename:raw32_t
+ebx	kernel/include/gpr.h	/^      raw32_t   ebx;$/;"	m	struct:general_purpose_registers::__anonac0e1ae70108	typeref:typename:raw32_t
+ebx	kernel/include/gpr.h	/^      raw32_t   ebx;$/;"	m	struct:general_purpose_registers_context::__anonac0e1ae70208	typeref:typename:raw32_t
+ecx	kernel/include/gpr.h	/^      raw32_t   ecx;$/;"	m	struct:general_purpose_registers::__anonac0e1ae70108	typeref:typename:raw32_t
+ecx	kernel/include/gpr.h	/^      raw32_t   ecx;$/;"	m	struct:general_purpose_registers_context::__anonac0e1ae70208	typeref:typename:raw32_t
+edi	kernel/include/gpr.h	/^      raw32_t   edi;$/;"	m	struct:general_purpose_registers::__anonac0e1ae70108	typeref:typename:raw32_t
+edi	kernel/include/gpr.h	/^      raw32_t   edi;$/;"	m	struct:general_purpose_registers_context::__anonac0e1ae70208	typeref:typename:raw32_t
+edx	kernel/include/gpr.h	/^      raw32_t   edx;$/;"	m	struct:general_purpose_registers::__anonac0e1ae70108	typeref:typename:raw32_t
+edx	kernel/include/gpr.h	/^      raw32_t   edx;$/;"	m	struct:general_purpose_registers_context::__anonac0e1ae70208	typeref:typename:raw32_t
+eflags	kernel/include/intr.h	/^   eflags_reg_t    eflags;$/;"	m	struct:cpu_context	typeref:typename:eflags_reg_t
+eflags	kernel/include/segmem.h	/^   eflags_reg_t eflags;$/;"	m	struct:task_state_segment	typeref:typename:eflags_reg_t
+eflags_reg_fields_t	kernel/include/gpr.h	/^} __attribute__((packed)) eflags_reg_fields_t;$/;"	t	typeref:struct:cpu_eflags_register_fields
+eflags_reg_t	kernel/include/gpr.h	/^} __attribute__((packed)) eflags_reg_t;$/;"	t	typeref:union:cpu_eflags_register
+eip	kernel/include/intr.h	/^   raw32_t         eip;$/;"	m	struct:cpu_context	typeref:typename:raw32_t
+eip	kernel/include/segmem.h	/^   uint32_t     eip;$/;"	m	struct:task_state_segment	typeref:typename:uint32_t
+elf_sec	kernel/include/grub_mbi.h	/^    multiboot_elf_section_header_table_t elf_sec;$/;"	m	union:multiboot_info::__anon69463e85010a	typeref:typename:multiboot_elf_section_header_table_t
+em	kernel/include/cr.h	/^      uint32_t    em:1;   \/* emulation *\/$/;"	m	struct:control_register_0::__anonbf6315130108	typeref:typename:uint32_t:1
+enable	kernel/include/uart.h	/^      uint8_t   enable:1;     \/* enable fifo *\/$/;"	m	struct:serial_fcr_register::__anon4d6b63ba0408	typeref:typename:uint8_t:1
+enable_interrupts	kernel/include/asm.h	/^#define enable_interrupts(/;"	d
+entry	kernel/core/entry.s	/^entry:$/;"	l
+entry_addr	kernel/include/grub_mbi.h	/^  multiboot_uint32_t entry_addr;$/;"	m	struct:multiboot_header	typeref:typename:multiboot_uint32_t
+eoi_pic1	kernel/core/idt.s	/^eoi_pic1:$/;"	l
+err	kernel/include/intr.h	/^   excp_err_code_t err;$/;"	m	struct:cpu_context	typeref:typename:excp_err_code_t
+es	kernel/include/segmem.h	/^   uint16_t     es, r5;$/;"	m	struct:task_state_segment	typeref:typename:uint16_t
+es	tp1/tp.c	/^const seg_sel_t es = { .rpl = SEG_SEL_KRN, .ti = SEG_SEL_GDT, .index = 0x3 };$/;"	v	typeref:typename:const seg_sel_t
+esi	kernel/include/gpr.h	/^      raw32_t   esi;$/;"	m	struct:general_purpose_registers::__anonac0e1ae70108	typeref:typename:raw32_t
+esi	kernel/include/gpr.h	/^      raw32_t   esi;$/;"	m	struct:general_purpose_registers_context::__anonac0e1ae70208	typeref:typename:raw32_t
+esp	kernel/include/gpr.h	/^      raw32_t   esp;$/;"	m	struct:general_purpose_registers::__anonac0e1ae70108	typeref:typename:raw32_t
+esp	kernel/include/gpr.h	/^      raw32_t   esp;$/;"	m	struct:general_purpose_registers_context::__anonac0e1ae70208	typeref:typename:raw32_t
+esp	kernel/include/intr.h	/^   raw32_t         esp;$/;"	m	struct:cpu_context	typeref:typename:raw32_t
+esp	kernel/include/segmem.h	/^   uint32_t esp;$/;"	m	struct:task_state_segment_stack	typeref:typename:uint32_t
+et	kernel/include/cr.h	/^      uint32_t    et:1;   \/* ext type *\/$/;"	m	struct:control_register_0::__anonbf6315130108	typeref:typename:uint32_t:1
+exception32_error_code	kernel/include/excp.h	/^typedef union exception32_error_code$/;"	u
+exception_names	kernel/core/excp.c	/^static char* exception_names[] = {$/;"	v	typeref:typename:char * []	file:
+excp_err_code_t	kernel/include/excp.h	/^} __attribute__((packed)) excp_err_code_t;$/;"	t	typeref:union:exception32_error_code
+excp_hdlr	kernel/core/excp.c	/^void __regparm__(1) excp_hdlr(int_ctx_t *ctx)$/;"	f	typeref:typename:void __regparm__ (1)
+ext	kernel/include/excp.h	/^      uint32_t   ext:1;     \/* external event *\/$/;"	m	struct:selector_error_code::__anon29b0c28e0108	typeref:typename:uint32_t:1
+f16	kernel/include/types.h	/^   fptr16_t  *f16;$/;"	m	union:location	typeref:typename:fptr16_t *
+f32	kernel/include/types.h	/^   fptr32_t  *f32;$/;"	m	union:location	typeref:typename:fptr32_t *
+f64	kernel/include/types.h	/^   fptr64_t  *f64;$/;"	m	union:location	typeref:typename:fptr64_t *
+far_pointer	kernel/include/types.h	/^typedef struct far_pointer$/;"	s
+far_ptr16	kernel/include/types.h	/^typedef struct far_ptr16$/;"	s
+far_ptr32	kernel/include/types.h	/^typedef struct far_ptr32$/;"	s
+far_ptr64	kernel/include/types.h	/^typedef struct far_ptr64$/;"	s
+farjump	kernel/include/segmem.h	/^#define farjump(/;"	d
+fifo	kernel/include/uart.h	/^      uint8_t   fifo:1;      \/* error in received fifo *\/$/;"	m	struct:serial_lsr_register::__anon4d6b63ba0708	typeref:typename:uint8_t:1
+fifo	kernel/include/uart.h	/^      uint8_t  fifo:2;             \/* see fifo info values above *\/$/;"	m	struct:serial_iir_register::__anon4d6b63ba0308	typeref:typename:uint8_t:2
+flags	kernel/include/grub_mbi.h	/^  multiboot_uint32_t flags;$/;"	m	struct:multiboot_header	typeref:typename:multiboot_uint32_t
+flags	kernel/include/grub_mbi.h	/^  multiboot_uint32_t flags;$/;"	m	struct:multiboot_info	typeref:typename:multiboot_uint32_t
+flow_ctl	kernel/include/uart.h	/^      uint8_t   flow_ctl:4; \/* (00xx) no tx flow$/;"	m	struct:serial_efr_register::__anon4d6b63ba0108	typeref:typename:uint8_t:4
+force_interrupts_off	kernel/include/asm.h	/^#define force_interrupts_off(/;"	d
+force_interrupts_on	kernel/include/asm.h	/^#define force_interrupts_on(/;"	d
+fptr16_t	kernel/include/types.h	/^} __attribute__((packed)) fptr16_t;$/;"	t	typeref:struct:far_ptr16
+fptr32_t	kernel/include/types.h	/^} __attribute__((packed)) fptr32_t;$/;"	t	typeref:struct:far_ptr32
+fptr64_t	kernel/include/types.h	/^} __attribute__((packed)) fptr64_t;$/;"	t	typeref:struct:far_ptr64
+fptr_t	kernel/include/types.h	/^} __attribute__((packed)) fptr_t;$/;"	t	typeref:struct:far_pointer
+fram	kernel/include/uart.h	/^      uint8_t   fram:1;      \/* framing error *\/$/;"	m	struct:serial_lsr_register::__anon4d6b63ba0708	typeref:typename:uint8_t:1
+framebuffer_addr	kernel/include/grub_mbi.h	/^  multiboot_uint64_t framebuffer_addr;$/;"	m	struct:multiboot_info	typeref:typename:multiboot_uint64_t
+framebuffer_blue_field_position	kernel/include/grub_mbi.h	/^      multiboot_uint8_t framebuffer_blue_field_position;$/;"	m	struct:multiboot_info::__anon69463e85020a::__anon69463e850408	typeref:typename:multiboot_uint8_t
+framebuffer_blue_mask_size	kernel/include/grub_mbi.h	/^      multiboot_uint8_t framebuffer_blue_mask_size;$/;"	m	struct:multiboot_info::__anon69463e85020a::__anon69463e850408	typeref:typename:multiboot_uint8_t
+framebuffer_bpp	kernel/include/grub_mbi.h	/^  multiboot_uint8_t framebuffer_bpp;$/;"	m	struct:multiboot_info	typeref:typename:multiboot_uint8_t
+framebuffer_green_field_position	kernel/include/grub_mbi.h	/^      multiboot_uint8_t framebuffer_green_field_position;$/;"	m	struct:multiboot_info::__anon69463e85020a::__anon69463e850408	typeref:typename:multiboot_uint8_t
+framebuffer_green_mask_size	kernel/include/grub_mbi.h	/^      multiboot_uint8_t framebuffer_green_mask_size;$/;"	m	struct:multiboot_info::__anon69463e85020a::__anon69463e850408	typeref:typename:multiboot_uint8_t
+framebuffer_height	kernel/include/grub_mbi.h	/^  multiboot_uint32_t framebuffer_height;$/;"	m	struct:multiboot_info	typeref:typename:multiboot_uint32_t
+framebuffer_palette_addr	kernel/include/grub_mbi.h	/^      multiboot_uint32_t framebuffer_palette_addr;$/;"	m	struct:multiboot_info::__anon69463e85020a::__anon69463e850308	typeref:typename:multiboot_uint32_t
+framebuffer_palette_num_colors	kernel/include/grub_mbi.h	/^      multiboot_uint16_t framebuffer_palette_num_colors;$/;"	m	struct:multiboot_info::__anon69463e85020a::__anon69463e850308	typeref:typename:multiboot_uint16_t
+framebuffer_pitch	kernel/include/grub_mbi.h	/^  multiboot_uint32_t framebuffer_pitch;$/;"	m	struct:multiboot_info	typeref:typename:multiboot_uint32_t
+framebuffer_red_field_position	kernel/include/grub_mbi.h	/^      multiboot_uint8_t framebuffer_red_field_position;$/;"	m	struct:multiboot_info::__anon69463e85020a::__anon69463e850408	typeref:typename:multiboot_uint8_t
+framebuffer_red_mask_size	kernel/include/grub_mbi.h	/^      multiboot_uint8_t framebuffer_red_mask_size;$/;"	m	struct:multiboot_info::__anon69463e85020a::__anon69463e850408	typeref:typename:multiboot_uint8_t
+framebuffer_type	kernel/include/grub_mbi.h	/^  multiboot_uint8_t framebuffer_type;$/;"	m	struct:multiboot_info	typeref:typename:multiboot_uint8_t
+framebuffer_width	kernel/include/grub_mbi.h	/^  multiboot_uint32_t framebuffer_width;$/;"	m	struct:multiboot_info	typeref:typename:multiboot_uint32_t
+fs	kernel/include/segmem.h	/^   uint16_t     fs, r9;$/;"	m	struct:task_state_segment	typeref:typename:uint16_t
+fs	tp1/tp.c	/^const seg_sel_t fs = { .rpl = SEG_SEL_KRN, .ti = SEG_SEL_GDT, .index = 0x2 };$/;"	v	typeref:typename:const seg_sel_t
+g	kernel/include/pagemem.h	/^      uint32_t  g:1;$/;"	m	struct:page_directory_entry::__anon5c82875a0208	typeref:typename:uint32_t:1
+g	kernel/include/pagemem.h	/^      uint32_t  g:1;$/;"	m	struct:page_table_entry::__anon5c82875a0308	typeref:typename:uint32_t:1
+g	kernel/include/segmem.h	/^      uint64_t    g:1;           \/* granularity *\/$/;"	m	struct:segment_descriptor::__anon972f5d7c0208	typeref:typename:uint64_t:1
+gdt_krn_seg_sel	kernel/include/segmem.h	/^#define gdt_krn_seg_sel(/;"	d
+gdt_reg_t	kernel/include/segmem.h	/^} __attribute__((packed)) gdt_reg_t;$/;"	t	typeref:struct:global_descriptor_table_register
+gdt_seg_sel	kernel/include/segmem.h	/^#define gdt_seg_sel(/;"	d
+gdt_usr_seg_sel	kernel/include/segmem.h	/^#define gdt_usr_seg_sel(/;"	d
+gdtr	tp1/tp.c	/^gdt_reg_t gdtr; \/\/ obligé car pas encore de malloc$/;"	v	typeref:typename:gdt_reg_t
+gdtr	tp3/tp.c	/^gdt_reg_t gdtr;$/;"	v	typeref:typename:gdt_reg_t
+general_purpose_registers	kernel/include/gpr.h	/^typedef union general_purpose_registers$/;"	u
+general_purpose_registers_context	kernel/include/gpr.h	/^typedef union general_purpose_registers_context$/;"	u
+get_cr	kernel/include/cr.h	/^#define get_cr(/;"	d
+get_cr0	kernel/include/cr.h	/^#define get_cr0(/;"	d
+get_cr2	kernel/include/cr.h	/^#define get_cr2(/;"	d
+get_cr3	kernel/include/cr.h	/^#define get_cr3(/;"	d
+get_cr4	kernel/include/cr.h	/^#define get_cr4(/;"	d
+get_ds	kernel/include/segmem.h	/^#define get_ds(/;"	d
+get_ebp	kernel/include/gpr.h	/^#define get_ebp(/;"	d
+get_es	kernel/include/segmem.h	/^#define get_es(/;"	d
+get_esp	kernel/include/gpr.h	/^#define get_esp(/;"	d
+get_flags	kernel/include/gpr.h	/^#define get_flags(/;"	d
+get_fs	kernel/include/segmem.h	/^#define get_fs(/;"	d
+get_gdtr	kernel/include/segmem.h	/^#define get_gdtr(/;"	d
+get_gs	kernel/include/segmem.h	/^#define get_gs(/;"	d
+get_idtr	kernel/include/segmem.h	/^#define get_idtr(/;"	d
+get_ldtr	kernel/include/segmem.h	/^#define get_ldtr(/;"	d
+get_pc	kernel/include/gpr.h	/^#define get_pc(/;"	d
+get_reg	kernel/include/gpr.h	/^#define get_reg(/;"	d
+get_seg_sel	kernel/include/segmem.h	/^#define get_seg_sel(/;"	d
+get_ss	kernel/include/segmem.h	/^#define get_ss(/;"	d
+get_tr	kernel/include/segmem.h	/^#define get_tr(/;"	d
+get_type	tp0/tp.c	/^char *get_type(multiboot_uint32_t type) {$/;"	f	typeref:typename:char *
+global_descriptor_table_register	kernel/include/segmem.h	/^typedef struct global_descriptor_table_register$/;"	s
+gpr	kernel/include/intr.h	/^   gpr_ctx_t gpr;$/;"	m	struct:interrupt_context	typeref:typename:gpr_ctx_t
+gpr	kernel/include/segmem.h	/^   gpr_t        gpr;$/;"	m	struct:task_state_segment	typeref:typename:gpr_t
+gpr_ctx_t	kernel/include/gpr.h	/^} __attribute__((packed)) gpr_ctx_t;$/;"	t	typeref:union:general_purpose_registers_context
+gpr_t	kernel/include/gpr.h	/^} __attribute__((packed)) gpr_t;$/;"	t	typeref:union:general_purpose_registers
+green	kernel/include/grub_mbi.h	/^  multiboot_uint8_t green;$/;"	m	struct:multiboot_color	typeref:typename:multiboot_uint8_t
+gs	kernel/include/segmem.h	/^   uint16_t     gs, r10;$/;"	m	struct:task_state_segment	typeref:typename:uint16_t
+gs	tp1/tp.c	/^const seg_sel_t gs = { .rpl = SEG_SEL_KRN, .ti = SEG_SEL_GDT, .index = 0x2 };$/;"	v	typeref:typename:const seg_sel_t
+halt	kernel/core/entry.s	/^halt:$/;"	l
+halt	kernel/include/asm.h	/^#define halt(/;"	d
+header_addr	kernel/include/grub_mbi.h	/^  multiboot_uint32_t header_addr;$/;"	m	struct:multiboot_header	typeref:typename:multiboot_uint32_t
+height	kernel/include/grub_mbi.h	/^  multiboot_uint32_t height;$/;"	m	struct:multiboot_header	typeref:typename:multiboot_uint32_t
+high	kernel/include/types.h	/^      uint32_t  high;$/;"	m	struct:raw_64_bits_entry::__anone5ae21130808	typeref:typename:uint32_t
+icw4	kernel/include/pic.h	/^      uint8_t   icw4:1;    \/* (1) need icw4 *\/$/;"	m	struct:pic_init_command_word_1::__anonacace0fa0108	typeref:typename:uint8_t:1
+id	kernel/include/excp.h	/^      uint32_t      id:1;     \/* 1 insn fetch *\/$/;"	m	struct:page_fault_error_code::__anon29b0c28e0208	typeref:typename:uint32_t:1
+id	kernel/include/gpr.h	/^   uint32_t   id:1;     \/* identification *\/$/;"	m	struct:cpu_eflags_register_fields	typeref:typename:uint32_t:1
+id	kernel/include/pic.h	/^      uint8_t   id:3; \/* master irq number connected to slave *\/$/;"	m	struct:pic_init_command_word_3::__anonacace0fa0408	typeref:typename:uint8_t:3
+idt	kernel/include/excp.h	/^      uint32_t   idt:1;     \/* index from (1) IDT (0) GDT\/LDT (cf. ti) *\/$/;"	m	struct:selector_error_code::__anon29b0c28e0108	typeref:typename:uint32_t:1
+idt_common	kernel/core/idt.s	/^idt_common:$/;"	l
+idt_reg_t	kernel/include/segmem.h	/^} __attribute__((packed)) idt_reg_t;$/;"	t	typeref:struct:interrupt_descriptor_table_register
+idt_trampoline	kernel/core/idt.s	/^idt_trampoline:$/;"	l
+idx	kernel/include/excp.h	/^      uint32_t   idx:13;    \/* selector index *\/$/;"	m	struct:selector_error_code::__anon29b0c28e0108	typeref:typename:uint32_t:13
+in	kernel/include/io.h	/^#define/;"	d
+inb	kernel/include/io.h	/^#define inb(/;"	d
+index	kernel/include/segmem.h	/^      uint16_t    index:13; \/* bits 3-15 index in descriptor table *\/$/;"	m	struct:segment_selector::__anon972f5d7c0108	typeref:typename:uint16_t:13
+info	kernel/core/start.c	/^       info_t *info = &__info;$/;"	v	typeref:typename:info_t *
+info	kernel/include/uart.h	/^      uint8_t  info:3;             \/* see info type values *\/$/;"	m	struct:serial_iir_register::__anon4d6b63ba0308	typeref:typename:uint8_t:3
+info_t	kernel/include/info.h	/^} __attribute__((packed)) info_t;$/;"	t	typeref:struct:information
+information	kernel/include/info.h	/^typedef struct information$/;"	s
+inl	kernel/include/io.h	/^#define inl(/;"	d
+int_align	kernel/include/types.h	/^#define int_align(/;"	d
+int_align_next	kernel/include/types.h	/^#define int_align_next(/;"	d
+int_aligned	kernel/include/types.h	/^#define int_aligned(/;"	d
+int_ctx_t	kernel/include/intr.h	/^} __attribute__((packed)) int_ctx_t;$/;"	t	typeref:struct:interrupt_context
+int_desc	kernel/include/intr.h	/^#define int_desc(/;"	d
+int_desc_t	kernel/include/segmem.h	/^} __attribute__((packed)) int_desc_t;$/;"	t	typeref:union:interrupt_descriptor
+interrupt_context	kernel/include/intr.h	/^typedef struct interrupt_context$/;"	s
+interrupt_descriptor	kernel/include/segmem.h	/^typedef union interrupt_descriptor$/;"	u
+interrupt_descriptor_table_register	kernel/include/segmem.h	/^typedef struct interrupt_descriptor_table_register$/;"	s
+interrupt_handler	tp2/tp.c	/^void interrupt_handler(int_ctx_t *ctx)$/;"	f	typeref:typename:void
+interrupts_enabled	kernel/include/asm.h	/^#define interrupts_enabled(/;"	d
+intr	kernel/include/segmem.h	/^   uint8_t  intr[32];$/;"	m	struct:task_state_segment_maps	typeref:typename:uint8_t[32]
+intr_hdlr	kernel/core/intr.c	/^void __regparm__(1) intr_hdlr(int_ctx_t *ctx)$/;"	f	typeref:typename:void __regparm__ (1)
+intr_init	kernel/core/intr.c	/^void intr_init()$/;"	f	typeref:typename:void
+invalidate	kernel/include/pagemem.h	/^#define invalidate(/;"	d
+inw	kernel/include/io.h	/^#define inw(/;"	d
+io	kernel/include/segmem.h	/^   uint8_t  io[8192];$/;"	m	struct:task_state_segment_maps	typeref:typename:uint8_t[8192]
+iopl	kernel/include/gpr.h	/^   uint32_t   iopl:2;   \/* io pvl *\/$/;"	m	struct:cpu_eflags_register_fields	typeref:typename:uint32_t:2
+irq0	kernel/include/pic.h	/^      uint8_t   irq0:1;     \/* irq0 is connected to a slave *\/$/;"	m	struct:pic_init_command_word_3::__anonacace0fa0308	typeref:typename:uint8_t:1
+irq0	kernel/include/pic.h	/^      uint8_t  irq0:1;$/;"	m	struct:pic_operation_control_word_1::__anonacace0fa0608	typeref:typename:uint8_t:1
+irq1	kernel/include/pic.h	/^      uint8_t   irq1:1;$/;"	m	struct:pic_init_command_word_3::__anonacace0fa0308	typeref:typename:uint8_t:1
+irq1	kernel/include/pic.h	/^      uint8_t  irq1:1;$/;"	m	struct:pic_operation_control_word_1::__anonacace0fa0608	typeref:typename:uint8_t:1
+irq2	kernel/include/pic.h	/^      uint8_t   irq2:1;$/;"	m	struct:pic_init_command_word_3::__anonacace0fa0308	typeref:typename:uint8_t:1
+irq2	kernel/include/pic.h	/^      uint8_t  irq2:1;$/;"	m	struct:pic_operation_control_word_1::__anonacace0fa0608	typeref:typename:uint8_t:1
+irq3	kernel/include/pic.h	/^      uint8_t   irq3:1;$/;"	m	struct:pic_init_command_word_3::__anonacace0fa0308	typeref:typename:uint8_t:1
+irq3	kernel/include/pic.h	/^      uint8_t  irq3:1;$/;"	m	struct:pic_operation_control_word_1::__anonacace0fa0608	typeref:typename:uint8_t:1
+irq4	kernel/include/pic.h	/^      uint8_t   irq4:1;$/;"	m	struct:pic_init_command_word_3::__anonacace0fa0308	typeref:typename:uint8_t:1
+irq4	kernel/include/pic.h	/^      uint8_t  irq4:1;$/;"	m	struct:pic_operation_control_word_1::__anonacace0fa0608	typeref:typename:uint8_t:1
+irq5	kernel/include/pic.h	/^      uint8_t   irq5:1;$/;"	m	struct:pic_init_command_word_3::__anonacace0fa0308	typeref:typename:uint8_t:1
+irq5	kernel/include/pic.h	/^      uint8_t  irq5:1;$/;"	m	struct:pic_operation_control_word_1::__anonacace0fa0608	typeref:typename:uint8_t:1
+irq6	kernel/include/pic.h	/^      uint8_t   irq6:1;$/;"	m	struct:pic_init_command_word_3::__anonacace0fa0308	typeref:typename:uint8_t:1
+irq6	kernel/include/pic.h	/^      uint8_t  irq6:1;$/;"	m	struct:pic_operation_control_word_1::__anonacace0fa0608	typeref:typename:uint8_t:1
+irq7	kernel/include/pic.h	/^      uint8_t   irq7:1;$/;"	m	struct:pic_init_command_word_3::__anonacace0fa0308	typeref:typename:uint8_t:1
+irq7	kernel/include/pic.h	/^      uint8_t  irq7:1;$/;"	m	struct:pic_operation_control_word_1::__anonacace0fa0608	typeref:typename:uint8_t:1
+irq_base	kernel/include/pic.h	/^      uint8_t  irq_base:5;$/;"	m	struct:pic_init_command_word_2::__anonacace0fa0208	typeref:typename:uint8_t:5
+irq_to_ivt	kernel/include/pic.h	/^#define irq_to_ivt(/;"	d
+is_pic_icw1	kernel/include/pic.h	/^#define is_pic_icw1(/;"	d
+is_pic_ocw2	kernel/include/pic.h	/^#define is_pic_ocw2(/;"	d
+is_pic_ocw3	kernel/include/pic.h	/^#define is_pic_ocw3(/;"	d
+isr_t	kernel/include/intr.h	/^typedef void (*isr_t)(int_ctx_t*);$/;"	t	typeref:typename:void (*)(int_ctx_t *)
+ist	kernel/include/segmem.h	/^      uint64_t  ist:3;          \/* stack table: only 64 bits *\/$/;"	m	struct:interrupt_descriptor::__anon972f5d7c0508	typeref:typename:uint64_t:3
+it	kernel/include/gpr.h	/^   uint32_t   it:1;     \/* interrupt *\/$/;"	m	struct:cpu_eflags_register_fields	typeref:typename:uint32_t:1
+l	kernel/include/segmem.h	/^      uint64_t    l:1;           \/* longmode *\/$/;"	m	struct:segment_descriptor::__anon972f5d7c0208	typeref:typename:uint64_t:1
+ldt	kernel/include/segmem.h	/^   uint16_t     ldt, r11;$/;"	m	struct:task_state_segment	typeref:typename:uint16_t
+ldt_reg_t	kernel/include/segmem.h	/^} __attribute__((packed)) ldt_reg_t;$/;"	t	typeref:struct:local_descriptor_table_register
+ldt_seg_sel	kernel/include/segmem.h	/^#define ldt_seg_sel(/;"	d
+len	kernel/include/grub_mbi.h	/^  multiboot_uint64_t len;$/;"	m	struct:multiboot_mmap_entry	typeref:typename:multiboot_uint64_t
+limit	kernel/include/segmem.h	/^   uint16_t            limit;           \/* dt limit = size - 1 *\/$/;"	m	struct:global_descriptor_table_register	typeref:typename:uint16_t
+limit	kernel/include/segmem.h	/^   uint16_t            limit;    \/* segment limit *\/$/;"	m	struct:local_descriptor_table_register	typeref:typename:uint16_t
+limit	kernel/include/segmem.h	/^   uint16_t        limit;           \/* dt limit = size - 1 *\/$/;"	m	struct:interrupt_descriptor_table_register	typeref:typename:uint16_t
+limit	kernel/include/segmem.h	/^   uint16_t  limit;$/;"	m	struct:descriptor_table_register	typeref:typename:uint16_t
+limit_1	kernel/include/segmem.h	/^      uint64_t    limit_1:16;    \/* bits 00-15 of the segment limit *\/$/;"	m	struct:segment_descriptor::__anon972f5d7c0208	typeref:typename:uint64_t:16
+limit_2	kernel/include/segmem.h	/^      uint64_t    limit_2:4;     \/* bits 16-19 of the segment limit *\/$/;"	m	struct:segment_descriptor::__anon972f5d7c0208	typeref:typename:uint64_t:4
+linear	kernel/include/types.h	/^   offset_t  linear;$/;"	m	union:location	typeref:typename:offset_t
+link	utils/rules.mk	/^define link$/;"	m
+load_addr	kernel/include/grub_mbi.h	/^  multiboot_uint32_t load_addr;$/;"	m	struct:multiboot_header	typeref:typename:multiboot_uint32_t
+load_end_addr	kernel/include/grub_mbi.h	/^  multiboot_uint32_t load_end_addr;$/;"	m	struct:multiboot_header	typeref:typename:multiboot_uint32_t
+load_flags	kernel/include/gpr.h	/^#define load_flags(/;"	d
+loc_t	kernel/include/types.h	/^} __attribute__((packed)) loc_t;$/;"	t	typeref:union:location
+local_descriptor_table_register	kernel/include/segmem.h	/^typedef struct local_descriptor_table_register$/;"	s
+location	kernel/include/types.h	/^typedef union location$/;"	u
+long_align	kernel/include/types.h	/^#define long_align(/;"	d
+long_align_next	kernel/include/types.h	/^#define long_align_next(/;"	d
+long_aligned	kernel/include/types.h	/^#define long_aligned(/;"	d
+loop	kernel/include/uart.h	/^      uint8_t   loop:1;      \/* loopback mode *\/$/;"	m	struct:serial_mcr_register::__anon4d6b63ba0608	typeref:typename:uint8_t:1
+low	kernel/include/types.h	/^         uint32_t  low;$/;"	m	union:raw_64_bits_entry::__anone5ae21130808::__anone5ae2113090a	typeref:typename:uint32_t
+lsb	kernel/include/uart.h	/^      uint8_t     lsb;$/;"	m	struct:serial_dla::__anon4d6b63ba0908	typeref:typename:uint8_t
+lsr	kernel/include/uart.h	/^      uint8_t   lsr:1;      \/* (1) enable receiver line status interrupt *\/$/;"	m	struct:serial_ier_register::__anon4d6b63ba0208	typeref:typename:uint8_t:1
+ltim	kernel/include/pic.h	/^      uint8_t   ltim:1;    \/* (1) level triggered interrupt mode (0) edge triggered interrupt m/;"	m	struct:pic_init_command_word_1::__anonacace0fa0108	typeref:typename:uint8_t:1
+lvl	kernel/include/pagemem.h	/^      uint32_t  lvl:1;$/;"	m	struct:page_directory_entry::__anon5c82875a0108	typeref:typename:uint32_t:1
+lvl	kernel/include/pagemem.h	/^      uint32_t  lvl:1;$/;"	m	struct:page_directory_entry::__anon5c82875a0208	typeref:typename:uint32_t:1
+lvl	kernel/include/pagemem.h	/^      uint32_t  lvl:1;$/;"	m	struct:page_table_entry::__anon5c82875a0308	typeref:typename:uint32_t:1
+lvl	kernel/include/pic.h	/^      uint8_t   lvl:3;   \/* interrupt level when SL is set *\/$/;"	m	struct:pic_operation_control_word_2::__anonacace0fa0708	typeref:typename:uint8_t:3
+magic	kernel/include/grub_mbi.h	/^  multiboot_uint32_t magic;$/;"	m	struct:multiboot_header	typeref:typename:multiboot_uint32_t
+maps	kernel/include/segmem.h	/^   tss_maps_t   maps;$/;"	m	struct:task_state_segment	typeref:typename:tss_maps_t
+master	kernel/include/pic.h	/^   } master;$/;"	m	union:pic_init_command_word_3	typeref:struct:pic_init_command_word_3::__anonacace0fa0308
+max	kernel/include/math.h	/^#define max(/;"	d
+mbh	kernel/core/start.c	/^volatile const uint32_t __mbh__ mbh[] = {$/;"	v	typeref:typename:volatile const uint32_t __mbh__[]
+mbi	kernel/include/info.h	/^   mbi_t *mbi;$/;"	m	struct:information	typeref:typename:mbi_t *
+mbi_opt_hdl_t	kernel/include/mbi.h	/^typedef int (*mbi_opt_hdl_t)(char*, void*);$/;"	t	typeref:typename:int (*)(char *,void *)
+mbi_t	kernel/include/mbi.h	/^typedef multiboot_info_t        mbi_t;$/;"	t	typeref:typename:multiboot_info_t
+mbz	kernel/include/pagemem.h	/^      uint32_t  mbz:3;$/;"	m	struct:page_directory_entry::__anon5c82875a0108	typeref:typename:uint32_t:3
+mce	kernel/include/cr.h	/^      uint32_t    mce:1;        \/* machine check enable *\/$/;"	m	struct:control_register_4::__anonbf6315130308	typeref:typename:uint32_t:1
+mem_lower	kernel/include/grub_mbi.h	/^  multiboot_uint32_t mem_lower;$/;"	m	struct:multiboot_info	typeref:typename:multiboot_uint32_t
+mem_range	kernel/include/types.h	/^#define mem_range(/;"	d
+mem_upper	kernel/include/grub_mbi.h	/^  multiboot_uint32_t mem_upper;$/;"	m	struct:multiboot_info	typeref:typename:multiboot_uint32_t
+memcpy	kernel/include/string.h	/^static inline void* memcpy(void *dst, void *src, size_t size)$/;"	f	typeref:typename:void *
+memory_map_t	kernel/include/mbi.h	/^typedef multiboot_memory_map_t  memory_map_t;$/;"	t	typeref:typename:multiboot_memory_map_t
+memset	kernel/include/string.h	/^static inline void* memset(void *dst, uint8_t c, size_t size)$/;"	f	typeref:typename:void *
+min	kernel/include/math.h	/^#define min(/;"	d
+mmap_addr	kernel/include/grub_mbi.h	/^  multiboot_uint32_t mmap_addr;$/;"	m	struct:multiboot_info	typeref:typename:multiboot_uint32_t
+mmap_length	kernel/include/grub_mbi.h	/^  multiboot_uint32_t mmap_length;$/;"	m	struct:multiboot_info	typeref:typename:multiboot_uint32_t
+mod_end	kernel/include/grub_mbi.h	/^  multiboot_uint32_t mod_end;$/;"	m	struct:multiboot_mod_list	typeref:typename:multiboot_uint32_t
+mod_start	kernel/include/grub_mbi.h	/^  multiboot_uint32_t mod_start;$/;"	m	struct:multiboot_mod_list	typeref:typename:multiboot_uint32_t
+mode_type	kernel/include/grub_mbi.h	/^  multiboot_uint32_t mode_type;$/;"	m	struct:multiboot_header	typeref:typename:multiboot_uint32_t
+mods_addr	kernel/include/grub_mbi.h	/^  multiboot_uint32_t mods_addr;$/;"	m	struct:multiboot_info	typeref:typename:multiboot_uint32_t
+mods_count	kernel/include/grub_mbi.h	/^  multiboot_uint32_t mods_count;$/;"	m	struct:multiboot_info	typeref:typename:multiboot_uint32_t
+module_t	kernel/include/mbi.h	/^typedef multiboot_module_t      module_t;$/;"	t	typeref:typename:multiboot_module_t
+mp	kernel/include/cr.h	/^      uint32_t    mp:1;   \/* monitor copro *\/$/;"	m	struct:control_register_0::__anonbf6315130108	typeref:typename:uint32_t:1
+ms	kernel/include/pic.h	/^      uint8_t   ms:1;     \/* (1) master buffered (0) slave buffered *\/$/;"	m	struct:pic_init_command_word_4::__anonacace0fa0508	typeref:typename:uint8_t:1
+msb	kernel/include/uart.h	/^      uint8_t     msb;$/;"	m	struct:serial_dla::__anon4d6b63ba0908	typeref:typename:uint8_t
+msr	kernel/include/uart.h	/^      uint8_t   msr:1;      \/* (1) enable modem status interrupt *\/$/;"	m	struct:serial_ier_register::__anon4d6b63ba0208	typeref:typename:uint8_t:1
+multiboot_aout_symbol_table	kernel/include/grub_mbi.h	/^struct multiboot_aout_symbol_table$/;"	s
+multiboot_aout_symbol_table_t	kernel/include/grub_mbi.h	/^typedef struct multiboot_aout_symbol_table multiboot_aout_symbol_table_t;$/;"	t	typeref:struct:multiboot_aout_symbol_table
+multiboot_color	kernel/include/grub_mbi.h	/^struct multiboot_color$/;"	s
+multiboot_elf_section_header_table	kernel/include/grub_mbi.h	/^struct multiboot_elf_section_header_table$/;"	s
+multiboot_elf_section_header_table_t	kernel/include/grub_mbi.h	/^typedef struct multiboot_elf_section_header_table multiboot_elf_section_header_table_t;$/;"	t	typeref:struct:multiboot_elf_section_header_table
+multiboot_header	kernel/include/grub_mbi.h	/^struct multiboot_header$/;"	s
+multiboot_info	kernel/include/grub_mbi.h	/^struct multiboot_info$/;"	s
+multiboot_info_t	kernel/include/grub_mbi.h	/^typedef struct multiboot_info multiboot_info_t;$/;"	t	typeref:struct:multiboot_info
+multiboot_memory_map_t	kernel/include/grub_mbi.h	/^typedef struct multiboot_mmap_entry multiboot_memory_map_t;$/;"	t	typeref:struct:multiboot_mmap_entry
+multiboot_mmap_entry	kernel/include/grub_mbi.h	/^struct multiboot_mmap_entry$/;"	s
+multiboot_mod_list	kernel/include/grub_mbi.h	/^struct multiboot_mod_list$/;"	s
+multiboot_module_t	kernel/include/grub_mbi.h	/^typedef struct multiboot_mod_list multiboot_module_t;$/;"	t	typeref:struct:multiboot_mod_list
+multiboot_uint16_t	kernel/include/grub_mbi.h	/^typedef unsigned short          multiboot_uint16_t;$/;"	t	typeref:typename:unsigned short
+multiboot_uint32_t	kernel/include/grub_mbi.h	/^typedef unsigned int            multiboot_uint32_t;$/;"	t	typeref:typename:unsigned int
+multiboot_uint64_t	kernel/include/grub_mbi.h	/^typedef unsigned long long      multiboot_uint64_t;$/;"	t	typeref:typename:unsigned long long
+multiboot_uint8_t	kernel/include/grub_mbi.h	/^typedef unsigned char           multiboot_uint8_t;$/;"	t	typeref:typename:unsigned char
+nb_segments	tp1/tp.c	/^int nb_segments = 0;$/;"	v	typeref:typename:int
+ne	kernel/include/cr.h	/^      uint32_t    ne:1;   \/* num error *\/$/;"	m	struct:control_register_0::__anonbf6315130108	typeref:typename:uint32_t:1
+no_int_pending	kernel/include/uart.h	/^      uint8_t  no_int_pending:1;   \/* (0) int pending, (1) no *\/$/;"	m	struct:serial_iir_register::__anon4d6b63ba0308	typeref:typename:uint8_t:1
+nr	kernel/include/intr.h	/^   raw32_t         nr;$/;"	m	struct:cpu_context	typeref:typename:raw32_t
+nt	kernel/include/gpr.h	/^   uint32_t   nt:1;     \/* nested task *\/$/;"	m	struct:cpu_eflags_register_fields	typeref:typename:uint32_t:1
+num	kernel/include/grub_mbi.h	/^  multiboot_uint32_t num;$/;"	m	struct:multiboot_elf_section_header_table	typeref:typename:multiboot_uint32_t
+nw	kernel/include/cr.h	/^      uint32_t    nw:1;   \/* not write through *\/$/;"	m	struct:control_register_0::__anonbf6315130108	typeref:typename:uint32_t:1
+objects	utils/config.mk	/^objects    := $(addprefix $(CORE), $(core_obj))$/;"	m
+of	kernel/include/gpr.h	/^   uint32_t   of:1;     \/* overflow *\/$/;"	m	struct:cpu_eflags_register_fields	typeref:typename:uint32_t:1
+offset	kernel/include/types.h	/^   raw32_t  offset;$/;"	m	struct:far_pointer	typeref:typename:raw32_t
+offset	kernel/include/types.h	/^   uint16_t offset;$/;"	m	struct:far_ptr16	typeref:typename:uint16_t
+offset	kernel/include/types.h	/^   uint32_t offset;$/;"	m	struct:far_ptr32	typeref:typename:uint32_t
+offset	kernel/include/types.h	/^   uint64_t offset;$/;"	m	struct:far_ptr64	typeref:typename:uint64_t
+offset_1	kernel/include/segmem.h	/^      uint64_t  offset_1:16;    \/* bits 00-15 of the isr offset *\/$/;"	m	struct:interrupt_descriptor::__anon972f5d7c0508	typeref:typename:uint64_t:16
+offset_2	kernel/include/segmem.h	/^      uint64_t  offset_2:16;    \/* bits 16-31 of the isr offset *\/$/;"	m	struct:interrupt_descriptor::__anon972f5d7c0508	typeref:typename:uint64_t:16
+offset_t	kernel/include/types.h	/^typedef unsigned long          offset_t;$/;"	t	typeref:typename:unsigned long
+offsetof	kernel/include/types.h	/^#define offsetof(/;"	d
+on	kernel/include/segmem.h	/^      uint16_t on:1;   \/* #DB on task switch *\/$/;"	m	struct:task_state_segment_trap::__anon972f5d7c0708	typeref:typename:uint16_t:1
+one	kernel/include/pic.h	/^      uint8_t   one:1;     \/* MUST BE SET TO 1 *\/$/;"	m	struct:pic_init_command_word_1::__anonacace0fa0108	typeref:typename:uint8_t:1
+one	kernel/include/pic.h	/^      uint8_t   one:1;   \/* MUST BE SET TO 1 *\/$/;"	m	struct:pic_operation_control_word_3::__anonacace0fa0808	typeref:typename:uint8_t:1
+osfxsr	kernel/include/cr.h	/^      uint32_t    osfxsr:1;     \/* fxsave fxstore *\/$/;"	m	struct:control_register_4::__anonbf6315130308	typeref:typename:uint32_t:1
+osxmmexcpt	kernel/include/cr.h	/^      uint32_t    osxmmexcpt:1; \/* simd fpu excpt *\/$/;"	m	struct:control_register_4::__anonbf6315130308	typeref:typename:uint32_t:1
+osxsave	kernel/include/cr.h	/^      uint32_t    osxsave:1;    \/* xsave enable *\/$/;"	m	struct:control_register_4::__anonbf6315130308	typeref:typename:uint32_t:1
+out	kernel/include/io.h	/^#define out(/;"	d
+outb	kernel/include/io.h	/^#define outb(/;"	d
+outl	kernel/include/io.h	/^#define outl(/;"	d
+outw	kernel/include/io.h	/^#define outw(/;"	d
+overrun	kernel/include/uart.h	/^      uint8_t   overrun:1;   \/* over run *\/$/;"	m	struct:serial_lsr_register::__anon4d6b63ba0708	typeref:typename:uint8_t:1
+p	kernel/include/excp.h	/^      uint32_t      p:1;      \/* non-present (0), violation (1) *\/$/;"	m	struct:page_fault_error_code::__anon29b0c28e0208	typeref:typename:uint32_t:1
+p	kernel/include/pagemem.h	/^      uint32_t  p:1;$/;"	m	struct:page_directory_entry::__anon5c82875a0108	typeref:typename:uint32_t:1
+p	kernel/include/pagemem.h	/^      uint32_t  p:1;$/;"	m	struct:page_directory_entry::__anon5c82875a0208	typeref:typename:uint32_t:1
+p	kernel/include/pagemem.h	/^      uint32_t  p:1;$/;"	m	struct:page_table_entry::__anon5c82875a0308	typeref:typename:uint32_t:1
+p	kernel/include/segmem.h	/^      uint64_t    p:1;           \/* segment present flag *\/$/;"	m	struct:segment_descriptor::__anon972f5d7c0208	typeref:typename:uint64_t:1
+p	kernel/include/segmem.h	/^      uint64_t  p:1;            \/* present flag *\/$/;"	m	struct:interrupt_descriptor::__anon972f5d7c0508	typeref:typename:uint64_t:1
+pad	kernel/include/grub_mbi.h	/^  multiboot_uint32_t pad;$/;"	m	struct:multiboot_mod_list	typeref:typename:multiboot_uint32_t
+pad	kernel/include/segmem.h	/^      uint16_t pad:15;$/;"	m	struct:task_state_segment_trap::__anon972f5d7c0708	typeref:typename:uint16_t:15
+pad	kernel/include/segmem.h	/^   uint16_t pad;$/;"	m	struct:task_state_segment_stack	typeref:typename:uint16_t
+pae	kernel/include/cr.h	/^      uint32_t    pae:1;        \/* phys addr ext *\/$/;"	m	struct:control_register_4::__anonbf6315130308	typeref:typename:uint32_t:1
+page	kernel/include/pagemem.h	/^   } __attribute__((packed)) page;$/;"	m	union:page_directory_entry	typeref:struct:page_directory_entry::__anon5c82875a0208
+page_addr	kernel/include/pagemem.h	/^#define page_addr(/;"	d
+page_align	kernel/include/pagemem.h	/^#define page_align(/;"	d
+page_align_next	kernel/include/pagemem.h	/^#define page_align_next(/;"	d
+page_aligned	kernel/include/pagemem.h	/^#define page_aligned(/;"	d
+page_directory_entry	kernel/include/pagemem.h	/^typedef union page_directory_entry$/;"	u
+page_fault_error_code	kernel/include/excp.h	/^typedef union page_fault_error_code$/;"	u
+page_nr	kernel/include/pagemem.h	/^#define page_nr(/;"	d
+page_table_entry	kernel/include/pagemem.h	/^typedef union page_table_entry$/;"	u
+panic	kernel/core/print.c	/^void panic(const char *format, ...)$/;"	f	typeref:typename:void
+parity	kernel/include/uart.h	/^      uint8_t   parity:1;    \/* parrity error *\/$/;"	m	struct:serial_lsr_register::__anon4d6b63ba0708	typeref:typename:uint8_t:1
+parity	kernel/include/uart.h	/^      uint8_t  parity:3;     \/* (xx0) no parity$/;"	m	struct:serial_lcr_register::__anon4d6b63ba0508	typeref:typename:uint8_t:3
+pat	kernel/include/pagemem.h	/^      uint32_t  pat:1;$/;"	m	struct:page_directory_entry::__anon5c82875a0208	typeref:typename:uint32_t:1
+pat	kernel/include/pagemem.h	/^      uint32_t  pat:1;$/;"	m	struct:page_table_entry::__anon5c82875a0308	typeref:typename:uint32_t:1
+pcd	kernel/include/cr.h	/^      uint32_t  pcd:1;$/;"	m	struct:control_register_3::__anonbf6315130208	typeref:typename:uint32_t:1
+pcd	kernel/include/pagemem.h	/^      uint32_t  pcd:1;$/;"	m	struct:page_directory_entry::__anon5c82875a0108	typeref:typename:uint32_t:1
+pcd	kernel/include/pagemem.h	/^      uint32_t  pcd:1;$/;"	m	struct:page_directory_entry::__anon5c82875a0208	typeref:typename:uint32_t:1
+pcd	kernel/include/pagemem.h	/^      uint32_t  pcd:1;$/;"	m	struct:page_table_entry::__anon5c82875a0308	typeref:typename:uint32_t:1
+pce	kernel/include/cr.h	/^      uint32_t    pce:1;        \/* perf counter enable *\/$/;"	m	struct:control_register_4::__anonbf6315130308	typeref:typename:uint32_t:1
+pcide	kernel/include/cr.h	/^      uint32_t    pcide:1;      \/* process context id *\/$/;"	m	struct:control_register_4::__anonbf6315130308	typeref:typename:uint32_t:1
+pd32_idx	kernel/include/pagemem.h	/^#define pd32_idx(/;"	d
+pde32_t	kernel/include/pagemem.h	/^} __attribute__((packed)) pde32_t;$/;"	t	typeref:union:page_directory_entry
+pe	kernel/include/cr.h	/^      uint32_t    pe:1;   \/* protected mode *\/$/;"	m	struct:control_register_0::__anonbf6315130108	typeref:typename:uint32_t:1
+pf	kernel/include/excp.h	/^   pf_err_t pf;$/;"	m	union:exception32_error_code	typeref:typename:pf_err_t
+pf	kernel/include/gpr.h	/^   uint32_t   pf:1;     \/* parity *\/$/;"	m	struct:cpu_eflags_register_fields	typeref:typename:uint32_t:1
+pf_err_t	kernel/include/excp.h	/^} __attribute__((packed)) pf_err_t;$/;"	t	typeref:union:page_fault_error_code
+pg	kernel/include/cr.h	/^      uint32_t    pg:1;   \/* paging *\/$/;"	m	struct:control_register_0::__anonbf6315130108	typeref:typename:uint32_t:1
+pg_4K_addr	kernel/include/pagemem.h	/^#define pg_4K_addr(/;"	d
+pg_4K_align	kernel/include/pagemem.h	/^#define pg_4K_align(/;"	d
+pg_4K_align_next	kernel/include/pagemem.h	/^#define pg_4K_align_next(/;"	d
+pg_4K_aligned	kernel/include/pagemem.h	/^#define pg_4K_aligned(/;"	d
+pg_4K_nr	kernel/include/pagemem.h	/^#define pg_4K_nr(/;"	d
+pg_4K_offset	kernel/include/pagemem.h	/^#define pg_4K_offset(/;"	d
+pg_4M_addr	kernel/include/pagemem.h	/^#define pg_4M_addr(/;"	d
+pg_4M_align	kernel/include/pagemem.h	/^#define pg_4M_align(/;"	d
+pg_4M_align_next	kernel/include/pagemem.h	/^#define pg_4M_align_next(/;"	d
+pg_4M_aligned	kernel/include/pagemem.h	/^#define pg_4M_aligned(/;"	d
+pg_4M_nr	kernel/include/pagemem.h	/^#define pg_4M_nr(/;"	d
+pg_4M_offset	kernel/include/pagemem.h	/^#define pg_4M_offset(/;"	d
+pg_large	kernel/include/pagemem.h	/^#define pg_large(/;"	d
+pg_present	kernel/include/pagemem.h	/^#define pg_present(/;"	d
+pg_readable	kernel/include/pagemem.h	/^#define pg_readable(/;"	d
+pg_set_entry	kernel/include/pagemem.h	/^#define pg_set_entry(/;"	d
+pg_set_large_entry	kernel/include/pagemem.h	/^#define pg_set_large_entry(/;"	d
+pg_writable	kernel/include/pagemem.h	/^#define pg_writable(/;"	d
+pg_zero	kernel/include/pagemem.h	/^#define pg_zero(/;"	d
+pgcd	kernel/include/math.h	/^static inline uint32_t pgcd(uint32_t a, uint32_t b)$/;"	f	typeref:typename:uint32_t
+pge	kernel/include/cr.h	/^      uint32_t    pge:1;        \/* page global enable *\/$/;"	m	struct:control_register_4::__anonbf6315130308	typeref:typename:uint32_t:1
+pic_eoi	kernel/include/pic.h	/^#define pic_eoi(/;"	d
+pic_icw1_t	kernel/include/pic.h	/^} __attribute__((packed)) pic_icw1_t;$/;"	t	typeref:union:pic_init_command_word_1
+pic_icw2_t	kernel/include/pic.h	/^} __attribute__((packed)) pic_icw2_t;$/;"	t	typeref:union:pic_init_command_word_2
+pic_icw3_t	kernel/include/pic.h	/^} __attribute__((packed)) pic_icw3_t;$/;"	t	typeref:union:pic_init_command_word_3
+pic_icw4_t	kernel/include/pic.h	/^} __attribute__((packed)) pic_icw4_t;$/;"	t	typeref:union:pic_init_command_word_4
+pic_imr	kernel/include/pic.h	/^#define pic_imr(/;"	d
+pic_init	kernel/core/pic.c	/^void pic_init()$/;"	f	typeref:typename:void
+pic_init_command_word_1	kernel/include/pic.h	/^typedef union pic_init_command_word_1$/;"	u
+pic_init_command_word_2	kernel/include/pic.h	/^typedef union pic_init_command_word_2$/;"	u
+pic_init_command_word_3	kernel/include/pic.h	/^typedef union pic_init_command_word_3$/;"	u
+pic_init_command_word_4	kernel/include/pic.h	/^typedef union pic_init_command_word_4$/;"	u
+pic_ocw1_t	kernel/include/pic.h	/^} __attribute__((packed)) pic_ocw1_t;$/;"	t	typeref:union:pic_operation_control_word_1
+pic_ocw2_t	kernel/include/pic.h	/^} __attribute__((packed)) pic_ocw2_t;$/;"	t	typeref:union:pic_operation_control_word_2
+pic_ocw3_t	kernel/include/pic.h	/^} __attribute__((packed)) pic_ocw3_t;$/;"	t	typeref:union:pic_operation_control_word_3
+pic_operation_control_word_1	kernel/include/pic.h	/^typedef union pic_operation_control_word_1$/;"	u
+pic_operation_control_word_2	kernel/include/pic.h	/^typedef union pic_operation_control_word_2$/;"	u
+pic_operation_control_word_3	kernel/include/pic.h	/^typedef union pic_operation_control_word_3$/;"	u
+poll	kernel/include/pic.h	/^      uint8_t   poll:1;  \/* (1) Poll command, (0) No poll command *\/$/;"	m	struct:pic_operation_control_word_3::__anonacace0fa0808	typeref:typename:uint8_t:1
+printf	kernel/core/print.c	/^size_t printf(const char *format, ...)$/;"	f	typeref:typename:size_t
+ps	kernel/include/pagemem.h	/^      uint32_t  ps:1;$/;"	m	struct:page_directory_entry::__anon5c82875a0208	typeref:typename:uint32_t:1
+pse	kernel/include/cr.h	/^      uint32_t    pse:1;        \/* page sz ext *\/$/;"	m	struct:control_register_4::__anonbf6315130308	typeref:typename:uint32_t:1
+pt32_idx	kernel/include/pagemem.h	/^#define pt32_idx(/;"	d
+pte32_t	kernel/include/pagemem.h	/^} __attribute__((packed)) pte32_t;$/;"	t	typeref:union:page_table_entry
+pvi	kernel/include/cr.h	/^      uint32_t    pvi:1;        \/* pmode virtual int *\/$/;"	m	struct:control_register_4::__anonbf6315130308	typeref:typename:uint32_t:1
+pwt	kernel/include/cr.h	/^      uint32_t  pwt:1;$/;"	m	struct:control_register_3::__anonbf6315130208	typeref:typename:uint32_t:1
+pwt	kernel/include/pagemem.h	/^      uint32_t  pwt:1;$/;"	m	struct:page_directory_entry::__anon5c82875a0108	typeref:typename:uint32_t:1
+pwt	kernel/include/pagemem.h	/^      uint32_t  pwt:1;$/;"	m	struct:page_directory_entry::__anon5c82875a0208	typeref:typename:uint32_t:1
+pwt	kernel/include/pagemem.h	/^      uint32_t  pwt:1;$/;"	m	struct:page_table_entry::__anon5c82875a0308	typeref:typename:uint32_t:1
+qemu	utils/rules.mk	/^define qemu$/;"	m
+qemu	utils/rules.mk	/^qemu: $(TARGET)$/;"	t
+r	kernel/include/excp.h	/^      uint32_t      r:27;     \/* reserved *\/$/;"	m	struct:page_fault_error_code::__anon29b0c28e0208	typeref:typename:uint32_t:27
+r	kernel/include/excp.h	/^      uint32_t   r:16;      \/* reserved *\/$/;"	m	struct:selector_error_code::__anon29b0c28e0108	typeref:typename:uint32_t:16
+r1	kernel/include/cr.h	/^      uint32_t    r1:10;  \/* reserved *\/$/;"	m	struct:control_register_0::__anonbf6315130108	typeref:typename:uint32_t:10
+r1	kernel/include/cr.h	/^      uint32_t    r1:2;         \/* reserved *\/$/;"	m	struct:control_register_4::__anonbf6315130308	typeref:typename:uint32_t:2
+r1	kernel/include/cr.h	/^      uint32_t  r1:3;$/;"	m	struct:control_register_3::__anonbf6315130208	typeref:typename:uint32_t:3
+r1	kernel/include/gpr.h	/^   uint32_t   r1:1;     \/* (1) *\/$/;"	m	struct:cpu_eflags_register_fields	typeref:typename:uint32_t:1
+r1	kernel/include/segmem.h	/^   uint16_t     back_link, r1;$/;"	m	struct:task_state_segment	typeref:typename:uint16_t
+r10	kernel/include/segmem.h	/^   uint16_t     gs, r10;$/;"	m	struct:task_state_segment	typeref:typename:uint16_t
+r11	kernel/include/segmem.h	/^   uint16_t     ldt, r11;$/;"	m	struct:task_state_segment	typeref:typename:uint16_t
+r2	kernel/include/cr.h	/^      uint32_t    r2:1;   \/* reserved *\/$/;"	m	struct:control_register_0::__anonbf6315130108	typeref:typename:uint32_t:1
+r2	kernel/include/cr.h	/^      uint32_t    r2:2;         \/* reserved *\/$/;"	m	struct:control_register_4::__anonbf6315130308	typeref:typename:uint32_t:2
+r2	kernel/include/cr.h	/^      uint32_t  r2:7;$/;"	m	struct:control_register_3::__anonbf6315130208	typeref:typename:uint32_t:7
+r2	kernel/include/gpr.h	/^   uint32_t   r2:1;     \/* (0) *\/$/;"	m	struct:cpu_eflags_register_fields	typeref:typename:uint32_t:1
+r3	kernel/include/cr.h	/^      uint32_t    r3:10;  \/* reserved *\/$/;"	m	struct:control_register_0::__anonbf6315130108	typeref:typename:uint32_t:10
+r3	kernel/include/cr.h	/^      uint32_t    r3:1;         \/* reserved *\/$/;"	m	struct:control_register_4::__anonbf6315130308	typeref:typename:uint32_t:1
+r3	kernel/include/gpr.h	/^   uint32_t   r3:1;     \/* (0) *\/$/;"	m	struct:cpu_eflags_register_fields	typeref:typename:uint32_t:1
+r4	kernel/include/cr.h	/^      uint32_t    r4:11;        \/* smep reserved *\/$/;"	m	struct:control_register_4::__anonbf6315130308	typeref:typename:uint32_t:11
+r4	kernel/include/gpr.h	/^   uint32_t   r4:1;     \/* (0) *\/$/;"	m	struct:cpu_eflags_register_fields	typeref:typename:uint32_t:1
+r5	kernel/include/gpr.h	/^   uint32_t   r5:10;    \/* (0) *\/$/;"	m	struct:cpu_eflags_register_fields	typeref:typename:uint32_t:10
+r5	kernel/include/segmem.h	/^   uint16_t     es, r5;$/;"	m	struct:task_state_segment	typeref:typename:uint16_t
+r6	kernel/include/segmem.h	/^   uint16_t     cs, r6;$/;"	m	struct:task_state_segment	typeref:typename:uint16_t
+r7	kernel/include/segmem.h	/^   uint16_t     ss, r7;$/;"	m	struct:task_state_segment	typeref:typename:uint16_t
+r8	kernel/include/segmem.h	/^   uint16_t     ds, r8;$/;"	m	struct:task_state_segment	typeref:typename:uint16_t
+r9	kernel/include/segmem.h	/^   uint16_t     fs, r9;$/;"	m	struct:task_state_segment	typeref:typename:uint16_t
+range	kernel/include/types.h	/^#define range(/;"	d
+raw	kernel/include/gpr.h	/^   raw32_t      raw[8];$/;"	m	union:general_purpose_registers	typeref:typename:raw32_t[8]
+raw	kernel/include/gpr.h	/^   raw32_t      raw[8];$/;"	m	union:general_purpose_registers_context	typeref:typename:raw32_t[8]
+raw	kernel/include/pic.h	/^   uint8_t      raw;$/;"	m	union:pic_init_command_word_3	typeref:typename:uint8_t
+raw	kernel/include/pic.h	/^   uint8_t raw;$/;"	m	union:pic_init_command_word_1	typeref:typename:uint8_t
+raw	kernel/include/pic.h	/^   uint8_t raw;$/;"	m	union:pic_init_command_word_2	typeref:typename:uint8_t
+raw	kernel/include/pic.h	/^   uint8_t raw;$/;"	m	union:pic_init_command_word_4	typeref:typename:uint8_t
+raw	kernel/include/pic.h	/^   uint8_t raw;$/;"	m	union:pic_operation_control_word_1	typeref:typename:uint8_t
+raw	kernel/include/pic.h	/^   uint8_t raw;$/;"	m	union:pic_operation_control_word_2	typeref:typename:uint8_t
+raw	kernel/include/pic.h	/^   uint8_t raw;$/;"	m	union:pic_operation_control_word_3	typeref:typename:uint8_t
+raw	kernel/include/segmem.h	/^   uint16_t    raw;$/;"	m	union:task_state_segment_trap	typeref:typename:uint16_t
+raw	kernel/include/segmem.h	/^   uint16_t raw;$/;"	m	union:segment_selector	typeref:typename:uint16_t
+raw	kernel/include/types.h	/^   uint16_t raw;$/;"	m	union:raw_16_bits_entry	typeref:typename:uint16_t
+raw	kernel/include/types.h	/^   uint32_t raw;$/;"	m	union:raw_32_bits_entry	typeref:typename:uint32_t
+raw	kernel/include/types.h	/^   uint64_t raw;$/;"	m	union:raw_64_bits_entry	typeref:typename:uint64_t
+raw	kernel/include/uart.h	/^   uint16_t raw;$/;"	m	union:serial_dla	typeref:typename:uint16_t
+raw	kernel/include/uart.h	/^   uint8_t raw;$/;"	m	union:serial_efr_register	typeref:typename:uint8_t
+raw	kernel/include/uart.h	/^   uint8_t raw;$/;"	m	union:serial_fcr_register	typeref:typename:uint8_t
+raw	kernel/include/uart.h	/^   uint8_t raw;$/;"	m	union:serial_ier_register	typeref:typename:uint8_t
+raw	kernel/include/uart.h	/^   uint8_t raw;$/;"	m	union:serial_iir_register	typeref:typename:uint8_t
+raw	kernel/include/uart.h	/^   uint8_t raw;$/;"	m	union:serial_lcr_register	typeref:typename:uint8_t
+raw	kernel/include/uart.h	/^   uint8_t raw;$/;"	m	union:serial_lsr_register	typeref:typename:uint8_t
+raw	kernel/include/uart.h	/^   uint8_t raw;$/;"	m	union:serial_mcr_register	typeref:typename:uint8_t
+raw	kernel/include/uart.h	/^   uint8_t raw;$/;"	m	union:serial_msr_register	typeref:typename:uint8_t
+raw16_t	kernel/include/types.h	/^} __attribute__((packed)) raw16_t;$/;"	t	typeref:union:raw_16_bits_entry
+raw32_t	kernel/include/types.h	/^} __attribute__((packed)) raw32_t;$/;"	t	typeref:union:raw_32_bits_entry
+raw64_t	kernel/include/types.h	/^} __attribute__((packed)) raw64_t;$/;"	t	typeref:union:raw_64_bits_entry
+raw_16_bits_entry	kernel/include/types.h	/^typedef union raw_16_bits_entry$/;"	u
+raw_32_bits_entry	kernel/include/types.h	/^typedef union raw_32_bits_entry$/;"	u
+raw_64_bits_entry	kernel/include/types.h	/^typedef union raw_64_bits_entry$/;"	u
+recv	kernel/include/uart.h	/^      uint8_t   recv:1;     \/* (1) enable received data available interrupt *\/$/;"	m	struct:serial_ier_register::__anon4d6b63ba0208	typeref:typename:uint8_t:1
+red	kernel/include/grub_mbi.h	/^  multiboot_uint8_t red;$/;"	m	struct:multiboot_color	typeref:typename:multiboot_uint8_t
+reg	kernel/include/pic.h	/^      uint8_t   reg:2;   \/* (00) reserved$/;"	m	struct:pic_operation_control_word_3::__anonacace0fa0808	typeref:typename:uint8_t:2
+req	kernel/include/uart.h	/^      uint8_t   req:1;       \/* request to send *\/$/;"	m	struct:serial_mcr_register::__anon4d6b63ba0608	typeref:typename:uint8_t:1
+reserved	kernel/include/grub_mbi.h	/^  multiboot_uint32_t reserved;$/;"	m	struct:multiboot_aout_symbol_table	typeref:typename:multiboot_uint32_t
+reserved	kernel/include/uart.h	/^      uint8_t   reserved:2;$/;"	m	struct:serial_mcr_register::__anon4d6b63ba0608	typeref:typename:uint8_t:2
+reserved	kernel/include/uart.h	/^      uint8_t  reserved:2;$/;"	m	struct:serial_iir_register::__anon4d6b63ba0308	typeref:typename:uint8_t:2
+restore_interrupts	kernel/include/asm.h	/^#define restore_interrupts(/;"	d
+resume_from_intr	kernel/core/idt.s	/^resume_from_intr:$/;"	l
+rf	kernel/include/gpr.h	/^   uint32_t   rf:1;     \/* resume *\/$/;"	m	struct:cpu_eflags_register_fields	typeref:typename:uint32_t:1
+ri	kernel/include/uart.h	/^      uint8_t   ri:1;      \/* ring indicator *\/$/;"	m	struct:serial_msr_register::__anon4d6b63ba0808	typeref:typename:uint8_t:1
+rpl	kernel/include/segmem.h	/^      uint16_t    rpl:2;    \/* bits 0-1  requested privilege level *\/$/;"	m	struct:segment_selector::__anon972f5d7c0108	typeref:typename:uint16_t:2
+rsv	kernel/include/excp.h	/^      uint32_t      rsv:1;    \/* reserved bits violation *\/$/;"	m	struct:page_fault_error_code::__anon29b0c28e0208	typeref:typename:uint32_t:1
+rsv	kernel/include/pagemem.h	/^      uint32_t  rsv:9;$/;"	m	struct:page_directory_entry::__anon5c82875a0208	typeref:typename:uint32_t:9
+rts	kernel/include/uart.h	/^      uint8_t   rts:1;      \/* (1) enable RTS interrupts *\/$/;"	m	struct:serial_ier_register::__anon4d6b63ba0208	typeref:typename:uint8_t:1
+rw	kernel/include/pagemem.h	/^      uint32_t  rw:1;$/;"	m	struct:page_directory_entry::__anon5c82875a0108	typeref:typename:uint32_t:1
+rw	kernel/include/pagemem.h	/^      uint32_t  rw:1;$/;"	m	struct:page_directory_entry::__anon5c82875a0208	typeref:typename:uint32_t:1
+rw	kernel/include/pagemem.h	/^      uint32_t  rw:1;$/;"	m	struct:page_table_entry::__anon5c82875a0308	typeref:typename:uint32_t:1
+rx	kernel/include/uart.h	/^      uint8_t   rx:1;         \/* clear receive fifo *\/$/;"	m	struct:serial_fcr_register::__anon4d6b63ba0408	typeref:typename:uint8_t:1
+rx_trigger	kernel/include/uart.h	/^      uint8_t   rx_trigger:2;$/;"	m	struct:serial_fcr_register::__anon4d6b63ba0408	typeref:typename:uint8_t:2
+s	kernel/include/segmem.h	/^      uint64_t    s:1;           \/* descriptor type *\/$/;"	m	struct:segment_descriptor::__anon972f5d7c0208	typeref:typename:uint64_t:1
+s0	kernel/include/segmem.h	/^   tss_stack_t  s0;$/;"	m	struct:task_state_segment	typeref:typename:tss_stack_t
+s1	kernel/include/segmem.h	/^   tss_stack_t  s1;$/;"	m	struct:task_state_segment	typeref:typename:tss_stack_t
+s2	kernel/include/segmem.h	/^   tss_stack_t  s2;$/;"	m	struct:task_state_segment	typeref:typename:tss_stack_t
+save_flags	kernel/include/gpr.h	/^#define save_flags(/;"	d
+seg_desc_t	kernel/include/segmem.h	/^} __attribute__((packed)) seg_desc_t;$/;"	t	typeref:union:segment_descriptor
+seg_sel_t	kernel/include/segmem.h	/^} __attribute__((packed)) seg_sel_t;$/;"	t	typeref:union:segment_selector
+segment	kernel/include/types.h	/^   uint16_t segment;$/;"	m	struct:far_pointer	typeref:typename:uint16_t
+segment	kernel/include/types.h	/^   uint16_t segment;$/;"	m	struct:far_ptr16	typeref:typename:uint16_t
+segment	kernel/include/types.h	/^   uint16_t segment;$/;"	m	struct:far_ptr32	typeref:typename:uint16_t
+segment	kernel/include/types.h	/^   uint16_t segment;$/;"	m	struct:far_ptr64	typeref:typename:uint16_t
+segment_descriptor	kernel/include/segmem.h	/^typedef union segment_descriptor$/;"	u
+segment_selector	kernel/include/segmem.h	/^typedef union segment_selector$/;"	u
+sel	kernel/include/segmem.h	/^   seg_sel_t           sel;      \/* segment selector *\/$/;"	m	struct:local_descriptor_table_register	typeref:typename:seg_sel_t
+selector	kernel/include/segmem.h	/^      uint64_t  selector:16;    \/* isr segment selector *\/$/;"	m	struct:interrupt_descriptor::__anon972f5d7c0508	typeref:typename:uint64_t:16
+selector_error_code	kernel/include/excp.h	/^typedef union selector_error_code$/;"	u
+serial_dla	kernel/include/uart.h	/^typedef union serial_dla$/;"	u
+serial_dla_t	kernel/include/uart.h	/^} __attribute__((packed)) serial_dla_t;$/;"	t	typeref:union:serial_dla
+serial_efr_reg_t	kernel/include/uart.h	/^} __attribute__((packed)) serial_efr_reg_t;$/;"	t	typeref:union:serial_efr_register
+serial_efr_register	kernel/include/uart.h	/^typedef union serial_efr_register$/;"	u
+serial_fcr_reg_t	kernel/include/uart.h	/^} __attribute__((packed)) serial_fcr_reg_t;$/;"	t	typeref:union:serial_fcr_register
+serial_fcr_register	kernel/include/uart.h	/^typedef union serial_fcr_register$/;"	u
+serial_ier_reg_t	kernel/include/uart.h	/^} __attribute__((packed)) serial_ier_reg_t;$/;"	t	typeref:union:serial_ier_register
+serial_ier_register	kernel/include/uart.h	/^typedef union serial_ier_register$/;"	u
+serial_iir_reg_t	kernel/include/uart.h	/^} __attribute__((packed)) serial_iir_reg_t;$/;"	t	typeref:union:serial_iir_register
+serial_iir_register	kernel/include/uart.h	/^typedef union serial_iir_register$/;"	u
+serial_lcr_reg_t	kernel/include/uart.h	/^} __attribute__((packed)) serial_lcr_reg_t;$/;"	t	typeref:union:serial_lcr_register
+serial_lcr_register	kernel/include/uart.h	/^typedef union serial_lcr_register$/;"	u
+serial_lsr_reg_t	kernel/include/uart.h	/^} __attribute__((packed)) serial_lsr_reg_t;$/;"	t	typeref:union:serial_lsr_register
+serial_lsr_register	kernel/include/uart.h	/^typedef union serial_lsr_register$/;"	u
+serial_mcr_reg_t	kernel/include/uart.h	/^} __attribute__((packed)) serial_mcr_reg_t;$/;"	t	typeref:union:serial_mcr_register
+serial_mcr_register	kernel/include/uart.h	/^typedef union serial_mcr_register$/;"	u
+serial_msr_reg_t	kernel/include/uart.h	/^} __attribute__((packed)) serial_msr_reg_t;$/;"	t	typeref:union:serial_msr_register
+serial_msr_register	kernel/include/uart.h	/^typedef union serial_msr_register$/;"	u
+set_cr	kernel/include/cr.h	/^#define set_cr(/;"	d
+set_cr0	kernel/include/cr.h	/^#define set_cr0(/;"	d
+set_cr2	kernel/include/cr.h	/^#define set_cr2(/;"	d
+set_cr3	kernel/include/cr.h	/^#define set_cr3(/;"	d
+set_cr4	kernel/include/cr.h	/^#define set_cr4(/;"	d
+set_cs	kernel/include/segmem.h	/^#define set_cs(/;"	d
+set_cs_eip	kernel/include/segmem.h	/^#define set_cs_eip(/;"	d
+set_ds	kernel/include/segmem.h	/^#define set_ds(/;"	d
+set_ebp	kernel/include/gpr.h	/^#define set_ebp(/;"	d
+set_edi	kernel/include/gpr.h	/^#define set_edi(/;"	d
+set_es	kernel/include/segmem.h	/^#define set_es(/;"	d
+set_esp	kernel/include/gpr.h	/^#define set_esp(/;"	d
+set_fs	kernel/include/segmem.h	/^#define set_fs(/;"	d
+set_gdtr	kernel/include/segmem.h	/^#define set_gdtr(/;"	d
+set_gs	kernel/include/segmem.h	/^#define set_gs(/;"	d
+set_idtr	kernel/include/segmem.h	/^#define set_idtr(/;"	d
+set_ldtr	kernel/include/segmem.h	/^#define set_ldtr(/;"	d
+set_rbp	kernel/include/gpr.h	/^#define set_rbp(/;"	d
+set_reg	kernel/include/gpr.h	/^#define set_reg(/;"	d
+set_rsp	kernel/include/gpr.h	/^#define set_rsp(/;"	d
+set_seg_sel	kernel/include/segmem.h	/^#define set_seg_sel(/;"	d
+set_ss	kernel/include/segmem.h	/^#define set_ss(/;"	d
+set_tr	kernel/include/segmem.h	/^#define set_tr(/;"	d
+setptr	kernel/include/types.h	/^#define setptr(/;"	d
+sf	kernel/include/gpr.h	/^   uint32_t   sf:1;     \/* sign *\/$/;"	m	struct:cpu_eflags_register_fields	typeref:typename:uint32_t:1
+sfnm	kernel/include/pic.h	/^      uint8_t   sfnm:1;   \/* (1) Special Fully Nested Mode (0) Fully Nested Mode *\/$/;"	m	struct:pic_init_command_word_4::__anonacace0fa0508	typeref:typename:uint8_t:1
+shndx	kernel/include/grub_mbi.h	/^  multiboot_uint32_t shndx;$/;"	m	struct:multiboot_elf_section_header_table	typeref:typename:multiboot_uint32_t
+single	kernel/include/pic.h	/^      uint8_t   single:1;  \/* (1) single PIC (0) cascaded *\/$/;"	m	struct:pic_init_command_word_1::__anonacace0fa0108	typeref:typename:uint8_t:1
+sint16_t	kernel/include/types.h	/^typedef signed short           sint16_t;$/;"	t	typeref:typename:signed short
+sint32_t	kernel/include/types.h	/^typedef signed int             sint32_t;$/;"	t	typeref:typename:signed int
+sint64_t	kernel/include/types.h	/^typedef signed long long       sint64_t;$/;"	t	typeref:typename:signed long long
+sint8_t	kernel/include/types.h	/^typedef signed char            sint8_t;$/;"	t	typeref:typename:signed char
+size	kernel/include/grub_mbi.h	/^  multiboot_uint32_t size;$/;"	m	struct:multiboot_elf_section_header_table	typeref:typename:multiboot_uint32_t
+size	kernel/include/grub_mbi.h	/^  multiboot_uint32_t size;$/;"	m	struct:multiboot_mmap_entry	typeref:typename:multiboot_uint32_t
+size_t	kernel/include/types.h	/^typedef unsigned long          size_t;$/;"	t	typeref:typename:unsigned long
+sl	kernel/include/excp.h	/^   sl_err_t sl;$/;"	m	union:exception32_error_code	typeref:typename:sl_err_t
+sl_err_t	kernel/include/excp.h	/^} __attribute__((packed)) sl_err_t;$/;"	t	typeref:union:selector_error_code
+slave	kernel/include/pic.h	/^   } slave;$/;"	m	union:pic_init_command_word_3	typeref:struct:pic_init_command_word_3::__anonacace0fa0408
+sleep	kernel/include/uart.h	/^      uint8_t   sleep:1;$/;"	m	struct:serial_ier_register::__anon4d6b63ba0208	typeref:typename:uint8_t:1
+smep	kernel/include/cr.h	/^      uint32_t    smep:1;       \/* smep *\/$/;"	m	struct:control_register_4::__anonbf6315130308	typeref:typename:uint32_t:1
+smm	kernel/include/pic.h	/^      uint8_t   smm:2;   \/* (00) reserved$/;"	m	struct:pic_operation_control_word_3::__anonacace0fa0808	typeref:typename:uint8_t:2
+smxe	kernel/include/cr.h	/^      uint32_t    smxe:1;       \/* smx enable *\/$/;"	m	struct:control_register_4::__anonbf6315130308	typeref:typename:uint32_t:1
+snprintf	kernel/core/print.c	/^size_t snprintf(char *buff, size_t len, const char *format, ...)$/;"	f	typeref:typename:size_t
+spc	kernel/include/uart.h	/^      uint8_t   spc:1;      \/* special character detect *\/$/;"	m	struct:serial_efr_register::__anon4d6b63ba0108	typeref:typename:uint8_t:1
+sraw	kernel/include/types.h	/^   sint16_t sraw;$/;"	m	union:raw_16_bits_entry	typeref:typename:sint16_t
+sraw	kernel/include/types.h	/^   sint32_t sraw;$/;"	m	union:raw_32_bits_entry	typeref:typename:sint32_t
+sraw	kernel/include/types.h	/^   sint64_t sraw;$/;"	m	union:raw_64_bits_entry	typeref:typename:sint64_t
+ss	kernel/include/intr.h	/^   raw32_t         ss;$/;"	m	struct:cpu_context	typeref:typename:raw32_t
+ss	kernel/include/segmem.h	/^   uint16_t     ss, r7;$/;"	m	struct:task_state_segment	typeref:typename:uint16_t
+ss	kernel/include/segmem.h	/^   uint16_t ss;$/;"	m	struct:task_state_segment_stack	typeref:typename:uint16_t
+ss	tp1/tp.c	/^const seg_sel_t ss = { .rpl = SEG_SEL_KRN, .ti = SEG_SEL_GDT, .index = 0x2 };$/;"	v	typeref:typename:const seg_sel_t
+stack_trace	kernel/core/stack.c	/^void stack_trace(offset_t from)$/;"	f	typeref:typename:void
+start	kernel/core/start.c	/^void __attribute__((regparm(1))) start(mbi_t *mbi)$/;"	f	typeref:typename:void
+stop	kernel/include/uart.h	/^      uint8_t  stop:1;       \/* (0) 1 stop bit, (1) 1.5 or 2 stop bits *\/$/;"	m	struct:serial_lcr_register::__anon4d6b63ba0508	typeref:typename:uint8_t:1
+str	kernel/include/types.h	/^   string    str;$/;"	m	union:location	typeref:typename:string
+strchr	kernel/include/string.h	/^static inline char* strchr(char *str, size_t len, char c)$/;"	f	typeref:typename:char *
+string	kernel/include/types.h	/^typedef char*                  string;$/;"	t	typeref:typename:char *
+strlen	kernel/include/string.h	/^static inline size_t strlen(char *str)$/;"	f	typeref:typename:size_t
+strsize	kernel/include/grub_mbi.h	/^  multiboot_uint32_t strsize;$/;"	m	struct:multiboot_aout_symbol_table	typeref:typename:multiboot_uint32_t
+sz	kernel/include/types.h	/^   size_t sz;$/;"	m	struct:buffer	typeref:typename:size_t
+tabsize	kernel/include/grub_mbi.h	/^  multiboot_uint32_t tabsize;$/;"	m	struct:multiboot_aout_symbol_table	typeref:typename:multiboot_uint32_t
+task_state_segment	kernel/include/segmem.h	/^typedef struct task_state_segment$/;"	s
+task_state_segment_maps	kernel/include/segmem.h	/^typedef struct task_state_segment_maps$/;"	s
+task_state_segment_stack	kernel/include/segmem.h	/^typedef struct task_state_segment_stack$/;"	s
+task_state_segment_trap	kernel/include/segmem.h	/^typedef union task_state_segment_trap$/;"	u
+teri	kernel/include/uart.h	/^      uint8_t   teri:1;    \/* trailing edge ring indicator *\/$/;"	m	struct:serial_msr_register::__anon4d6b63ba0808	typeref:typename:uint8_t:1
+tf	kernel/include/gpr.h	/^   uint32_t   tf:1;     \/* trap *\/$/;"	m	struct:cpu_eflags_register_fields	typeref:typename:uint32_t:1
+thre	kernel/include/uart.h	/^      uint8_t   thre:1;      \/* empty THR *\/$/;"	m	struct:serial_lsr_register::__anon4d6b63ba0708	typeref:typename:uint8_t:1
+thre	kernel/include/uart.h	/^      uint8_t   thre:1;     \/* (1) enable THR empty interrupt *\/$/;"	m	struct:serial_ier_register::__anon4d6b63ba0208	typeref:typename:uint8_t:1
+ti	kernel/include/excp.h	/^      uint32_t   ti:1;      \/* index from (0) GDT or (1) LDT *\/$/;"	m	struct:selector_error_code::__anon29b0c28e0108	typeref:typename:uint32_t:1
+ti	kernel/include/segmem.h	/^      uint16_t    ti:1;     \/* bit  2    table indicator gdt(0) or ldt(1) *\/$/;"	m	struct:segment_selector::__anon972f5d7c0108	typeref:typename:uint16_t:1
+tp	tp0/tp.c	/^void tp() {$/;"	f	typeref:typename:void
+tp	tp1/tp.c	/^void tp() {$/;"	f	typeref:typename:void
+tp	tp2/tp.c	/^void tp()$/;"	f	typeref:typename:void
+tp	tp3/tp.c	/^void tp() {$/;"	f	typeref:typename:void
+tp	tp4/tp.c	/^void tp()$/;"	f	typeref:typename:void
+tp	tp5/tp.c	/^void tp()$/;"	f	typeref:typename:void
+tp	tp_exam/tp.c	/^void tp()$/;"	f	typeref:typename:void
+trap	kernel/include/segmem.h	/^   tss_trap_t   trap;$/;"	m	struct:task_state_segment	typeref:typename:tss_trap_t
+triple_fault	kernel/include/excp.h	/^#define triple_fault(/;"	d
+ts	kernel/include/cr.h	/^      uint32_t    ts:1;   \/* task switch *\/$/;"	m	struct:control_register_0::__anonbf6315130108	typeref:typename:uint32_t:1
+tsd	kernel/include/cr.h	/^      uint32_t    tsd:1;        \/* time stamp disable *\/$/;"	m	struct:control_register_4::__anonbf6315130308	typeref:typename:uint32_t:1
+tsre	kernel/include/uart.h	/^      uint8_t   tsre:1;      \/* empty TSR *\/$/;"	m	struct:serial_lsr_register::__anon4d6b63ba0708	typeref:typename:uint8_t:1
+tss_maps_t	kernel/include/segmem.h	/^} __attribute__((packed)) tss_maps_t;$/;"	t	typeref:struct:task_state_segment_maps
+tss_stack_t	kernel/include/segmem.h	/^} __attribute__((packed)) tss_stack_t;$/;"	t	typeref:struct:task_state_segment_stack
+tss_t	kernel/include/segmem.h	/^} __attribute__((packed)) tss_t;$/;"	t	typeref:struct:task_state_segment
+tss_trap_t	kernel/include/segmem.h	/^} __attribute__((packed)) tss_trap_t;$/;"	t	typeref:union:task_state_segment_trap
+tx	kernel/include/uart.h	/^      uint8_t   tx:1;         \/* clear transmit fifo *\/$/;"	m	struct:serial_fcr_register::__anon4d6b63ba0408	typeref:typename:uint8_t:1
+tx_trigger	kernel/include/uart.h	/^      uint8_t   tx_trigger:2;$/;"	m	struct:serial_fcr_register::__anon4d6b63ba0408	typeref:typename:uint8_t:2
+type	kernel/include/grub_mbi.h	/^  multiboot_uint32_t type;$/;"	m	struct:multiboot_mmap_entry	typeref:typename:multiboot_uint32_t
+type	kernel/include/segmem.h	/^      uint64_t    type:4;        \/* segment type *\/$/;"	m	struct:segment_descriptor::__anon972f5d7c0208	typeref:typename:uint64_t:4
+type	kernel/include/segmem.h	/^      uint64_t  type:4;         \/* interrupt\/trap gate *\/$/;"	m	struct:interrupt_descriptor::__anon972f5d7c0508	typeref:typename:uint64_t:4
+u	kernel/include/grub_mbi.h	/^  } u;$/;"	m	struct:multiboot_info	typeref:union:multiboot_info::__anon69463e85010a
+u16	kernel/include/types.h	/^   uint16_t  *u16;$/;"	m	union:location	typeref:typename:uint16_t *
+u32	kernel/include/types.h	/^   uint32_t  *u32;$/;"	m	union:location	typeref:typename:uint32_t *
+u64	kernel/include/types.h	/^   uint64_t  *u64;$/;"	m	union:location	typeref:typename:uint64_t *
+u8	kernel/include/types.h	/^   uint8_t   *u8;$/;"	m	union:location	typeref:typename:uint8_t *
+uart_enable_dla_registers	kernel/include/uart.h	/^#define uart_enable_dla_registers(/;"	d
+uart_enable_efr_registers	kernel/include/uart.h	/^#define uart_enable_efr_registers(/;"	d
+uart_flush	kernel/core/uart.c	/^void uart_flush()$/;"	f	typeref:typename:void
+uart_init	kernel/core/uart.c	/^void uart_init()$/;"	f	typeref:typename:void
+uart_read	kernel/core/uart.c	/^size_t uart_read(uint8_t *data, size_t n)$/;"	f	typeref:typename:size_t
+uart_set_lsb_dla_rate	kernel/include/uart.h	/^#define uart_set_lsb_dla_rate(/;"	d
+uart_set_msb_dla_rate	kernel/include/uart.h	/^#define uart_set_msb_dla_rate(/;"	d
+uart_write	kernel/core/uart.c	/^size_t uart_write(uint8_t *data, size_t n)$/;"	f	typeref:typename:size_t
+uint16_t	kernel/include/types.h	/^typedef unsigned short         uint16_t;$/;"	t	typeref:typename:unsigned short
+uint32_t	kernel/include/types.h	/^typedef unsigned int           uint32_t;$/;"	t	typeref:typename:unsigned int
+uint64_t	kernel/include/types.h	/^typedef unsigned long long     uint64_t;$/;"	t	typeref:typename:unsigned long long
+uint64_to_hex	kernel/core/print.c	/^size_t uint64_to_hex(buffer_t *buf, size_t len,$/;"	f	typeref:typename:size_t
+uint8_t	kernel/include/types.h	/^typedef unsigned char          uint8_t;$/;"	t	typeref:typename:unsigned char
+ulong_t	kernel/include/types.h	/^typedef unsigned long          ulong_t;$/;"	t	typeref:typename:unsigned long
+unused	kernel/include/pic.h	/^      uint8_t   unused:1;  \/* unused on x86 *\/$/;"	m	struct:pic_init_command_word_1::__anonacace0fa0108	typeref:typename:uint8_t:1
+us	kernel/include/excp.h	/^      uint32_t      us:1;     \/* kernel (0), user (1) *\/$/;"	m	struct:page_fault_error_code::__anon29b0c28e0208	typeref:typename:uint32_t:1
+userland	tp3/tp.c	/^void userland() { asm volatile("mov %eax, %cr0"); }$/;"	f	typeref:typename:void
+va_arg	kernel/include/print.h	/^#define  va_arg(/;"	d
+va_end	kernel/include/print.h	/^#define  va_end(/;"	d
+va_list	kernel/include/print.h	/^typedef  __builtin_va_list       va_list;$/;"	t	typeref:typename:__builtin_va_list
+va_start	kernel/include/print.h	/^#define  va_start(/;"	d
+vbe_control_info	kernel/include/grub_mbi.h	/^  multiboot_uint32_t vbe_control_info;$/;"	m	struct:multiboot_info	typeref:typename:multiboot_uint32_t
+vbe_interface_len	kernel/include/grub_mbi.h	/^  multiboot_uint16_t vbe_interface_len;$/;"	m	struct:multiboot_info	typeref:typename:multiboot_uint16_t
+vbe_interface_off	kernel/include/grub_mbi.h	/^  multiboot_uint16_t vbe_interface_off;$/;"	m	struct:multiboot_info	typeref:typename:multiboot_uint16_t
+vbe_interface_seg	kernel/include/grub_mbi.h	/^  multiboot_uint16_t vbe_interface_seg;$/;"	m	struct:multiboot_info	typeref:typename:multiboot_uint16_t
+vbe_mode	kernel/include/grub_mbi.h	/^  multiboot_uint16_t vbe_mode;$/;"	m	struct:multiboot_info	typeref:typename:multiboot_uint16_t
+vbe_mode_info	kernel/include/grub_mbi.h	/^  multiboot_uint32_t vbe_mode_info;$/;"	m	struct:multiboot_info	typeref:typename:multiboot_uint32_t
+vect	kernel/include/pic.h	/^      uint8_t   vect:3;    \/* Interrupt Vector Addresses for MCS mode *\/$/;"	m	struct:pic_init_command_word_1::__anonacace0fa0108	typeref:typename:uint8_t:3
+vip	kernel/include/gpr.h	/^   uint32_t   vip:1;    \/* virtual int pending *\/$/;"	m	struct:cpu_eflags_register_fields	typeref:typename:uint32_t:1
+vit	kernel/include/gpr.h	/^   uint32_t   vit:1;    \/* virtual int *\/$/;"	m	struct:cpu_eflags_register_fields	typeref:typename:uint32_t:1
+vm	kernel/include/gpr.h	/^   uint32_t   vm:1;     \/* virtual 8086 *\/$/;"	m	struct:cpu_eflags_register_fields	typeref:typename:uint32_t:1
+vme	kernel/include/cr.h	/^      uint32_t    vme:1;        \/* virtual 8086 *\/$/;"	m	struct:control_register_4::__anonbf6315130308	typeref:typename:uint32_t:1
+vmxe	kernel/include/cr.h	/^      uint32_t    vmxe:1;       \/* vmx enable *\/$/;"	m	struct:control_register_4::__anonbf6315130308	typeref:typename:uint32_t:1
+vprint_buffer	kernel/core/print.c	/^static char vprint_buffer[1024];$/;"	v	typeref:typename:char[1024]	file:
+whigh	kernel/include/types.h	/^            uint16_t whigh;$/;"	m	struct:raw_64_bits_entry::__anone5ae21130808::__anone5ae2113090a::__anone5ae21130a08	typeref:typename:uint16_t
+whigh	kernel/include/types.h	/^      uint16_t whigh;$/;"	m	struct:raw_32_bits_entry::__anone5ae21130408	typeref:typename:uint16_t
+width	kernel/include/grub_mbi.h	/^  multiboot_uint32_t width;$/;"	m	struct:multiboot_header	typeref:typename:multiboot_uint32_t
+wlow	kernel/include/types.h	/^               uint16_t wlow;$/;"	m	union:raw_64_bits_entry::__anone5ae21130808::__anone5ae2113090a::__anone5ae21130a08::__anone5ae21130b0a	typeref:typename:uint16_t
+wlow	kernel/include/types.h	/^         uint16_t wlow;$/;"	m	union:raw_32_bits_entry::__anone5ae21130408::__anone5ae2113050a	typeref:typename:uint16_t
+word_len	kernel/include/uart.h	/^      uint8_t  word_len:2;   \/* (00) 5 bits, (01) 6 bits, (10) 7 bits, (11) 8 bits *\/$/;"	m	struct:serial_lcr_register::__anon4d6b63ba0508	typeref:typename:uint8_t:2
+wp	kernel/include/cr.h	/^      uint32_t    wp:1;   \/* write protect *\/$/;"	m	struct:control_register_0::__anonbf6315130108	typeref:typename:uint32_t:1
+wr	kernel/include/excp.h	/^      uint32_t      wr:1;     \/* read (0), write (1)  *\/$/;"	m	struct:page_fault_error_code::__anon29b0c28e0208	typeref:typename:uint32_t:1
+x86	kernel/include/pic.h	/^      uint8_t   x86:1;    \/* (1) 8086  (0) MCS *\/$/;"	m	struct:pic_init_command_word_4::__anonacace0fa0508	typeref:typename:uint8_t:1
+xoff	kernel/include/uart.h	/^      uint8_t   xoff:1;     \/* (1) enable xoff interrupt *\/$/;"	m	struct:serial_ier_register::__anon4d6b63ba0208	typeref:typename:uint8_t:1
+zero	kernel/include/pic.h	/^      uint8_t   zero:1;$/;"	m	struct:pic_operation_control_word_3::__anonacace0fa0808	typeref:typename:uint8_t:1
+zero	kernel/include/pic.h	/^      uint8_t   zero:2;$/;"	m	struct:pic_operation_control_word_2::__anonacace0fa0708	typeref:typename:uint8_t:2
+zero	kernel/include/pic.h	/^      uint8_t   zero:3;$/;"	m	struct:pic_init_command_word_4::__anonacace0fa0508	typeref:typename:uint8_t:3
+zero	kernel/include/pic.h	/^      uint8_t   zero:5;$/;"	m	struct:pic_init_command_word_3::__anonacace0fa0408	typeref:typename:uint8_t:5
+zero	kernel/include/pic.h	/^      uint8_t  zero:3;$/;"	m	struct:pic_init_command_word_2::__anonacace0fa0208	typeref:typename:uint8_t:3
+zero2	kernel/include/pic.h	/^      uint8_t   zero2:1;$/;"	m	struct:pic_operation_control_word_3::__anonacace0fa0808	typeref:typename:uint8_t:1
+zero_1	kernel/include/segmem.h	/^      uint64_t  zero_1:5;       \/* must be 0 *\/$/;"	m	struct:interrupt_descriptor::__anon972f5d7c0508	typeref:typename:uint64_t:5
+zero_2	kernel/include/segmem.h	/^      uint64_t  zero_2:1;       \/* must be zero *\/$/;"	m	struct:interrupt_descriptor::__anon972f5d7c0508	typeref:typename:uint64_t:1
+zf	kernel/include/gpr.h	/^   uint32_t   zf:1;     \/* zero *\/$/;"	m	struct:cpu_eflags_register_fields	typeref:typename:uint32_t:1
+À rendre	tp_exam/README.md	/^## À rendre$/;"	s
