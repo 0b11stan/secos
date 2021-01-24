@@ -20,6 +20,7 @@ void init_gdt() {
   d0_dsc(&GDT[d0_idx]);
   c3_dsc(&GDT[c3_idx]);
   d3_dsc(&GDT[d3_idx]);
+  tss_dsc(&GDT[ts_idx], (offset_t)&TSS);
 
   gdtr.desc = GDT;
   gdtr.limit = sizeof(GDT) - 1;
@@ -32,25 +33,87 @@ void init_gdt() {
   set_es(d0_sel);
   set_fs(d0_sel);
   set_gs(d0_sel);
+  set_tr(ts_sel);
 }
 
 void user1() {
-  debug("ENTER USER 1\n");
-  asm volatile ("mov %eax, %cr0");
+  debug("START TASK 1\n");
+  while (1) {
+    //force_interrupts_on();
+    debug("running task 1 ...\n");
+  }
+  // asm volatile("mov %eax, %cr0"); // fail if we are in ring3
 }
 
 void user2() {
-  debug("ENTER USER 2\n");
-  asm volatile ("mov %eax, %cr0");
+  debug("START TASK 2\n");
+  while (1) {
+    force_interrupts_on();
+    debug("running task 2 ...\n");
+  }
+  // asm volatile("mov %eax, %cr0"); // fail if we are in ring3
 }
 
-void interrupt_clock() {
-  static int cmpt = 0;
-  if (cmpt % 2 == 0)
-    user1();
+void init_userland_1() {
+  debug("INIT TASK 1\n");
+
+  set_ds(d3_sel);
+  set_es(d3_sel);
+  set_fs(d3_sel);
+  set_gs(d3_sel);
+
+  TSS.s0.esp = get_ebp();
+  TSS.s0.ss = d0_sel;
+
+  uint32_t ustack = 0x600000;
+
+  force_interrupts_on();
+  asm volatile(
+      "push %0 \n"  // ss
+      "push %1 \n"  // esp
+      "pushf   \n"  // eflags
+      "push %2 \n"  // cs
+      "push %3 \n"  // eip
+      "iret" ::"i"(d3_sel),
+      "m"(ustack), "i"(c3_sel), "r"(&user1));
+}
+
+void enter_userland_1(uint32_t esp, uint32_t eip) {
+  debug("ENTER TASK 1\n");
+  set_ds(d3_sel);
+  set_es(d3_sel);
+  set_fs(d3_sel);
+  set_gs(d3_sel);
+
+  TSS.s0.esp = get_ebp();
+  TSS.s0.ss = d0_sel;
+
+  asm volatile(
+      "push %0 \n"  // ss
+      "push %1 \n"  // esp
+      "pushf   \n"  // eflags
+      "push %2 \n"  // cs
+      "push %3 \n"  // eip
+      "iret" ::"i"(d3_sel),
+      "m"(esp), "i"(c3_sel), "r"(eip));
+}
+
+int cmpt = 0;
+
+void interrupt_clock(int_ctx_t* ctx) {
+  debug("Been interrupted by clock ! (%d)\n", cmpt);
+  cmpt++;
+  if (cmpt == 1)
+    init_userland_1();
+  else if(cmpt == 2)
+    user2();
+    //init_userland_2();
+  else if (cmpt % 2 != 0)
+    // user1();
+    enter_userland_1(ctx->esp.blow, ctx->eip.blow);
   else
     user2();
-  cmpt++;
+    //enter_userland_2(ctx->esp);
 }
 
 void tp() {
@@ -59,7 +122,6 @@ void tp() {
 
   register_gate(32, &interrupt_clock);
   force_interrupts_on();
-
   while (1) {
   }
 }
