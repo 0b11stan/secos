@@ -2,7 +2,6 @@
 #include <asm.h>
 #include <debug.h>
 #include <info.h>
-#include <pic.h>
 #include <intr.h>
 
 #include "xsegmentation.h"
@@ -35,10 +34,16 @@ void init_gdt() {
   set_gs(d0_sel);
 }
 
-int cmpt = 0;
+void user1() { debug("ENTER USER 1\n"); }
+
+void user2() { debug("ENTER USER 2\n"); }
 
 void interrupt_clock() {
-  debug("Got interrupted by clock: %d\n", cmpt);
+  static int cmpt = 0;
+  if (cmpt % 2 == 0)
+    user1();
+  else
+    user2();
   cmpt++;
 }
 
@@ -47,7 +52,6 @@ void tp() {
   intr_init();
 
   register_gate(32, &interrupt_clock);
-
   force_interrupts_on();
 
   while (1) {
