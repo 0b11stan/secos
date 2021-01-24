@@ -1,6 +1,9 @@
 /* GPLv2 (c) Airbus */
+#include <asm.h>
 #include <debug.h>
 #include <info.h>
+#include <pic.h>
+#include <intr.h>
 
 #include "xsegmentation.h"
 
@@ -32,6 +35,21 @@ void init_gdt() {
   set_gs(d0_sel);
 }
 
+int cmpt = 0;
+
+void interrupt_clock() {
+  debug("Got interrupted by clock: %d\n", cmpt);
+  cmpt++;
+}
+
 void tp() {
   init_gdt();
+  intr_init();
+
+  register_gate(32, &interrupt_clock);
+
+  force_interrupts_on();
+
+  while (1) {
+  }
 }
