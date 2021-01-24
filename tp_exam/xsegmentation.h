@@ -40,6 +40,3 @@
 #define d0_dsc(_d) gdt_flat_dsc(_d, 0, SEG_DESC_DATA_RW)
 #define c3_dsc(_d) gdt_flat_dsc(_d, 3, SEG_DESC_CODE_XR)
 #define d3_dsc(_d) gdt_flat_dsc(_d, 3, SEG_DESC_DATA_RW)
-
-void init_gdt();
-void enter_userland(uint32_t* userland_addr);

@@ -6,6 +6,17 @@ Vous êtes libres de modifier l'intégralité du noyau si vous le jugez nécessa
 
 ---
 
+## TODOS:
+
+- [*] mettre en place la segmentation
+- [ ] intercepter l'interruption d'horloge depuis le noyau
+- [ ] executer alternativement la fonction user1 et user2 à chaque irq0
+- [ ] mettre les fonctions user1 et user2 dans le ring3 (test: mov cr0 fail)
+- [ ] mettre en place la pagination (test: print *0x2000 fail)
+- [ ] mettre en place la mémoire partagée
+
+---
+
 ## Objectifs
 
 Permettre un ordonnancement préemptif de 2 tâches (T1 et T2) en ring 3:
