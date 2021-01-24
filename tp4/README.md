@@ -82,6 +82,8 @@ planter l'OS puisqu'il n'y à pas de système d'interruption.
 
 **Une fois la pagination activée, essayez d'afficher le contenu d'une entrée de votre PTB. Que se passe-t-il ?**
 
+L'emplacement des pages n'est pas mappé.
+
 ---
 
 ### Question 6
