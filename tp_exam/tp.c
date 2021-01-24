@@ -34,9 +34,15 @@ void init_gdt() {
   set_gs(d0_sel);
 }
 
-void user1() { debug("ENTER USER 1\n"); }
+void user1() {
+  debug("ENTER USER 1\n");
+  asm volatile ("mov %eax, %cr0");
+}
 
-void user2() { debug("ENTER USER 2\n"); }
+void user2() {
+  debug("ENTER USER 2\n");
+  asm volatile ("mov %eax, %cr0");
+}
 
 void interrupt_clock() {
   static int cmpt = 0;
