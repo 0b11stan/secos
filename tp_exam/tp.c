@@ -43,7 +43,6 @@ void init_gdt() {
 void user1() {
   debug("START TASK 1\n");
   while (1) {
-    //force_interrupts_on();
     debug("running task 1 ...\n");
   }
   // asm volatile("mov %eax, %cr0"); // fail if we are in ring3
@@ -52,7 +51,6 @@ void user1() {
 void user2() {
   debug("START TASK 2\n");
   while (1) {
-    force_interrupts_on();
     debug("running task 2 ...\n");
   }
   // asm volatile("mov %eax, %cr0"); // fail if we are in ring3
@@ -71,7 +69,6 @@ void init_userland_1() {
 
   uint32_t ustack = 0x600000;
 
-  force_interrupts_on();
   asm volatile(
       "push %0 \n"  // ss
       "push %1 \n"  // esp
@@ -93,11 +90,11 @@ void enter_userland_1(uint32_t eip, uint32_t esp, uint32_t ebp) {
   TSS.s0.ss = d0_sel;
 
   asm volatile(
-      "push %0 \n"  // ss
-      "push %1 \n"  // esp
-      "pushf   \n"  // eflags
-      "push %2 \n"  // cs
-      "push %3 \n"  // eip
+      "push %0 \n"        // ss
+      "push %1 \n"        // esp
+      "pushf   \n"        // eflags
+      "push %2 \n"        // cs
+      "push %3 \n"        // eip
       "mov %4, %%ebp \n"  // ebp
       "iret" ::"i"(d3_sel),
       "m"(esp), "i"(c3_sel), "r"(eip), "r"(ebp));
@@ -109,6 +106,7 @@ int_ctx_t* restore_userland_1() { return user1_ctx; }
 void interrupt_clock(int_ctx_t* ctx) {
   debug("Been interrupted by clock ! (%d)\n", task_switch_cmpt);
   task_switch_cmpt++;
+  force_interrupts_on();
   if (task_switch_cmpt == 1) {
     init_userland_1();
   } else if (task_switch_cmpt == 2) {
