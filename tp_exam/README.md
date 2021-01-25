@@ -12,7 +12,7 @@ Vous êtes libres de modifier l'intégralité du noyau si vous le jugez nécessa
 - [*] intercepter l'interruption d'horloge depuis le noyau
 - [*] executer alternativement la fonction user1 et user2 à chaque irq0
 - [*] mettre la fonction user1 dans le ring3
-- [ ] mettre la fonction user2 dans le ring3 (test: mov cr0 fail)
+- [*] mettre la fonction user2 dans le ring3 (test: mov cr0 fail)
 - [ ] mettre en place la pagination (test: print *0x2000 fail)
 - [ ] mettre en place la mémoire partagée
 

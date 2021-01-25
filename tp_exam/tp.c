@@ -79,6 +79,29 @@ void init_userland_1() {
       "m"(ustack), "i"(c3_sel), "r"(&user1));
 }
 
+void init_userland_2() {
+  debug("INIT TASK 2\n");
+
+  set_ds(d3_sel);
+  set_es(d3_sel);
+  set_fs(d3_sel);
+  set_gs(d3_sel);
+
+  TSS.s0.esp = get_ebp();
+  TSS.s0.ss = d0_sel;
+
+  uint32_t ustack = 0x601000;
+
+  asm volatile(
+      "push %0 \n"  // ss
+      "push %1 \n"  // esp
+      "pushf   \n"  // eflags
+      "push %2 \n"  // cs
+      "push %3 \n"  // eip
+      "iret" ::"i"(d3_sel),
+      "m"(ustack), "i"(c3_sel), "r"(&user2));
+}
+
 void enter_userland_1(uint32_t eip, uint32_t esp, uint32_t ebp) {
   debug("ENTER TASK 1\n");
   set_ds(d3_sel);
@@ -100,8 +123,31 @@ void enter_userland_1(uint32_t eip, uint32_t esp, uint32_t ebp) {
       "m"(esp), "i"(c3_sel), "r"(eip), "r"(ebp));
 }
 
+void enter_userland_2(uint32_t eip, uint32_t esp, uint32_t ebp) {
+  debug("ENTER TASK 2\n");
+  set_ds(d3_sel);
+  set_es(d3_sel);
+  set_fs(d3_sel);
+  set_gs(d3_sel);
+
+  TSS.s0.esp = get_ebp();
+  TSS.s0.ss = d0_sel;
+
+  asm volatile(
+      "push %0 \n"        // ss
+      "push %1 \n"        // esp
+      "pushf   \n"        // eflags
+      "push %2 \n"        // cs
+      "push %3 \n"        // eip
+      "mov %4, %%ebp \n"  // ebp
+      "iret" ::"i"(d3_sel),
+      "m"(esp), "i"(c3_sel), "r"(eip), "r"(ebp));
+}
+
 void save_userland_1(int_ctx_t* ctx) { user1_ctx = ctx; }
+void save_userland_2(int_ctx_t* ctx) { user2_ctx = ctx; }
 int_ctx_t* restore_userland_1() { return user1_ctx; }
+int_ctx_t* restore_userland_2() { return user2_ctx; }
 
 void interrupt_clock(int_ctx_t* ctx) {
   debug("Been interrupted by clock ! (%d)\n", task_switch_cmpt);
@@ -111,20 +157,22 @@ void interrupt_clock(int_ctx_t* ctx) {
     init_userland_1();
   } else if (task_switch_cmpt == 2) {
     save_userland_1(ctx);
-    // init_userland_2();
-    user2();
+    init_userland_2();
+    //user2();
   } else if (task_switch_cmpt % 2 != 0) {
+    save_userland_2(ctx);
     int_ctx_t* task_ctx = restore_userland_1();
-    debug("ESP: %x\n", task_ctx->esp.raw);
-    debug("EBP: %x\n", task_ctx->gpr.ebp);
-    debug("EIP: %x\n", task_ctx->eip.raw);
     enter_userland_1(task_ctx->eip.raw, task_ctx->esp.raw,
                      task_ctx->gpr.ebp.raw);
   } else {
-    // save_userland_1(ctx);
-    // ctx = restore_userland_2();
-    // enter_userland_2(ctx->esp, ctx->eip);
-    user2();
+    save_userland_1(ctx);
+    int_ctx_t* task_ctx = restore_userland_2();
+    debug("ESP: %x\n", task_ctx->esp.raw);
+    debug("EBP: %x\n", task_ctx->gpr.ebp);
+    debug("EIP: %x\n", task_ctx->eip.raw);
+    enter_userland_2(task_ctx->eip.raw, task_ctx->esp.raw,
+                     task_ctx->gpr.ebp.raw);
+    //user2();
   }
 }
 
