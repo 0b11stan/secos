@@ -42,18 +42,12 @@ void init_gdt() {
 
 void user1() {
   debug("START TASK 1\n");
-  while (1) {
-    debug("running task 1 ...\n");
-  }
-  // asm volatile("mov %eax, %cr0"); // fail if we are in ring3
+  while (1) debug("running task 1 ...\n");
 }
 
 void user2() {
   debug("START TASK 2\n");
-  while (1) {
-    debug("running task 2 ...\n");
-  }
-  // asm volatile("mov %eax, %cr0"); // fail if we are in ring3
+  while (1) debug("running task 2 ...\n");
 }
 
 void init_userland_1() {
@@ -158,7 +152,6 @@ void interrupt_clock(int_ctx_t* ctx) {
   } else if (task_switch_cmpt == 2) {
     save_userland_1(ctx);
     init_userland_2();
-    //user2();
   } else if (task_switch_cmpt % 2 != 0) {
     save_userland_2(ctx);
     int_ctx_t* task_ctx = restore_userland_1();
@@ -167,12 +160,8 @@ void interrupt_clock(int_ctx_t* ctx) {
   } else {
     save_userland_1(ctx);
     int_ctx_t* task_ctx = restore_userland_2();
-    debug("ESP: %x\n", task_ctx->esp.raw);
-    debug("EBP: %x\n", task_ctx->gpr.ebp);
-    debug("EIP: %x\n", task_ctx->eip.raw);
     enter_userland_2(task_ctx->eip.raw, task_ctx->esp.raw,
                      task_ctx->gpr.ebp.raw);
-    //user2();
   }
 }
 
@@ -182,6 +171,7 @@ void tp() {
 
   register_gate(32, &interrupt_clock);
   force_interrupts_on();
-  while (1) {
-  }
+
+  while (1)
+    ;
 }
