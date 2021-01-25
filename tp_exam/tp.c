@@ -11,6 +11,10 @@ extern info_t* info;
 seg_desc_t GDT[6];
 tss_t TSS;
 
+int task_switch_cmpt = 0;
+int_ctx_t* user1_ctx;
+int_ctx_t* user2_ctx;
+
 void init_gdt() {
   gdt_reg_t gdtr;
 
@@ -78,7 +82,7 @@ void init_userland_1() {
       "m"(ustack), "i"(c3_sel), "r"(&user1));
 }
 
-void enter_userland_1(uint32_t esp, uint32_t eip) {
+void enter_userland_1(uint32_t eip, uint32_t esp, uint32_t ebp) {
   debug("ENTER TASK 1\n");
   set_ds(d3_sel);
   set_es(d3_sel);
@@ -94,26 +98,36 @@ void enter_userland_1(uint32_t esp, uint32_t eip) {
       "pushf   \n"  // eflags
       "push %2 \n"  // cs
       "push %3 \n"  // eip
+      "mov %4, %%ebp \n"  // ebp
       "iret" ::"i"(d3_sel),
-      "m"(esp), "i"(c3_sel), "r"(eip));
+      "m"(esp), "i"(c3_sel), "r"(eip), "r"(ebp));
 }
 
-int cmpt = 0;
+void save_userland_1(int_ctx_t* ctx) { user1_ctx = ctx; }
+int_ctx_t* restore_userland_1() { return user1_ctx; }
 
 void interrupt_clock(int_ctx_t* ctx) {
-  debug("Been interrupted by clock ! (%d)\n", cmpt);
-  cmpt++;
-  if (cmpt == 1)
+  debug("Been interrupted by clock ! (%d)\n", task_switch_cmpt);
+  task_switch_cmpt++;
+  if (task_switch_cmpt == 1) {
     init_userland_1();
-  else if(cmpt == 2)
+  } else if (task_switch_cmpt == 2) {
+    save_userland_1(ctx);
+    // init_userland_2();
     user2();
-    //init_userland_2();
-  else if (cmpt % 2 != 0)
-    // user1();
-    enter_userland_1(ctx->esp.blow, ctx->eip.blow);
-  else
+  } else if (task_switch_cmpt % 2 != 0) {
+    int_ctx_t* task_ctx = restore_userland_1();
+    debug("ESP: %x\n", task_ctx->esp.raw);
+    debug("EBP: %x\n", task_ctx->gpr.ebp);
+    debug("EIP: %x\n", task_ctx->eip.raw);
+    enter_userland_1(task_ctx->eip.raw, task_ctx->esp.raw,
+                     task_ctx->gpr.ebp.raw);
+  } else {
+    // save_userland_1(ctx);
+    // ctx = restore_userland_2();
+    // enter_userland_2(ctx->esp, ctx->eip);
     user2();
-    //enter_userland_2(ctx->esp);
+  }
 }
 
 void tp() {
