@@ -8,14 +8,14 @@ Vous êtes libres de modifier l'intégralité du noyau si vous le jugez nécessa
 
 ## TODOS:
 
-- [*] mettre en place la segmentation
-- [*] intercepter l'interruption d'horloge depuis le noyau
-- [*] executer alternativement la fonction user1 et user2 à chaque irq0
-- [*] mettre la fonction user1 dans le ring3
-- [*] mettre la fonction user2 dans le ring3 (mov cr0 fail)
-- [*] pagination: mapper toute la mémoire pour le noyau
-- [ ] pagination: mapper la mémoire de 0x600000 à 0x600fff pour la tache 1 (print *0x2000 fail)
-- [ ] pagination: mapper la mémoire de 0x601000 à 0x601fff pour la tache 2
+- [x] mettre en place la segmentation
+- [x] intercepter l'interruption d'horloge depuis le noyau
+- [x] executer alternativement la fonction user1 et user2 à chaque irq0
+- [x] mettre la fonction user1 dans le ring3
+- [x] mettre la fonction user2 dans le ring3 (mov cr0 fail)
+- [x] pagination: mapper toute la mémoire pour le noyau
+- [x] pagination: mapper la stack de la tache 1 (print *0x2000 fail)
+- [ ] pagination: mapper la stack de la tache 2
 - [ ] mettre en place la mémoire partagée
 
 ---
