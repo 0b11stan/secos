@@ -60,11 +60,13 @@ void init_gdt() {
 
 void user1() {
   debug("START TASK 1\n");
+  debug("kernel: %s\n", (char*)0x2000); // TODO : should map so that fail
   while (1) debug("running task 1 ...\n");
 }
 
 void user2() {
   debug("START TASK 2\n");
+  debug("kernel: %s\n", (char*)0x2000); // TODO : should map so that fail
   while (1) debug("running task 2 ...\n");
 }
 
@@ -121,8 +123,8 @@ void interrupt_clock(int_ctx_t* old) {
     // init user2
     user1_ctx = old;
     teip = (uint32_t)&user2;
-    tesp = STACK_TASK2 + 0x1000;
-    tebp = STACK_TASK2 + 0x1000;
+    tesp = STACK_TASK2 + 0xfff;
+    tebp = STACK_TASK2 + 0xfff;
     tcr3 = PGD_TASK2;
   } else {
     // switch tasks context
@@ -154,6 +156,12 @@ void init_pagination() {
   pgd_task1 = (pde32_t*)PGD_TASK1;
   memset((void*)pgd_task1, 0, PAGE_SIZE);
 
+  // init pgd task2
+  pgd_task2 = (pde32_t*)PGD_TASK2;
+  memset((void*)pgd_task2, 0, PAGE_SIZE);
+
+  /** KERNEL **/
+
   // map kernel related memory for kernel
   ptb = (pte32_t*)PTB_KERNEL;
   for (i = 0; i < 1024; i++) pg_set_entry(&ptb[i], PG_KRN | PG_RW, i);
@@ -163,6 +171,8 @@ void init_pagination() {
   ptb = (pte32_t*)(PTB_KERNEL + 0x1000);
   for (i = 0; i < 1024; i++) pg_set_entry(&ptb[i], PG_KRN | PG_RW, i + 1024);
   pg_set_entry(&pgd_kernel[1], PG_KRN | PG_RW, page_nr(ptb));
+
+  /** TASK 1 **/
 
   // map kernel for jump to task1
   // TODO : map only kernel stack with access to ring0
@@ -175,6 +185,22 @@ void init_pagination() {
   ptb = (pte32_t*)(PTB_TASK1 + 0x1000);
   pg_set_entry(&ptb[256], PG_USR | PG_RW, page_nr(STACK_TASK1));
   pg_set_entry(&pgd_task1[1], PG_USR | PG_RW, page_nr(PTB_TASK1 + 0x1000));
+
+  /** TASK 2 **/
+
+  // map kernel for jump to task2
+  // TODO : map only kernel stack with access to ring0
+  // TODO : map only kernel code with access to ring3
+  ptb = (pte32_t*)PTB_TASK2;
+  for (i = 0; i < 1024; i++) pg_set_entry(&ptb[i], PG_USR | PG_RW, i);
+  pg_set_entry(&pgd_task2[0], PG_USR | PG_RW, page_nr(ptb));
+
+  // map stack memory for task1
+  ptb = (pte32_t*)(PTB_TASK2 + 0x1000);
+  pg_set_entry(&ptb[257], PG_USR | PG_RW, page_nr(STACK_TASK2));
+  pg_set_entry(&pgd_task2[1], PG_USR | PG_RW, page_nr(PTB_TASK2 + 0x1000));
+
+  /************/
 
   set_cr3((uint32_t)pgd_kernel);
   enable_paging();

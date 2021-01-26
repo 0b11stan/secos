@@ -15,7 +15,7 @@ Vous êtes libres de modifier l'intégralité du noyau si vous le jugez nécessa
 - [x] mettre la fonction user2 dans le ring3 (mov cr0 fail)
 - [x] pagination: mapper toute la mémoire pour le noyau
 - [x] pagination: mapper la stack de la tache 1 (print *0x2000 fail)
-- [ ] pagination: mapper la stack de la tache 2
+- [x] pagination: mapper la stack de la tache 2
 - [ ] mettre en place la mémoire partagée
 
 ---
