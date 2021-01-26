@@ -6,6 +6,9 @@
 
 #include "xsegmentation.h"
 
+#define STACK_TASK1 0x600000
+#define STACK_TASK2 0x601000
+
 extern info_t* info;
 
 seg_desc_t GDT[6];
@@ -50,54 +53,7 @@ void user2() {
   while (1) debug("running task 2 ...\n");
 }
 
-void init_userland_1() {
-  debug("INIT TASK 1\n");
-
-  set_ds(d3_sel);
-  set_es(d3_sel);
-  set_fs(d3_sel);
-  set_gs(d3_sel);
-
-  TSS.s0.esp = get_ebp();
-  TSS.s0.ss = d0_sel;
-
-  uint32_t ustack = 0x600000;
-
-  asm volatile(
-      "push %0 \n"  // ss
-      "push %1 \n"  // esp
-      "pushf   \n"  // eflags
-      "push %2 \n"  // cs
-      "push %3 \n"  // eip
-      "iret" ::"i"(d3_sel),
-      "m"(ustack), "i"(c3_sel), "r"(&user1));
-}
-
-void init_userland_2() {
-  debug("INIT TASK 2\n");
-
-  set_ds(d3_sel);
-  set_es(d3_sel);
-  set_fs(d3_sel);
-  set_gs(d3_sel);
-
-  TSS.s0.esp = get_ebp();
-  TSS.s0.ss = d0_sel;
-
-  uint32_t ustack = 0x601000;
-
-  asm volatile(
-      "push %0 \n"  // ss
-      "push %1 \n"  // esp
-      "pushf   \n"  // eflags
-      "push %2 \n"  // cs
-      "push %3 \n"  // eip
-      "iret" ::"i"(d3_sel),
-      "m"(ustack), "i"(c3_sel), "r"(&user2));
-}
-
-void enter_userland_1(uint32_t eip, uint32_t esp, uint32_t ebp) {
-  debug("ENTER TASK 1\n");
+void enter_userland(uint32_t eip, uint32_t esp, uint32_t ebp) {
   set_ds(d3_sel);
   set_es(d3_sel);
   set_fs(d3_sel);
@@ -117,52 +73,46 @@ void enter_userland_1(uint32_t eip, uint32_t esp, uint32_t ebp) {
       "m"(esp), "i"(c3_sel), "r"(eip), "r"(ebp));
 }
 
-void enter_userland_2(uint32_t eip, uint32_t esp, uint32_t ebp) {
-  debug("ENTER TASK 2\n");
-  set_ds(d3_sel);
-  set_es(d3_sel);
-  set_fs(d3_sel);
-  set_gs(d3_sel);
-
-  TSS.s0.esp = get_ebp();
-  TSS.s0.ss = d0_sel;
-
-  asm volatile(
-      "push %0 \n"        // ss
-      "push %1 \n"        // esp
-      "pushf   \n"        // eflags
-      "push %2 \n"        // cs
-      "push %3 \n"        // eip
-      "mov %4, %%ebp \n"  // ebp
-      "iret" ::"i"(d3_sel),
-      "m"(esp), "i"(c3_sel), "r"(eip), "r"(ebp));
+int_ctx_t* switch_context(int_ctx_t* old) {
+  if (task_switch_cmpt % 2 != 0) {
+    // run user1
+    user2_ctx = old;
+    return user1_ctx;
+  } else {
+    // run user2
+    user1_ctx = old;
+    return user2_ctx;
+  }
 }
 
-void save_userland_1(int_ctx_t* ctx) { user1_ctx = ctx; }
-void save_userland_2(int_ctx_t* ctx) { user2_ctx = ctx; }
-int_ctx_t* restore_userland_1() { return user1_ctx; }
-int_ctx_t* restore_userland_2() { return user2_ctx; }
-
-void interrupt_clock(int_ctx_t* ctx) {
+void interrupt_clock(int_ctx_t* old) {
   debug("Been interrupted by clock ! (%d)\n", task_switch_cmpt);
+  uint32_t teip = 0;
+  uint32_t tesp = 0;
+  uint32_t tebp = 0;
+
   task_switch_cmpt++;
   force_interrupts_on();
+
   if (task_switch_cmpt == 1) {
-    init_userland_1();
+    // init user1
+    teip = (uint32_t)&user1;
+    tesp = STACK_TASK1;
+    tebp = STACK_TASK1;
   } else if (task_switch_cmpt == 2) {
-    save_userland_1(ctx);
-    init_userland_2();
-  } else if (task_switch_cmpt % 2 != 0) {
-    save_userland_2(ctx);
-    int_ctx_t* task_ctx = restore_userland_1();
-    enter_userland_1(task_ctx->eip.raw, task_ctx->esp.raw,
-                     task_ctx->gpr.ebp.raw);
+    // init user2
+    user1_ctx = old;
+    teip = (uint32_t)&user2;
+    tesp = STACK_TASK2;
+    tebp = STACK_TASK2;
   } else {
-    save_userland_1(ctx);
-    int_ctx_t* task_ctx = restore_userland_2();
-    enter_userland_2(task_ctx->eip.raw, task_ctx->esp.raw,
-                     task_ctx->gpr.ebp.raw);
+    // switch and run
+    int_ctx_t* new = switch_context(old);
+    teip = new->eip.raw;
+    tesp = new->esp.raw;
+    tebp = new->gpr.ebp.raw;
   }
+  enter_userland(teip, tesp, tebp);
 }
 
 void tp() {
