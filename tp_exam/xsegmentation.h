@@ -4,13 +4,21 @@
 #define d0_idx 2
 #define c3_idx 3
 #define d3_idx 4
-#define ts_idx 5
+#define tsk0_idx 5
+#define tsk1_idx 6
+#define tsk2_idx 7
+#define tsu1_idx 8
+#define tsu2_idx 9
 
 #define c0_sel gdt_krn_seg_sel(c0_idx)
 #define d0_sel gdt_krn_seg_sel(d0_idx)
 #define c3_sel gdt_usr_seg_sel(c3_idx)
 #define d3_sel gdt_usr_seg_sel(d3_idx)
-#define ts_sel gdt_krn_seg_sel(ts_idx)
+#define tsk0_sel gdt_krn_seg_sel(tsk0_idx)
+#define tsk1_sel gdt_krn_seg_sel(tsk1_idx)
+#define tsk2_sel gdt_krn_seg_sel(tsk2_idx)
+#define tsu1_sel gdt_krn_seg_sel(tsu1_idx)
+#define tsu2_sel gdt_krn_seg_sel(tsu2_idx)
 
 #define gdt_flat_dsc(_dSc_, _pVl_, _tYp_) \
   ({                                      \
