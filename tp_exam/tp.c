@@ -61,19 +61,19 @@ void init_gdt() {
 }
 
 void user1() {
-  // debug("START TASK 1\n");
-  // debug("kernel: %s\n", (char*)0x2000);  // TODO : should map so that fail
+  debug("START TASK 1\n");
+  debug("kernel: %s\n", (char*)0x2000);  // TODO : should map so that fail
   char* message = "Hi from user1!";
   asm volatile("int $80" ::"S"(message));
   while (1)
-    ;  // debug("running task ONE ...\n");
+    debug("running task ONE ...\n");
 }
 
 void user2() {
-  // debug("START TASK 2\n");
-  // debug("kernel: %s\n", (char*)0x2000);  // TODO : should map so that fail
+  debug("START TASK 2\n");
+  debug("kernel: %s\n", (char*)0x2000);  // TODO : should map so that fail
   while (1)
-    ;  // debug("running task TWO ...\n");
+    debug("running task TWO ...\n");
 }
 
 void enter_userland(uint32_t eip, uint32_t esp, uint32_t ebp, uint32_t cr3) {
@@ -186,14 +186,14 @@ void init_pagination() {
   map_full_table(&pgd_kernel[1], (PTB_KERNEL + 0x1000), PG_KRN | PG_RW);
 
   // task1
-  map_full_table(&pgd_task1[0], PTB_TASK1, PG_KRN | PG_RW);
-  // map_full_table(&pgd_task1[0], PTB_TASK1, PG_USR | PG_RW);
+  //map_full_table(&pgd_task1[0], PTB_TASK1, PG_KRN | PG_RW);
+  map_full_table(&pgd_task1[0], PTB_TASK1, PG_USR | PG_RW);
   map_user_page(&pgd_task1[1], (PTB_TASK1 + 0x1000), 256, STACK_TASK1);
   // map_user_page(&pgd_task1[1], (PTB_TASK1 + 0x1000), 258, SHARED_MEM);
 
   // task2
-  map_full_table(&pgd_task2[0], PTB_TASK2, PG_KRN | PG_RW);
-  // map_full_table(&pgd_task2[0], PTB_TASK2, PG_USR | PG_RW);
+  //map_full_table(&pgd_task2[0], PTB_TASK2, PG_KRN | PG_RW);
+  map_full_table(&pgd_task2[0], PTB_TASK2, PG_USR | PG_RW);
   map_user_page(&pgd_task2[1], (PTB_TASK2 + 0x1000), 257, STACK_TASK2);
   // map_user_page(&pgd_task2[1], (PTB_TASK2 + 0x1000), 258, SHARED_MEM);
 
