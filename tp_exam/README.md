@@ -6,7 +6,7 @@ Vous êtes libres de modifier l'intégralité du noyau si vous le jugez nécessa
 
 ---
 
-## TODOS:
+## Achivements:
 
 - [x] mettre en place la segmentation
 - [x] intercepter l'interruption d'horloge depuis le noyau
@@ -16,7 +16,9 @@ Vous êtes libres de modifier l'intégralité du noyau si vous le jugez nécessa
 - [x] pagination: mapper toute la mémoire pour le noyau
 - [x] pagination: mapper la stack de la tache 1
 - [x] pagination: mapper la stack de la tache 2
-- [ ] mettre en place la mémoire partagée
+- [ ] implémenter l'appel système
+- [ ] mettre en place la mémoire partagée (identity mapping)
+- [ ] passer la mémoire partagée à un mapping virtuel
 
 ---
 
