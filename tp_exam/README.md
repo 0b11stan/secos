@@ -12,9 +12,9 @@ Vous êtes libres de modifier l'intégralité du noyau si vous le jugez nécessa
 - [x] intercepter l'interruption d'horloge depuis le noyau
 - [x] executer alternativement la fonction user1 et user2 à chaque irq0
 - [x] mettre la fonction user1 dans le ring3
-- [x] mettre la fonction user2 dans le ring3 (mov cr0 fail)
+- [x] mettre la fonction user2 dans le ring3
 - [x] pagination: mapper toute la mémoire pour le noyau
-- [x] pagination: mapper la stack de la tache 1 (print *0x2000 fail)
+- [x] pagination: mapper la stack de la tache 1
 - [x] pagination: mapper la stack de la tache 2
 - [ ] mettre en place la mémoire partagée
 

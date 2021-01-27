@@ -60,13 +60,13 @@ void init_gdt() {
 
 void user1() {
   debug("START TASK 1\n");
-  debug("kernel: %s\n", (char*)0x2000); // TODO : should map so that fail
+  debug("kernel: %s\n", (char*)0x2000);  // TODO : should map so that fail
   while (1) debug("running task 1 ...\n");
 }
 
 void user2() {
   debug("START TASK 2\n");
-  debug("kernel: %s\n", (char*)0x2000); // TODO : should map so that fail
+  debug("kernel: %s\n", (char*)0x2000);  // TODO : should map so that fail
   while (1) debug("running task 2 ...\n");
 }
 
@@ -138,69 +138,47 @@ void interrupt_clock(int_ctx_t* old) {
   enter_userland(teip, tesp, tebp, tcr3);
 }
 
+pde32_t* init_pgd(uint32_t address) {
+  memset((void*)address, 0, PAGE_SIZE);
+  return (pde32_t*)address;
+}
+
 void enable_paging() {
   uint32_t cr0 = get_cr0();
   set_cr0(cr0 | CR0_PG);
 }
 
+void map_full_table(pde32_t* pde, uint32_t pte, uint32_t flags) {
+  pte32_t* ptb = (pte32_t*)pte;
+  for (int i = 0; i < 1024; i++) pg_set_entry(&ptb[i], flags, i);
+  pg_set_entry(pde, flags, page_nr(ptb));
+}
+
+void map_user_page(pde32_t* pde, uint32_t pte, uint32_t index, uint32_t stack) {
+  pte32_t* ptb = (pte32_t*)pte;
+  pg_set_entry(&ptb[index], PG_USR | PG_RW, page_nr(stack));
+  pg_set_entry(pde, PG_USR | PG_RW, page_nr(ptb));
+}
+
 void init_pagination() {
   // TODO : only map what's needed
-  int i;
-  pte32_t* ptb;
-
-  // init pgd kernel
-  pgd_kernel = (pde32_t*)PGD_KERNEL;
-  memset((void*)pgd_kernel, 0, PAGE_SIZE);
-
-  // init pgd task1
-  pgd_task1 = (pde32_t*)PGD_TASK1;
-  memset((void*)pgd_task1, 0, PAGE_SIZE);
-
-  // init pgd task2
-  pgd_task2 = (pde32_t*)PGD_TASK2;
-  memset((void*)pgd_task2, 0, PAGE_SIZE);
-
-  /** KERNEL **/
-
-  // map kernel related memory for kernel
-  ptb = (pte32_t*)PTB_KERNEL;
-  for (i = 0; i < 1024; i++) pg_set_entry(&ptb[i], PG_KRN | PG_RW, i);
-  pg_set_entry(&pgd_kernel[0], PG_KRN | PG_RW, page_nr(ptb));
-
-  // map pagination related memory (pgds, ptbs) for kernel
-  ptb = (pte32_t*)(PTB_KERNEL + 0x1000);
-  for (i = 0; i < 1024; i++) pg_set_entry(&ptb[i], PG_KRN | PG_RW, i + 1024);
-  pg_set_entry(&pgd_kernel[1], PG_KRN | PG_RW, page_nr(ptb));
-
-  /** TASK 1 **/
-
-  // map kernel for jump to task1
   // TODO : map only kernel stack with access to ring0
   // TODO : map only kernel code with access to ring3
-  ptb = (pte32_t*)PTB_TASK1;
-  for (i = 0; i < 1024; i++) pg_set_entry(&ptb[i], PG_USR | PG_RW, i);
-  pg_set_entry(&pgd_task1[0], PG_USR | PG_RW, page_nr(ptb));
+  pgd_kernel = init_pgd(PGD_KERNEL);
+  pgd_task1 = init_pgd(PGD_TASK1);
+  pgd_task2 = init_pgd(PGD_TASK2);
 
-  // map stack memory for task1
-  ptb = (pte32_t*)(PTB_TASK1 + 0x1000);
-  pg_set_entry(&ptb[256], PG_USR | PG_RW, page_nr(STACK_TASK1));
-  pg_set_entry(&pgd_task1[1], PG_USR | PG_RW, page_nr(PTB_TASK1 + 0x1000));
+  // kernel
+  map_full_table(&pgd_kernel[0], PTB_KERNEL, PG_KRN | PG_RW);
+  map_full_table(&pgd_kernel[1], (PTB_KERNEL + 0x1000), PG_KRN | PG_RW);
 
-  /** TASK 2 **/
+  // task1
+  map_full_table(&pgd_task1[0], PTB_TASK1, PG_USR | PG_RW);
+  map_user_page(&pgd_task1[1], (PTB_TASK1 + 0x1000), 256, STACK_TASK1);
 
-  // map kernel for jump to task2
-  // TODO : map only kernel stack with access to ring0
-  // TODO : map only kernel code with access to ring3
-  ptb = (pte32_t*)PTB_TASK2;
-  for (i = 0; i < 1024; i++) pg_set_entry(&ptb[i], PG_USR | PG_RW, i);
-  pg_set_entry(&pgd_task2[0], PG_USR | PG_RW, page_nr(ptb));
-
-  // map stack memory for task1
-  ptb = (pte32_t*)(PTB_TASK2 + 0x1000);
-  pg_set_entry(&ptb[257], PG_USR | PG_RW, page_nr(STACK_TASK2));
-  pg_set_entry(&pgd_task2[1], PG_USR | PG_RW, page_nr(PTB_TASK2 + 0x1000));
-
-  /************/
+  // task2
+  map_full_table(&pgd_task2[0], PTB_TASK2, PG_USR | PG_RW);
+  map_user_page(&pgd_task2[1], (PTB_TASK2 + 0x1000), 257, STACK_TASK2);
 
   set_cr3((uint32_t)pgd_kernel);
   enable_paging();
