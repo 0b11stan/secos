@@ -147,16 +147,11 @@ void interrupt_clock(int_ctx_t* old) {
 
   task_t* task;
 
-  if (task_switch_cmpt == 1) {
-    user1_ctx = old;
-    task = &task2;
-  } else {
-    int_ctx_t* new = switch_context(old);
-    task = is_task_1(new) ? &task1 : &task2;
-    task->eip = new->eip.raw;
-    task->esp = new->esp.raw;
-    task->ebp = new->gpr.ebp.raw;
-  }
+  int_ctx_t* new = switch_context(old);
+  task = is_task_1(new) ? &task1 : &task2;
+  task->eip = new->eip.raw;
+  task->esp = new->esp.raw;
+  task->ebp = new->gpr.ebp.raw;
 
   enter_userland(task);
 }
@@ -244,6 +239,10 @@ void tp() {
   task2.eip = (uint32_t)&user2;
   task2.ebp = STACK_TASK2 + 0xfff;
   task2.esp = STACK_TASK2 + 0xfff;
+
+  user2_ctx->eip.raw = task2.eip;
+  user2_ctx->esp.raw = task2.esp;
+  user2_ctx->gpr.ebp.raw = task2.esp;
 
   force_interrupts_on();
   enter_userland(&task1);
