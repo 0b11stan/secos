@@ -21,6 +21,7 @@ Vous êtes libres de modifier l'intégralité du noyau si vous le jugez nécessa
 - [x] centraliser les infos dans une structure `task` de type `task_t`
 - [x] changer le mécanisme de scheduler
 - [x] arrêter de stocker le contexte
+- [x] supprimer les multiples tss
 - [ ] mettre en place la mémoire partagée (identity mapping)
 - [ ] passer la mémoire partagée à un mapping virtuel
 

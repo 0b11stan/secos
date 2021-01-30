@@ -36,9 +36,7 @@ typedef struct task {
 } task_t;
 
 seg_desc_t GDT[6];
-tss_t TSS_KERNEL;
-tss_t TSS_KERNEL_TASK1;
-tss_t TSS_KERNEL_TASK2;
+tss_t TSS;
 
 pde32_t* pgd_kernel;
 pde32_t* pgd_task1;
@@ -56,9 +54,7 @@ void init_gdt() {
   d0_dsc(&GDT[d0_idx]);
   c3_dsc(&GDT[c3_idx]);
   d3_dsc(&GDT[d3_idx]);
-  tss_dsc(&GDT[tsk0_idx], (offset_t)&TSS_KERNEL);
-  tss_dsc(&GDT[tsk1_idx], (offset_t)&TSS_KERNEL_TASK1);
-  tss_dsc(&GDT[tsk2_idx], (offset_t)&TSS_KERNEL_TASK2);
+  tss_dsc(&GDT[tss_idx], (offset_t)&TSS);
 
   gdtr.desc = GDT;
   gdtr.limit = sizeof(GDT) - 1;
@@ -70,7 +66,9 @@ void init_gdt() {
   set_es(d0_sel);
   set_fs(d0_sel);
   set_gs(d0_sel);
-  set_tr(tsk0_sel);
+  set_tr(tss_sel);
+
+  TSS.s0.ss = d0_sel;
 }
 
 void user1() {
@@ -95,8 +93,7 @@ void enter_userland(task_t* task) {
   set_fs(task->ds);
   set_gs(task->ds);
 
-  TSS_KERNEL.s0.esp = get_ebp();
-  TSS_KERNEL.s0.ss = d0_sel;
+  TSS.s0.esp = get_ebp();
 
   asm volatile(
       "push %0 \n"        // ss
