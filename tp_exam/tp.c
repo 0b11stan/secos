@@ -246,7 +246,4 @@ void tp() {
 
   force_interrupts_on();
   enter_userland(&task1);
-
-  while (1)
-    ;
 }
