@@ -41,7 +41,6 @@ tss_t TSS_KERNEL_TASK1;
 tss_t TSS_KERNEL_TASK2;
 
 pde32_t* pgd_kernel;
-int task_switch_cmpt = 0;
 
 pde32_t* pgd_task1;
 int_ctx_t* user1_ctx;
@@ -124,11 +123,9 @@ short is_task_1(int_ctx_t* ctx) {
 
 int_ctx_t* switch_context(int_ctx_t* old) {
   if (is_task_1(old)) {
-    // run user2
     user1_ctx = old;
     return user2_ctx;
   } else {
-    // run user1
     user2_ctx = old;
     return user1_ctx;
   }
@@ -140,15 +137,12 @@ void interrupt_syscall(int_ctx_t* ctx) {
 }
 
 void interrupt_clock(int_ctx_t* old) {
-  debug("Been interrupted by clock ! (%d)\n", task_switch_cmpt);
-  task_switch_cmpt++;
-
+  debug("Been interrupted by clock !\n");
   force_interrupts_on();
 
-  task_t* task;
-
   int_ctx_t* new = switch_context(old);
-  task = is_task_1(new) ? &task1 : &task2;
+
+  task_t* task = is_task_1(new) ? &task1 : &task2;
   task->eip = new->eip.raw;
   task->esp = new->esp.raw;
   task->ebp = new->gpr.ebp.raw;
