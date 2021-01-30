@@ -138,33 +138,25 @@ void interrupt_clock(int_ctx_t* old) {
 
   force_interrupts_on();
 
-  task_t task;
-  task.ds = d3_sel;
-  task.cs = c3_sel;
+  task_t* task;
 
   if (task_switch_cmpt == 1) {
     // init user1
-    task.eip = (uint32_t)&user1;
-    task.gpr.esp.raw = STACK_TASK1 + 0xfff;
-    task.gpr.ebp.raw = STACK_TASK1 + 0xfff;
-    task.pgd = PGD_TASK1;
+    task = &task1;
   } else if (task_switch_cmpt == 2) {
     // init user2
     user1_ctx = old;
-    task.eip = (uint32_t)&user2;
-    task.gpr.esp.raw = STACK_TASK2 + 0xfff;
-    task.gpr.ebp.raw = STACK_TASK2 + 0xfff;
-    task.pgd = PGD_TASK2;
+    task = &task2;
   } else {
     // switch tasks context
     int_ctx_t* new = switch_context(old);
-    task.pgd = new == user1_ctx ? PGD_TASK1 : PGD_TASK2;
-    task.eip = new->eip.raw;
-    task.gpr.esp.raw = new->esp.raw;
-    task.gpr.ebp.raw = new->gpr.ebp.raw;
+    task = new == user1_ctx ? &task1 : &task2;
+    task->eip = new->eip.raw;
+    task->gpr.esp.raw = new->esp.raw;
+    task->gpr.ebp.raw = new->gpr.ebp.raw;
   }
   // run task
-  enter_userland(&task);
+  enter_userland(task);
 }
 
 pde32_t* init_pgd(uint32_t address) {
@@ -232,6 +224,25 @@ void tp() {
 
   register_gate(80, &interrupt_syscall);
   register_gate(32, &interrupt_clock);
+
+  memset(&task1, 0, sizeof(task_t));
+  task1.cs = c3_sel;
+  task1.ds = d3_sel;
+  task1.pgd = PGD_TASK1;
+  task1.tss = KERNEL_STACK_TASK1 + 0xfff;
+  task1.eip = (uint32_t)&user1;
+  task1.gpr.ebp.raw = STACK_TASK1 + 0xfff;
+  task1.gpr.esp.raw = STACK_TASK1 + 0xfff;
+
+  memset(&task2, 0, sizeof(task_t));
+  task2.cs = c3_sel;
+  task2.ds = d3_sel;
+  task2.pgd = PGD_TASK2;
+  task2.tss = KERNEL_STACK_TASK2 + 0xfff;
+  task2.eip = (uint32_t)&user2;
+  task2.gpr.ebp.raw = STACK_TASK2 + 0xfff;
+  task2.gpr.esp.raw = STACK_TASK2 + 0xfff;
+
   force_interrupts_on();
 
   while (1)
