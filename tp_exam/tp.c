@@ -147,21 +147,16 @@ void interrupt_clock(int_ctx_t* old) {
   task_t* task;
 
   if (task_switch_cmpt == 1) {
-    // init user1
-    task = &task1;
-  } else if (task_switch_cmpt == 2) {
-    // init user2
     user1_ctx = old;
     task = &task2;
   } else {
-    // switch tasks context
     int_ctx_t* new = switch_context(old);
-    task = new == user1_ctx ? &task1 : &task2;
+    task = is_task_1(new) ? &task1 : &task2;
     task->eip = new->eip.raw;
     task->gpr.esp.raw = new->esp.raw;
     task->gpr.ebp.raw = new->gpr.ebp.raw;
   }
-  // run task
+
   enter_userland(task);
 }
 
@@ -250,6 +245,7 @@ void tp() {
   task2.gpr.esp.raw = STACK_TASK2 + 0xfff;
 
   force_interrupts_on();
+  enter_userland(&task1);
 
   while (1)
     ;
