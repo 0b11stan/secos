@@ -92,17 +92,12 @@ void user2() {
 }
 
 void enter_userland(task_t* task) {
-  uint32_t eip = task->eip;
-  uint32_t esp = task->gpr.esp.raw;
-  uint32_t ebp = task->gpr.ebp.raw;
-  uint32_t cr3 = task->pgd;
+  debug("ENTER USERLAND %p\n", task->pgd);
 
-  debug("ENTER USERLAND %p\n", cr3);
-
-  set_ds(d3_sel);
-  set_es(d3_sel);
-  set_fs(d3_sel);
-  set_gs(d3_sel);
+  set_ds(task->ds);
+  set_es(task->ds);
+  set_fs(task->ds);
+  set_gs(task->ds);
 
   TSS_KERNEL.s0.esp = get_ebp();
   TSS_KERNEL.s0.ss = d0_sel;
@@ -115,8 +110,9 @@ void enter_userland(task_t* task) {
       "push %3 \n"        // eip
       "mov %4, %%cr3 \n"  // cr3
       "mov %5, %%ebp \n"  // ebp
-      "iret" ::"i"(d3_sel),
-      "m"(esp), "i"(c3_sel), "r"(eip), "r"(cr3), "r"(ebp));
+      "iret" ::"r"((uint32_t)task->ds),
+      "m"(task->gpr.esp.raw), "r"((uint32_t)task->cs), "r"(task->eip),
+      "r"(task->pgd), "r"(task->gpr.ebp.raw));
 }
 
 int_ctx_t* switch_context(int_ctx_t* old) {
@@ -147,6 +143,8 @@ void interrupt_clock(int_ctx_t* old) {
   force_interrupts_on();
 
   task_t task;
+  task.ds = d3_sel;
+  task.cs = c3_sel;
 
   if (task_switch_cmpt == 1) {
     // init user1
