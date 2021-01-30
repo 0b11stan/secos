@@ -31,7 +31,8 @@ typedef struct task {
   uint32_t pgd;
   uint32_t tss;
   uint32_t eip;
-  gpr_ctx_t gpr;
+  uint32_t esp;
+  uint32_t ebp;
 } task_t;
 
 seg_desc_t GDT[6];
@@ -111,8 +112,8 @@ void enter_userland(task_t* task) {
       "mov %4, %%cr3 \n"  // cr3
       "mov %5, %%ebp \n"  // ebp
       "iret" ::"r"((uint32_t)task->ds),
-      "m"(task->gpr.esp.raw), "r"((uint32_t)task->cs), "r"(task->eip),
-      "r"(task->pgd), "r"(task->gpr.ebp.raw));
+      "m"(task->esp), "r"((uint32_t)task->cs), "r"(task->eip),
+      "r"(task->pgd), "r"(task->ebp));
 }
 
 short is_task_1(int_ctx_t* ctx) {
@@ -153,8 +154,8 @@ void interrupt_clock(int_ctx_t* old) {
     int_ctx_t* new = switch_context(old);
     task = is_task_1(new) ? &task1 : &task2;
     task->eip = new->eip.raw;
-    task->gpr.esp.raw = new->esp.raw;
-    task->gpr.ebp.raw = new->gpr.ebp.raw;
+    task->esp = new->esp.raw;
+    task->ebp = new->gpr.ebp.raw;
   }
 
   enter_userland(task);
@@ -232,8 +233,8 @@ void tp() {
   task1.pgd = PGD_TASK1;
   task1.tss = KERNEL_STACK_TASK1 + 0xfff;
   task1.eip = (uint32_t)&user1;
-  task1.gpr.ebp.raw = STACK_TASK1 + 0xfff;
-  task1.gpr.esp.raw = STACK_TASK1 + 0xfff;
+  task1.ebp = STACK_TASK1 + 0xfff;
+  task1.esp = STACK_TASK1 + 0xfff;
 
   memset(&task2, 0, sizeof(task_t));
   task2.cs = c3_sel;
@@ -241,8 +242,8 @@ void tp() {
   task2.pgd = PGD_TASK2;
   task2.tss = KERNEL_STACK_TASK2 + 0xfff;
   task2.eip = (uint32_t)&user2;
-  task2.gpr.ebp.raw = STACK_TASK2 + 0xfff;
-  task2.gpr.esp.raw = STACK_TASK2 + 0xfff;
+  task2.ebp = STACK_TASK2 + 0xfff;
+  task2.esp = STACK_TASK2 + 0xfff;
 
   force_interrupts_on();
   enter_userland(&task1);
