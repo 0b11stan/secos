@@ -18,7 +18,8 @@ Vous êtes libres de modifier l'intégralité du noyau si vous le jugez nécessa
 - [x] pagination: mapper la stack de la tache 2
 - [x] implémenter l'appel système
 - [x] déplacer les stack user pour faire de la place pour les stack noyau
-- [ ] centraliser les infos dans une structure `task` de type `task_t`
+- [x] centraliser les infos dans une structure `task` de type `task_t`
+- [ ] changer le mécanisme de scheduler
 - [ ] mettre en place la mémoire partagée (identity mapping)
 - [ ] passer la mémoire partagée à un mapping virtuel
 

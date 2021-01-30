@@ -115,15 +115,21 @@ void enter_userland(task_t* task) {
       "r"(task->pgd), "r"(task->gpr.ebp.raw));
 }
 
+short is_task_1(int_ctx_t* ctx) {
+  uint32_t sp = ctx->esp.raw;
+  return ((sp > STACK_TASK1) && (sp < STACK_TASK1 + 0xfff)) ||
+         ((sp > KERNEL_STACK_TASK1) && (sp < KERNEL_STACK_TASK1 + 0xfff));
+}
+
 int_ctx_t* switch_context(int_ctx_t* old) {
-  if (task_switch_cmpt % 2 != 0) {
-    // run user1
-    user2_ctx = old;
-    return user1_ctx;
-  } else {
+  if (is_task_1(old)) {
     // run user2
     user1_ctx = old;
     return user2_ctx;
+  } else {
+    // run user1
+    user2_ctx = old;
+    return user1_ctx;
   }
 }
 
