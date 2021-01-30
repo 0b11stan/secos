@@ -19,7 +19,8 @@ Vous êtes libres de modifier l'intégralité du noyau si vous le jugez nécessa
 - [x] implémenter l'appel système
 - [x] déplacer les stack user pour faire de la place pour les stack noyau
 - [x] centraliser les infos dans une structure `task` de type `task_t`
-- [ ] changer le mécanisme de scheduler
+- [x] changer le mécanisme de scheduler
+- [x] arrêter de stocker le contexte
 - [ ] mettre en place la mémoire partagée (identity mapping)
 - [ ] passer la mémoire partagée à un mapping virtuel
 

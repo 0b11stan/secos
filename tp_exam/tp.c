@@ -41,12 +41,8 @@ tss_t TSS_KERNEL_TASK1;
 tss_t TSS_KERNEL_TASK2;
 
 pde32_t* pgd_kernel;
-
 pde32_t* pgd_task1;
-int_ctx_t* user1_ctx;
-
 pde32_t* pgd_task2;
-int_ctx_t* user2_ctx;
 
 task_t task1;
 task_t task2;
@@ -111,8 +107,8 @@ void enter_userland(task_t* task) {
       "mov %4, %%cr3 \n"  // cr3
       "mov %5, %%ebp \n"  // ebp
       "iret" ::"r"((uint32_t)task->ds),
-      "m"(task->esp), "r"((uint32_t)task->cs), "r"(task->eip),
-      "r"(task->pgd), "r"(task->ebp));
+      "m"(task->esp), "r"((uint32_t)task->cs), "r"(task->eip), "r"(task->pgd),
+      "r"(task->ebp));
 }
 
 short is_task_1(int_ctx_t* ctx) {
@@ -121,13 +117,19 @@ short is_task_1(int_ctx_t* ctx) {
          ((sp > KERNEL_STACK_TASK1) && (sp < KERNEL_STACK_TASK1 + 0xfff));
 }
 
-int_ctx_t* switch_context(int_ctx_t* old) {
+void store_task(task_t* task, int_ctx_t* ctx) {
+  task->eip = ctx->eip.raw;
+  task->esp = ctx->esp.raw;
+  task->ebp = ctx->gpr.ebp.raw;
+}
+
+task_t* switch_context(int_ctx_t* old) {
   if (is_task_1(old)) {
-    user1_ctx = old;
-    return user2_ctx;
+    store_task(&task1, old);
+    return &task2;
   } else {
-    user2_ctx = old;
-    return user1_ctx;
+    store_task(&task2, old);
+    return &task1;
   }
 }
 
@@ -139,14 +141,7 @@ void interrupt_syscall(int_ctx_t* ctx) {
 void interrupt_clock(int_ctx_t* old) {
   debug("Been interrupted by clock !\n");
   force_interrupts_on();
-
-  int_ctx_t* new = switch_context(old);
-
-  task_t* task = is_task_1(new) ? &task1 : &task2;
-  task->eip = new->eip.raw;
-  task->esp = new->esp.raw;
-  task->ebp = new->gpr.ebp.raw;
-
+  task_t* task = switch_context(old);
   enter_userland(task);
 }
 
@@ -207,6 +202,18 @@ void init_syscall() {
   dsc->dpl = 3;
 }
 
+void init_task(task_t* task, uint32_t pgd, uint32_t stack,
+               uint32_t kernel_stack, void (*routine)()) {
+  memset(task, 0, sizeof(task_t));
+  task->cs = c3_sel;
+  task->ds = d3_sel;
+  task->pgd = pgd;
+  task->tss = kernel_stack + 0xfff;
+  task->eip = (uint32_t)routine;
+  task->ebp = stack + 0xfff;
+  task->esp = stack + 0xfff;
+}
+
 void tp() {
   init_gdt();
   intr_init();
@@ -216,27 +223,8 @@ void tp() {
   register_gate(80, &interrupt_syscall);
   register_gate(32, &interrupt_clock);
 
-  memset(&task1, 0, sizeof(task_t));
-  task1.cs = c3_sel;
-  task1.ds = d3_sel;
-  task1.pgd = PGD_TASK1;
-  task1.tss = KERNEL_STACK_TASK1 + 0xfff;
-  task1.eip = (uint32_t)&user1;
-  task1.ebp = STACK_TASK1 + 0xfff;
-  task1.esp = STACK_TASK1 + 0xfff;
-
-  memset(&task2, 0, sizeof(task_t));
-  task2.cs = c3_sel;
-  task2.ds = d3_sel;
-  task2.pgd = PGD_TASK2;
-  task2.tss = KERNEL_STACK_TASK2 + 0xfff;
-  task2.eip = (uint32_t)&user2;
-  task2.ebp = STACK_TASK2 + 0xfff;
-  task2.esp = STACK_TASK2 + 0xfff;
-
-  user2_ctx->eip.raw = task2.eip;
-  user2_ctx->esp.raw = task2.esp;
-  user2_ctx->gpr.ebp.raw = task2.esp;
+  init_task(&task1, PGD_TASK1, STACK_TASK1, KERNEL_STACK_TASK1, &user1);
+  init_task(&task2, PGD_TASK2, STACK_TASK2, KERNEL_STACK_TASK2, &user2);
 
   force_interrupts_on();
   enter_userland(&task1);
