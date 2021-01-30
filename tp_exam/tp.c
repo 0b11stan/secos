@@ -48,6 +48,9 @@ int_ctx_t* user1_ctx;
 pde32_t* pgd_task2;
 int_ctx_t* user2_ctx;
 
+task_t task1;
+task_t task2;
+
 void init_gdt() {
   gdt_reg_t gdtr;
 
@@ -88,7 +91,12 @@ void user2() {
   while (1) debug("running task TWO ...\n");
 }
 
-void enter_userland(uint32_t eip, uint32_t esp, uint32_t ebp, uint32_t cr3) {
+void enter_userland(task_t* task) {
+  uint32_t eip = task->eip;
+  uint32_t esp = task->gpr.esp.raw;
+  uint32_t ebp = task->gpr.ebp.raw;
+  uint32_t cr3 = task->pgd;
+
   debug("ENTER USERLAND %p\n", cr3);
 
   set_ds(d3_sel);
@@ -105,10 +113,10 @@ void enter_userland(uint32_t eip, uint32_t esp, uint32_t ebp, uint32_t cr3) {
       "pushf   \n"        // eflags
       "push %2 \n"        // cs
       "push %3 \n"        // eip
-      "mov %5, %%cr3 \n"  // cr3
-      "mov %4, %%ebp \n"  // ebp
+      "mov %4, %%cr3 \n"  // cr3
+      "mov %5, %%ebp \n"  // ebp
       "iret" ::"i"(d3_sel),
-      "m"(esp), "i"(c3_sel), "r"(eip), "r"(ebp), "r"(cr3));
+      "m"(esp), "i"(c3_sel), "r"(eip), "r"(cr3), "r"(ebp));
 }
 
 int_ctx_t* switch_context(int_ctx_t* old) {
@@ -138,6 +146,8 @@ void interrupt_clock(int_ctx_t* old) {
 
   force_interrupts_on();
 
+  task_t task;
+
   if (task_switch_cmpt == 1) {
     // init user1
     teip = (uint32_t)&user1;
@@ -159,8 +169,12 @@ void interrupt_clock(int_ctx_t* old) {
     tesp = new->esp.raw;
     tebp = new->gpr.ebp.raw;
   }
+  task.eip = teip;
+  task.gpr.esp.raw = tesp;
+  task.gpr.ebp.raw = tebp;
+  task.pgd = tcr3;
   // run task
-  enter_userland(teip, tesp, tebp, tcr3);
+  enter_userland(&task);
 }
 
 pde32_t* init_pgd(uint32_t address) {
