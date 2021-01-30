@@ -135,10 +135,6 @@ void interrupt_syscall(int_ctx_t* ctx) {
 void interrupt_clock(int_ctx_t* old) {
   debug("Been interrupted by clock ! (%d)\n", task_switch_cmpt);
   task_switch_cmpt++;
-  uint32_t teip = 0;
-  uint32_t tesp = 0;
-  uint32_t tebp = 0;
-  uint32_t tcr3 = 0;
 
   force_interrupts_on();
 
@@ -148,29 +144,25 @@ void interrupt_clock(int_ctx_t* old) {
 
   if (task_switch_cmpt == 1) {
     // init user1
-    teip = (uint32_t)&user1;
-    tesp = STACK_TASK1 + 0xfff;
-    tebp = STACK_TASK1 + 0xfff;
-    tcr3 = PGD_TASK1;
+    task.eip = (uint32_t)&user1;
+    task.gpr.esp.raw = STACK_TASK1 + 0xfff;
+    task.gpr.ebp.raw = STACK_TASK1 + 0xfff;
+    task.pgd = PGD_TASK1;
   } else if (task_switch_cmpt == 2) {
     // init user2
     user1_ctx = old;
-    teip = (uint32_t)&user2;
-    tesp = STACK_TASK2 + 0xfff;
-    tebp = STACK_TASK2 + 0xfff;
-    tcr3 = PGD_TASK2;
+    task.eip = (uint32_t)&user2;
+    task.gpr.esp.raw = STACK_TASK2 + 0xfff;
+    task.gpr.ebp.raw = STACK_TASK2 + 0xfff;
+    task.pgd = PGD_TASK2;
   } else {
     // switch tasks context
     int_ctx_t* new = switch_context(old);
-    tcr3 = new == user1_ctx ? PGD_TASK1 : PGD_TASK2;
-    teip = new->eip.raw;
-    tesp = new->esp.raw;
-    tebp = new->gpr.ebp.raw;
+    task.pgd = new == user1_ctx ? PGD_TASK1 : PGD_TASK2;
+    task.eip = new->eip.raw;
+    task.gpr.esp.raw = new->esp.raw;
+    task.gpr.ebp.raw = new->gpr.ebp.raw;
   }
-  task.eip = teip;
-  task.gpr.esp.raw = tesp;
-  task.gpr.ebp.raw = tebp;
-  task.pgd = tcr3;
   // run task
   enter_userland(&task);
 }
