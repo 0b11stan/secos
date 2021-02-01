@@ -37,6 +37,7 @@ void __regparm__(1) intr_hdlr(int_ctx_t *ctx) {
       excp_hdlr(ctx);
    else {
       void (*gate)(int_ctx_t *ctx) = gates[vector];
+      /*
       debug(
           "\nIDT event\n"
           " . int    #%d\n"
@@ -57,6 +58,7 @@ void __regparm__(1) intr_hdlr(int_ctx_t *ctx) {
           ctx->esp.raw, ctx->eflags.raw, ctx->gpr.eax.raw, ctx->gpr.ecx.raw,
           ctx->gpr.edx.raw, ctx->gpr.ebx.raw, ctx->gpr.esp.raw,
           ctx->gpr.ebp.raw, ctx->gpr.esi.raw, ctx->gpr.edi.raw);
+       */
       if (gate == 0)
          debug("ignore IRQ %d\n", vector);
       else

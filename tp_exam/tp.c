@@ -45,32 +45,6 @@ pde32_t* pgd_task2;
 task_t task1;
 task_t task2;
 
-void init_gdt() {
-  gdt_reg_t gdtr;
-
-  GDT[0].raw = 0ULL;
-
-  c0_dsc(&GDT[c0_idx]);
-  d0_dsc(&GDT[d0_idx]);
-  c3_dsc(&GDT[c3_idx]);
-  d3_dsc(&GDT[d3_idx]);
-  tss_dsc(&GDT[tss_idx], (offset_t)&TSS);
-
-  gdtr.desc = GDT;
-  gdtr.limit = sizeof(GDT) - 1;
-  set_gdtr(gdtr);
-
-  set_cs(c0_sel);
-  set_ss(d0_sel);
-  set_ds(d0_sel);
-  set_es(d0_sel);
-  set_fs(d0_sel);
-  set_gs(d0_sel);
-  set_tr(tss_sel);
-
-  TSS.s0.ss = d0_sel;
-}
-
 void user1() {
   uint32_t* counter = (uint32_t*)SHARED_MEM;
   while (1) (*counter)++;
@@ -143,6 +117,18 @@ void interrupt_clock(int_ctx_t* old) {
   enter_userland(task);
 }
 
+void init_task(task_t* task, uint32_t pgd, uint32_t stack,
+               uint32_t kernel_stack, void (*routine)()) {
+  memset(task, 0, sizeof(task_t));
+  task->cs = c3_sel;
+  task->ds = d3_sel;
+  task->pgd = pgd;
+  task->tss = kernel_stack + 0xfff;
+  task->eip = (uint32_t)routine;
+  task->ebp = stack + 0xfff;
+  task->esp = stack + 0xfff;
+}
+
 pde32_t* init_pgd(uint32_t address) {
   memset((void*)address, 0, PAGE_SIZE);
   return (pde32_t*)address;
@@ -163,6 +149,13 @@ void map_user_page(pde32_t* pde, uint32_t pte, uint32_t index, uint32_t addr) {
   pte32_t* ptb = (pte32_t*)pte;
   pg_set_entry(&ptb[index], PG_USR | PG_RW, page_nr(addr));
   pg_set_entry(pde, PG_USR | PG_RW, page_nr(ptb));
+}
+
+void init_syscall() {
+  idt_reg_t idtr;
+  get_idtr(idtr);
+  int_desc_t* dsc = &idtr.desc[80];
+  dsc->dpl = 3;
 }
 
 void init_pagination() {
@@ -188,23 +181,30 @@ void init_pagination() {
   enable_paging();
 }
 
-void init_syscall() {
-  idt_reg_t idtr;
-  get_idtr(idtr);
-  int_desc_t* dsc = &idtr.desc[80];
-  dsc->dpl = 3;
-}
+void init_gdt() {
+  gdt_reg_t gdtr;
 
-void init_task(task_t* task, uint32_t pgd, uint32_t stack,
-               uint32_t kernel_stack, void (*routine)()) {
-  memset(task, 0, sizeof(task_t));
-  task->cs = c3_sel;
-  task->ds = d3_sel;
-  task->pgd = pgd;
-  task->tss = kernel_stack + 0xfff;
-  task->eip = (uint32_t)routine;
-  task->ebp = stack + 0xfff;
-  task->esp = stack + 0xfff;
+  GDT[0].raw = 0ULL;
+
+  c0_dsc(&GDT[c0_idx]);
+  d0_dsc(&GDT[d0_idx]);
+  c3_dsc(&GDT[c3_idx]);
+  d3_dsc(&GDT[d3_idx]);
+  tss_dsc(&GDT[tss_idx], (offset_t)&TSS);
+
+  gdtr.desc = GDT;
+  gdtr.limit = sizeof(GDT) - 1;
+  set_gdtr(gdtr);
+
+  set_cs(c0_sel);
+  set_ss(d0_sel);
+  set_ds(d0_sel);
+  set_es(d0_sel);
+  set_fs(d0_sel);
+  set_gs(d0_sel);
+  set_tr(tss_sel);
+
+  TSS.s0.ss = d0_sel;
 }
 
 void tp() {

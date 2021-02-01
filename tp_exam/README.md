@@ -25,6 +25,7 @@ Vous êtes libres de modifier l'intégralité du noyau si vous le jugez nécessa
 - [x] mettre en place la mémoire partagée (identity mapping)
 - [ ] mapper le code du noyau en read only pour les taches
 - [ ] faire le changement de stack (tss) en fonction des interruptions
+- [ ] restaurer tout les registres généraux de chaque taches
 - [ ] passer la mémoire partagée à un mapping virtuel
 
 ---
