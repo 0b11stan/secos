@@ -72,15 +72,11 @@ void init_gdt() {
 }
 
 void user1() {
-  debug("START TASK 1\n");
-  debug("kernel: %s\n", (char*)0x2000);  // TODO : should map so that fail
   uint32_t* counter = (uint32_t*)SHARED_MEM;
   while (1) (*counter)++;
 }
 
 void user2() {
-  debug("START TASK 2\n");
-  debug("kernel: %s\n", (char*)0x2000);  // TODO : should map so that fail
   uint32_t* counter = (uint32_t*)SHARED_MEM;
   while (1) asm volatile("int $80" ::"S"(*counter));
 }
@@ -136,7 +132,7 @@ task_t* switch_context(int_ctx_t* old) {
 }
 
 void interrupt_syscall(int_ctx_t* ctx) {
-  //debug("Been interrupted by syscall !\n");
+  // debug("Been interrupted by syscall !\n");
   debug("counter: '%d'\n", ctx->gpr.esi);
 }
 
@@ -170,9 +166,6 @@ void map_user_page(pde32_t* pde, uint32_t pte, uint32_t index, uint32_t addr) {
 }
 
 void init_pagination() {
-  // TODO : only map what's needed
-  // TODO : map only kernel stack with access to ring0
-  // TODO : map only kernel code with access to ring3
   pgd_kernel = init_pgd(PGD_KERNEL);
   pgd_task1 = init_pgd(PGD_TASK1);
   pgd_task2 = init_pgd(PGD_TASK2);
@@ -182,14 +175,12 @@ void init_pagination() {
   map_full_table(&pgd_kernel[1], (PTB_KERNEL + 0x1000), PG_KRN | PG_RW);
 
   // task1
-  // map_full_table(&pgd_task1[0], PTB_TASK1, PG_KRN | PG_RW);
-  map_full_table(&pgd_task1[0], PTB_TASK1, PG_USR | PG_RW);
+  map_full_table(&pgd_task1[0], PTB_TASK1, PG_USR | PG_RO);
   map_user_page(&pgd_task1[1], (PTB_TASK1 + 0x1000), 256, STACK_TASK1);
   map_user_page(&pgd_task1[1], (PTB_TASK1 + 0x1000), 260, SHARED_MEM);
 
   // task2
-  // map_full_table(&pgd_task2[0], PTB_TASK2, PG_KRN | PG_RW);
-  map_full_table(&pgd_task2[0], PTB_TASK2, PG_USR | PG_RW);
+  map_full_table(&pgd_task2[0], PTB_TASK2, PG_USR | PG_RO);
   map_user_page(&pgd_task2[1], (PTB_TASK2 + 0x1000), 258, STACK_TASK2);
   map_user_page(&pgd_task2[1], (PTB_TASK2 + 0x1000), 260, SHARED_MEM);
 
