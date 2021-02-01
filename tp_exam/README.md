@@ -22,7 +22,8 @@ Vous êtes libres de modifier l'intégralité du noyau si vous le jugez nécessa
 - [x] changer le mécanisme de scheduler
 - [x] arrêter de stocker le contexte
 - [x] supprimer les multiples tss
-- [ ] mettre en place la mémoire partagée (identity mapping)
+- [ ] faire le changement de stack (tss) en fonction des interruptions
+- [x] mettre en place la mémoire partagée (identity mapping)
 - [ ] passer la mémoire partagée à un mapping virtuel
 
 ---

@@ -74,15 +74,15 @@ void init_gdt() {
 void user1() {
   debug("START TASK 1\n");
   debug("kernel: %s\n", (char*)0x2000);  // TODO : should map so that fail
-  char* message = "Hi from user1!";
-  asm volatile("int $80" ::"S"(message));
-  while (1) debug("running task ONE ...\n");
+  uint32_t* counter = (uint32_t*)SHARED_MEM;
+  while (1) (*counter)++;
 }
 
 void user2() {
   debug("START TASK 2\n");
   debug("kernel: %s\n", (char*)0x2000);  // TODO : should map so that fail
-  while (1) debug("running task TWO ...\n");
+  uint32_t* counter = (uint32_t*)SHARED_MEM;
+  while (1) asm volatile("int $80" ::"S"(*counter));
 }
 
 void enter_userland(task_t* task) {
@@ -92,6 +92,11 @@ void enter_userland(task_t* task) {
   set_es(task->ds);
   set_fs(task->ds);
   set_gs(task->ds);
+
+  /* TODO
+  TSS.s0.esp = task->tss;
+  TSS.gpr.ebp.raw = task->tss;
+  */
 
   TSS.s0.esp = get_ebp();
 
@@ -131,8 +136,8 @@ task_t* switch_context(int_ctx_t* old) {
 }
 
 void interrupt_syscall(int_ctx_t* ctx) {
-  debug("Been interrupted by syscall !\n");
-  debug("message: '%s'\n", ctx->gpr.esi);
+  //debug("Been interrupted by syscall !\n");
+  debug("counter: '%d'\n", ctx->gpr.esi);
 }
 
 void interrupt_clock(int_ctx_t* old) {
@@ -158,9 +163,9 @@ void map_full_table(pde32_t* pde, uint32_t pte, uint32_t flags) {
   pg_set_entry(pde, flags, page_nr(ptb));
 }
 
-void map_user_page(pde32_t* pde, uint32_t pte, uint32_t index, uint32_t stack) {
+void map_user_page(pde32_t* pde, uint32_t pte, uint32_t index, uint32_t addr) {
   pte32_t* ptb = (pte32_t*)pte;
-  pg_set_entry(&ptb[index], PG_USR | PG_RW, page_nr(stack));
+  pg_set_entry(&ptb[index], PG_USR | PG_RW, page_nr(addr));
   pg_set_entry(pde, PG_USR | PG_RW, page_nr(ptb));
 }
 
@@ -180,13 +185,13 @@ void init_pagination() {
   // map_full_table(&pgd_task1[0], PTB_TASK1, PG_KRN | PG_RW);
   map_full_table(&pgd_task1[0], PTB_TASK1, PG_USR | PG_RW);
   map_user_page(&pgd_task1[1], (PTB_TASK1 + 0x1000), 256, STACK_TASK1);
-  // map_user_page(&pgd_task1[1], (PTB_TASK1 + 0x1000), 258, SHARED_MEM);
+  map_user_page(&pgd_task1[1], (PTB_TASK1 + 0x1000), 260, SHARED_MEM);
 
   // task2
   // map_full_table(&pgd_task2[0], PTB_TASK2, PG_KRN | PG_RW);
   map_full_table(&pgd_task2[0], PTB_TASK2, PG_USR | PG_RW);
   map_user_page(&pgd_task2[1], (PTB_TASK2 + 0x1000), 258, STACK_TASK2);
-  // map_user_page(&pgd_task2[1], (PTB_TASK2 + 0x1000), 258, SHARED_MEM);
+  map_user_page(&pgd_task2[1], (PTB_TASK2 + 0x1000), 260, SHARED_MEM);
 
   set_cr3((uint32_t)pgd_kernel);
   enable_paging();
@@ -216,6 +221,8 @@ void tp() {
   intr_init();
   init_pagination();
   init_syscall();
+
+  memset((int*)SHARED_MEM, 0, 32);
 
   register_gate(80, &interrupt_syscall);
   register_gate(32, &interrupt_clock);
